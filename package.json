@@ -24,9 +24,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev": "yarn install && react-scripts start",
-    "heroku-prebuild": "yarn global add serve",
-    "heroku-postbuild": "serve -s build"
+    "dev": "yarn install && react-scripts start"
   },
   "eslintConfig": {
     "extends": [
