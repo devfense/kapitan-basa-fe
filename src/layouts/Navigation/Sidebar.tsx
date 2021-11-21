@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { useLocaleContext } from '../../providers/localization';
 
 const Container = styled.div`
     display: flex;
@@ -21,11 +22,13 @@ const NavContainer = styled.div`
 `;
 
 const Sidebar = () => {
+    const strings = useLocaleContext();
+    
     return (
         <Container>
             <NavContainer>
-                <Link to='/dashboard'>Dashboard</Link>
-                <Link to='/game'>Game Levels</Link>
+                <Link to='/dashboard'>{strings.dashboard}</Link>
+                <Link to='/game'>{strings.gameLevel}</Link>
             </NavContainer>
         </Container>
     )
