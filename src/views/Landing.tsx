@@ -4,6 +4,7 @@ import Boxes from '../assets/media/banner/BannerImages';
 import Button from '../components/Button';
 import TextField from '../components/TextField';
 import BoyReading from '../assets/media/reading/Reading';
+import { useLocaleContext } from '../providers/localization';
 
 const Container = styled.div`
     display: flex;
@@ -117,6 +118,8 @@ const StyledButton = styled(Button)`
 `;
 
 const Landing: FunctionComponent = () => {
+    const strings = useLocaleContext();
+
     return(
         <Container>
             <HeroBannerContainer>
@@ -168,8 +171,8 @@ const Landing: FunctionComponent = () => {
                     />
                 </TextBox>
 
-                <StyledButton>Login</StyledButton>
-                <StyledButton shade='outlined'>Register as Student</StyledButton>
+                <StyledButton>{strings.login}</StyledButton>
+                <StyledButton shade='outlined'>{strings.asStudent}</StyledButton>
             </LoginContainer>
         </Container>
     )
