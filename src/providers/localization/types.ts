@@ -1,10 +1,12 @@
 
 export interface LocaleStrings {
     app: string;
+    asStudent: string;
     dashboard: string;
     delete: string;
     edit: string;
     gameLevel: string;
+    login: string;
     name: string;
 }
 

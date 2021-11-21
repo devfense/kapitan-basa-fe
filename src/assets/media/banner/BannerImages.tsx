@@ -15,7 +15,7 @@ import Box14 from './box14.png';
 import Box15 from './box15.png';
 import Box16 from './box16.png';
 
-export default {
+const Boxes = {
     Box1,
     Box2,
     Box3,
@@ -33,3 +33,5 @@ export default {
     Box15,
     Box16
 }
+
+export default Boxes;

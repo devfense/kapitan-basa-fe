@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Items from '../../constants/MenuItem/MenuItem';
@@ -70,7 +69,7 @@ const Title = styled.span`
 `
 
 const Sidebar = () => {
-    const strings = useLocaleContext();
+    const strings = useLocaleContext(); // for localization
     
     return (
         <Container>
