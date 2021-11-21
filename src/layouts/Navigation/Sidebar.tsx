@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
-import Items from '../../Data/MenuItem/MenuItem';
+import Items from '../../constants/MenuItem/MenuItem';
 
 const Container = styled.div`
     display: flex;
