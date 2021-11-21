@@ -16,12 +16,13 @@ const Container = styled.div`
 
 const MainContainer = styled.div`
     display: flex;
-    widht: 70%;
-    background-color: #FFFFFF;
+    width: 100%;
+    background-color: #F2F7FF;
     margin-top: 51px;
 `;
 
 function Root() {
+
   return (
     <ThemeProvider theme={theme.default}>
       <Router>

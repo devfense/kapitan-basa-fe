@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
+import banner from '../Images/assets/banner.svg' 
 
 const Container = styled.div`
     display: flex;
@@ -7,11 +8,18 @@ const Container = styled.div`
 
 const HeroBannerContainer = styled.div`
     display: flex;
-    width: 90%;
+    width: 100%;
     /* placeholders */
-    height: 1500px; 
+    height: 100vh; 
     background: ${({ theme }) => theme.app.nav.normal.BG_COLOR};
 `;
+
+const BannerSVG = styled.img`
+    width: 100%;
+    background-image: url(${banner});
+    background-repeat: no-repeat;
+    object-fit: contain;
+`
 
 const LoginContainer = styled.div`
     display: flex;
@@ -23,6 +31,7 @@ const Landing: FunctionComponent = () => {
     return(
         <Container>
             <HeroBannerContainer>
+                <BannerSVG />
             </HeroBannerContainer>
             <LoginContainer>
 
