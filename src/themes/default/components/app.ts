@@ -3,7 +3,7 @@ import { AppColors } from "../../types";
 const colors: AppColors = {
     nav: {
         normal: {
-            BG_COLOR: 'blue',
+            BG_COLOR: '#435EBE',
             TEXT_COLOR: '#FFFFFF'
         }
     },
