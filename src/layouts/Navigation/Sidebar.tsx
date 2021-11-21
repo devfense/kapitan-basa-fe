@@ -69,7 +69,7 @@ const Title = styled.span`
 `
 
 const Sidebar = () => {
-    const strings = useLocaleContext();
+    const strings = useLocaleContext(); // for localization
     
     return (
         <Container>
