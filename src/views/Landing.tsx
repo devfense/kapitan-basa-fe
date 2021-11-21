@@ -1,6 +1,8 @@
 import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
 import Boxes from '../assets/media/banner/BannerImages';
+import Button from '../components/Button';
+import TextField from '../components/TextField';
 import BoyReading from '../assets/media/reading/Reading';
 
 const Container = styled.div`
@@ -77,7 +79,7 @@ const TextBox = styled.div`
     margin-bottom: 1rem;
 `
 
-const TextField = styled.input`
+const TextFieldd = styled.input`
     height: 15px;
     width: 87%;
     font-size: 0.9rem;
@@ -98,59 +100,21 @@ const TextField = styled.input`
         border: 2px solid #dde9fc;
         transition: all 0.3s ease-in-out;
     }
-`
+`;
 
-const Label = styled.label`
-    font-size: 1rem;
-    font-weight: 600;
-    color: #435EBE;
-    margin-bottom: .7rem;
-`
-
-const LoginBtn = styled.button`
-    height: 55px;
-    width: 75%;
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: #FFFFFF;
-    background-color: #3787FF;
-    border-radius: .5rem;
-    border: none;
-    outline: none;
-    padding: 1rem;
-    z-index: 1;
-    margin-top: 1.6rem;
-    cursor: pointer;
-
-    &:hover {
-        cursor: pointer;
-        background-color: #4b93ff;
-        transition: all 0.2s ease-in-out;
+const StyledTextField = styled(TextField)`
+    margin-top: 71px;
+    &.MuiTextField-root > div {
+        width: 288px;
     }
-`
+`;
 
-const RegisterBtn = styled.button`
-    height: 55px;
+const StyledButton = styled(Button)`
     width: 75%;
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: #6b8af8;
-    background-color: #FFF;
-    border: 2px solid #6b8af8;
-    border-radius: .5rem;
-    outline: none;
-    padding: 1rem;
-    z-index: 1;
-    margin-top: 1.2rem;
-    cursor: pointer;
-
-    &:hover {
-        cursor: pointer;
-        color: #FFF;
-        background-color: #6b8af8;
-        transition: all 0.2s ease-in-out;
+    &.MuiButtonBase-root {
+        margin-top: 1.2rem;
     }
-`
+`;
 
 const Landing: FunctionComponent = () => {
     return(
@@ -191,23 +155,21 @@ const Landing: FunctionComponent = () => {
                 <Title>Kapitan <span>Basa</span></Title>
 
                 <TextBox>
-                    <Label>Username</Label> 
-                    <TextField 
+                    <StyledTextField 
                         type="username" 
                         placeholder="Username"
                     />
                 </TextBox>
 
                 <TextBox>
-                    <Label>Password</Label> 
-                    <TextField 
+                    <StyledTextField 
                         type="password" 
                         placeholder="Password"
                     />
                 </TextBox>
 
-                <LoginBtn>Login</LoginBtn>
-                <RegisterBtn>Register as Student</RegisterBtn>
+                <StyledButton>Login</StyledButton>
+                <StyledButton shade='outlined'>Register as Student</StyledButton>
             </LoginContainer>
         </Container>
     )
