@@ -1,6 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import Items from '../../constants/MenuItem/MenuItem';
 import { useLocaleContext } from '../../providers/localization';
 
 const Container = styled.div`
@@ -26,7 +28,7 @@ const NavContainer = styled.div`
     overflow: hidden;
 `;
 
-const MenuBox = styled.div`
+const MenuBox = styled(Link)`
     height: 45px;
     width: auto;
     display: flex;
@@ -36,10 +38,7 @@ const MenuBox = styled.div`
     font-weight: 600;
     padding: 0px 15px;
     cursor: pointer;
-    a {
-        line-height: 30px;
-        text-decoration: none;
-    }
+    text-decoration: none;
 
     &:hover {
         color: #FFF;
@@ -71,33 +70,21 @@ const Title = styled.span`
 `
 
 const Sidebar = () => {
-<<<<<<< HEAD
-    const navigate = useNavigate()
-=======
     const strings = useLocaleContext();
     
->>>>>>> 692085011f987877c90a96b813e73a8f22a1ddb1
     return (
         <Container>
             <TitleBox>
                 <Title>Kapitan <span>Basa</span></Title>
             </TitleBox>
             <NavContainer>
-<<<<<<< HEAD
-                { 
-                    Items.map((item, index) => 
-                        <MenuBox 
-                            key={index}
-                            onClick={() => navigate(`${item.route}`)}
-                        >
-                            { item.title }
-                        </MenuBox>
-                    )
+                {
+                    Items.map((menu, indx) => {
+                        return (
+                            <MenuBox to={menu.route} key={indx}>{menu.title}</MenuBox>
+                        )
+                    })
                 }
-=======
-                <Link to='/dashboard'>{strings.dashboard}</Link>
-                <Link to='/game'>{strings.gameLevel}</Link>
->>>>>>> 692085011f987877c90a96b813e73a8f22a1ddb1
             </NavContainer>
         </Container>
     )

@@ -18,7 +18,7 @@ const HeroBannerContainer = styled.div`
 
 const BoxImage = styled.img`
     width: 25%;
-    height: 300px;
+    height: 325px;
 `
 
 const LoginContainer = styled.div`
