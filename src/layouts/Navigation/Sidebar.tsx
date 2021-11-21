@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
-import Items from '../../constants/MenuItem/MenuItem';
+import { useLocaleContext } from '../../providers/localization';
 
 const Container = styled.div`
     display: flex;
@@ -71,13 +71,19 @@ const Title = styled.span`
 `
 
 const Sidebar = () => {
+<<<<<<< HEAD
     const navigate = useNavigate()
+=======
+    const strings = useLocaleContext();
+    
+>>>>>>> 692085011f987877c90a96b813e73a8f22a1ddb1
     return (
         <Container>
             <TitleBox>
                 <Title>Kapitan <span>Basa</span></Title>
             </TitleBox>
             <NavContainer>
+<<<<<<< HEAD
                 { 
                     Items.map((item, index) => 
                         <MenuBox 
@@ -88,6 +94,10 @@ const Sidebar = () => {
                         </MenuBox>
                     )
                 }
+=======
+                <Link to='/dashboard'>{strings.dashboard}</Link>
+                <Link to='/game'>{strings.gameLevel}</Link>
+>>>>>>> 692085011f987877c90a96b813e73a8f22a1ddb1
             </NavContainer>
         </Container>
     )
