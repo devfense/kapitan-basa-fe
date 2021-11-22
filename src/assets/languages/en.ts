@@ -1,7 +1,9 @@
 import { LocaleStrings } from "../../providers/localization/types";
 
 const strings: LocaleStrings = {
-    app: 'App',
+    title: 'Kapitan',
+    subTitle: 'Basa',
+    regLabel: 'Register',
     asStudent: 'As Student',
     dashboard: 'Dashboard',
     delete: 'Delete',

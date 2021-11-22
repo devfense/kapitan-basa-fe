@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Boxes from '../assets/media/banner/BannerImages';
 import Button from '../components/Button';
 import TextField from '../components/TextField';
+import BrandName from '../components/Brand';
 import BoyReading from '../assets/media/reading/Reading';
 import { useLocaleContext } from '../providers/localization';
 
@@ -31,7 +32,6 @@ const LoginContainer = styled.div`
     flex-direction: column;
     align-items: center;
     width: 25%;
-    padding: 60px 0px;
     background-color: ${({ theme }) => theme.app.sidebar.normal.BG_COLOR};
 `;
 
@@ -45,7 +45,7 @@ const AvatarBox = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 3.5rem;
+    margin-top: 8.5rem;
     margin-bottom: 0.5rem;
 `
 
@@ -63,16 +63,6 @@ const AvatarImg = styled.img`
     width: 85%;
 `
 
-const Title = styled.span`
-    color: #435EBE;
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 3rem;
-    > span {
-        color: #41BBDD;
-    }
-`
-
 const TextBox = styled.div`
     width: 75%;
     display: flex;
@@ -80,31 +70,40 @@ const TextBox = styled.div`
     margin-bottom: 1rem;
 `
 
-const TextFieldd = styled.input`
-    height: 15px;
-    width: 87%;
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: #435EBE;
-    background-color: #ebf3ff;
-    border: 2px solid #ebf3ff;
-    border-radius: .5rem;
-    outline: none;
-    padding: 1rem;
-    z-index: 1;
-
-    &::placeholder {
-        color: #b8d3ff;
-    }
-
-    &:hover {
-        border: 2px solid #dde9fc;
-        transition: all 0.3s ease-in-out;
-    }
+const TitleBox = styled.div`
+    height: 51px;
+    display: flex;
+    align-items: center;
+    padding: 0px 30px;
+    margin-bottom: 40px;
 `;
 
+const LineBox = styled.div`
+    height: 40px;
+    width: 288px;
+    margin: 15px 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+const Line = styled.div`
+    height: 3px;
+    width: 288px;
+    background-color: #8197e6;
+`;
+
+const Label = styled.span`
+    color: #788fe0;
+    background-color: #FFF;
+    padding: 0px 5px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    position: absolute;
+    text-transform: uppercase;
+`
+
 const StyledTextField = styled(TextField)`
-    margin-top: 71px;
     &.MuiTextField-root > div {
         width: 288px;
     }
@@ -154,24 +153,26 @@ const Landing: FunctionComponent = () => {
                         <AvatarImg src={BoyReading.Reading}/>
                     </Avatar>
                 </AvatarBox>
-                
-                <Title>Kapitan <span>Basa</span></Title>
-
+                <TitleBox>
+                    <BrandName>{strings.title} <span>{strings.subTitle}</span></BrandName>
+                </TitleBox>
                 <TextBox>
                     <StyledTextField 
                         type="username" 
                         placeholder="Username"
                     />
                 </TextBox>
-
                 <TextBox>
                     <StyledTextField 
                         type="password" 
                         placeholder="Password"
                     />
                 </TextBox>
-
                 <StyledButton>{strings.login}</StyledButton>
+                <LineBox>
+                    <Line />
+                    <Label>{strings.regLabel}</Label>
+                </LineBox>
                 <StyledButton shade='outlined'>{strings.asStudent}</StyledButton>
             </LoginContainer>
         </Container>
