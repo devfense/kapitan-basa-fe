@@ -4,7 +4,7 @@ import Boxes from '../assets/media/banner/BannerImages';
 import Button from '../components/Button';
 import TextField from '../components/TextField';
 import BrandName from '../components/Brand';
-import BoyReading from '../assets/media/reading/Reading';
+import AvatarLogo from '../components/AvatarLogo/index'
 import { useLocaleContext } from '../providers/localization';
 
 const Container = styled.div`
@@ -39,29 +39,6 @@ const BannerRow = styled.div`
     display: flex;
 `;
 
-const AvatarBox = styled.div`
-    height: 140px;
-    width: 140px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 8.5rem;
-    margin-bottom: 0.5rem;
-`
-
-const Avatar = styled.div`
-    height: 140px;
-    width: 140px;
-    border-radius: 100%;
-    background-color: #ebf3ff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`
-
-const AvatarImg = styled.img`
-    width: 85%;
-`
 
 const TextBox = styled.div`
     width: 75%;
@@ -90,12 +67,12 @@ const LineBox = styled.div`
 const Line = styled.div`
     height: 3px;
     width: 288px;
-    background-color: #8197e6;
+    background-color: ${({theme}) => theme.app.sidebar.normal.SECONDARY_TEXT_COLOR};
 `;
 
 const Label = styled.span`
-    color: #788fe0;
-    background-color: #FFF;
+    color: ${({ theme }) => theme.app.sidebar.normal.TEXT_COLOR};
+    background-color: ${({ theme}) => theme.app.sidebar.normal.BG_COLOR};
     padding: 0px 5px;
     font-size: 0.9rem;
     font-weight: 700;
@@ -148,11 +125,7 @@ const Landing: FunctionComponent = () => {
                 </BannerRow>
             </HeroBannerContainer>
             <LoginContainer>
-                <AvatarBox>
-                    <Avatar>
-                        <AvatarImg src={BoyReading.Reading}/>
-                    </Avatar>
-                </AvatarBox>
+                <AvatarLogo />
                 <TitleBox>
                     <BrandName>{strings.title} <span>{strings.subTitle}</span></BrandName>
                 </TitleBox>

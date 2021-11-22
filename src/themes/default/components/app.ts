@@ -10,7 +10,9 @@ const colors: AppColors = {
     sidebar: {
         normal: {
             BG_COLOR: '#FFFFFF',
-            TEXT_COLOR: '#000000'
+            SECONDARY_BG_COLOR: '#EBF3FF',
+            TEXT_COLOR: '#788FE0',
+            SECONDARY_TEXT_COLOR: '#8197E6'
         }
     },
     brand: {
