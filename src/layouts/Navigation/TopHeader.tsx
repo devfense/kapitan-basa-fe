@@ -95,7 +95,7 @@ const TopHeader = () => {
                     <UserProfile />
                 </ProfileBtn>
                 { 
-                    popover ?  
+                    popover &&  
                         <ProfileContainer>
                             <TextBox> 
                                 <Placeholder>Username:</Placeholder>
@@ -114,7 +114,6 @@ const TopHeader = () => {
                                 <TextLabel>juandelacruz@gmail.com</TextLabel>
                             </TextBox>
                         </ProfileContainer> 
-                    : null 
                 }
             </SubContainer>
         </Container>
