@@ -3,19 +3,23 @@ import Routes from "../types";
 const Items: Routes[] = [
     {
         title: 'Dashboard',
-        route: '/dashboard'
+        route: '/dashboard',
+        key: 'dashboard'
     },
     {
         title: 'Game Level',
-        route: '/game'
+        route: '/game',
+        key: 'gameLevel'
     },
     {
         title: 'Tabulation/Results',
-        route: '/results'
+        route: '/results',
+        key: 'tabResults'
     },
     {
         title: 'User Management',
-        route: '/user-management'
+        route: '/user-management',
+        key: 'userMgmt'
     },
 
 ]

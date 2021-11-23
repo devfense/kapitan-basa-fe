@@ -9,6 +9,8 @@ export interface LocaleStrings {
     gameLevel: string;
     login: string;
     name: string;
+    tabResults: string;
+    userMgmt: string;
 }
 
 export type Languages = 'en' | 'tagalog';

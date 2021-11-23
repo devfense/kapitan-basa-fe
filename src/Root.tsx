@@ -24,7 +24,7 @@ const MainContainer = styled.div`
 
 const Root = () => {
   const contextStrings = useLocaleContext();
-  contextStrings.setLanguage('en');
+  contextStrings.setLanguage('tagalog');
 
   return (
     <ThemeProvider theme={theme.default}>

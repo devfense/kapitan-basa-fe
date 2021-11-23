@@ -10,6 +10,8 @@ const strings: LocaleStrings = {
     gameLevel: 'Game Levels',
     login: 'Login',
     name: 'Name',
+    tabResults: 'Tabulation/Results',
+    userMgmt: 'User Management'
 };
 
 export default strings;

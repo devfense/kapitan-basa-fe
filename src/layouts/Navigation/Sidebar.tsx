@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Items from '../../constants/MenuItem/MenuItem';
 import BrandName from '../../components/Brand';
 import { useLocaleContext } from '../../providers/localization';
+import { LocaleStrings } from '../../providers/localization/types';
 
 const Container = styled.div`
     display: flex;
@@ -71,7 +72,7 @@ const Sidebar = () => {
                 {
                     Items.map((menu, indx) => {
                         return (
-                            <MenuBox to={menu.route} key={indx}>{menu.title}</MenuBox>
+                            <MenuBox to={menu.route} key={indx}>{strings[menu.key as keyof LocaleStrings]}</MenuBox>
                         )
                     })
                 }
