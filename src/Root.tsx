@@ -7,6 +7,7 @@ import Sidebar from './layouts/Navigation/Sidebar';
 import TopHeader from './layouts/Navigation/TopHeader';
 import Dashboard from './views/Dashboard/Dashboard';
 import Game from './views/Game/Game';
+import UserManagament from './views/UserManagement/UserManagament';
 import { theme } from './themes';
 import Landing from './views/Landing';
 import LocaleContext, { useLocaleContext } from './providers/localization';
@@ -24,7 +25,7 @@ const MainContainer = styled.div`
 
 const Root = () => {
   const contextStrings = useLocaleContext();
-  contextStrings.setLanguage('tagalog');
+  contextStrings.setLanguage('en');
 
   return (
     <ThemeProvider theme={theme.default}>
@@ -38,6 +39,7 @@ const Root = () => {
                   <Routes>
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/game" element={<Game />} />
+                    <Route path="/user-management" element={<UserManagament />} />
                   </Routes>
               </MainContainer>
             </Container>

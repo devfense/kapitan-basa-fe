@@ -5,6 +5,7 @@ import Items from '../../constants/MenuItem/MenuItem';
 import BrandName from '../../components/Brand';
 import { useLocaleContext } from '../../providers/localization';
 import { LocaleStrings } from '../../providers/localization/types';
+import AvatarLogo from '../../components/AvatarLogo/index'
 
 const Container = styled.div`
     display: flex;
@@ -27,6 +28,7 @@ const NavContainer = styled.div`
     flex-direction: column;
     padding: 0px 15px;
     overflow: hidden;
+    margin-bottom: 100px;
 `;
 
 const MenuBox = styled(NavLink)`
@@ -54,12 +56,41 @@ const MenuBox = styled(NavLink)`
     }  
 `;
 
+
 const TitleBox = styled.div`
     height: 51px;
     display: flex;
     align-items: center;
     padding: 0px 30px;
-    margin-bottom: 40px;
+    margin-bottom: 20%;
+`;
+
+const BrandCard = styled.div`
+    width: 67%;
+    background-color: ${({ theme }) => theme.app.sidebar.normal.TERTIARY_BG_COLOR};
+    margin: 0px auto;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 23px;
+    border-radius: 8px;
+`
+
+const AvatarContainer = styled.div`
+    padding: 15px 0px;
+    display: flex;
+    justify-content: center;
+`;
+
+const DetailContainer = styled.div`
+    display: flex;
+    padding: 15px 0;
+`;
+
+const Typography = styled.span`
+    display: flex;
+    justify-content: center;
+    font-size: 600;
+    color: ${({ theme }) => theme.app.sidebar.normal.TERTIARY_TEXT_COLOR};
 `;
 
 const Sidebar = () => {
@@ -67,7 +98,7 @@ const Sidebar = () => {
     return (
         <Container>
             <TitleBox>
-                <BrandName medium='medium'>Kapitan<span>Basa</span></BrandName>
+                <BrandName medium='large'>Kapitan <span>Basa</span></BrandName>
             </TitleBox>
             <NavContainer>
                 {
@@ -78,6 +109,17 @@ const Sidebar = () => {
                     })
                 }
             </NavContainer>
+            <BrandCard>
+                <AvatarContainer>
+                    <AvatarLogo />
+                </AvatarContainer>
+                <BrandName medium='medium'>Kapitan <span>Basa</span></BrandName>
+                <DetailContainer>
+                    <Typography>
+                        { strings.appDesc }
+                    </Typography>
+                </DetailContainer>
+            </BrandCard>
         </Container>
     )
 };

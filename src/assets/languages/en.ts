@@ -11,7 +11,8 @@ const strings: LocaleStrings = {
     login: 'Login',
     name: 'Name',
     tabResults: 'Tabulation/Results',
-    userMgmt: 'User Management'
+    userMgmt: 'User Management',
+    appDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi culpa magnam nulla, sint ex voluptas labore voluptatibus.'
 };
 
 export default strings;

@@ -6,7 +6,7 @@ import UserProfile from '../../components/AvatarProfile/index'
 const Container = styled.div` 
     height: 51px;
     width: 83vw;
-    background-color: ${({ theme }) => theme.app.nav.normal.BG_COLOR};
+    background-color: ${({ theme }) => theme.app.header.normal.BG_COLOR};
     position: fixed;
     left: 15.2%;
     display: flex;

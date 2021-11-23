@@ -11,7 +11,8 @@ const strings: LocaleStrings = {
     login: 'Login',
     name: 'Pangalan',
     tabResults: 'Tabyulasyon at Mga Resulta',
-    userMgmt: 'Pag-manage ng Users'
+    userMgmt: 'Pag-manage ng Users',
+    appDesc: 'Taga pag mana nag applikasyon.'
 };
 
 export default strings;

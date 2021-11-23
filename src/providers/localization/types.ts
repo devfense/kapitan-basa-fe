@@ -11,6 +11,7 @@ export interface LocaleStrings {
     name: string;
     tabResults: string;
     userMgmt: string;
+    appDesc: string;
 }
 
 export type Languages = 'en' | 'tagalog';
