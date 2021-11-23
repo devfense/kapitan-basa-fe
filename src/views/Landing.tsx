@@ -127,7 +127,7 @@ const Landing: FunctionComponent = () => {
             <LoginContainer>
                 <AvatarLogo />
                 <TitleBox>
-                    <BrandName>{strings.title} <span>{strings.subTitle}</span></BrandName>
+                    <BrandName>Kapitan<span>Basa</span></BrandName>
                 </TitleBox>
                 <TextBox>
                     <StyledTextField 

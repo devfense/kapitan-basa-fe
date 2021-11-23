@@ -1,7 +1,6 @@
 
 export interface LocaleStrings {
-    title: string;
-    subTitle: string,
+    app: string,
     regLabel: string,
     asStudent: string;
     dashboard: string;

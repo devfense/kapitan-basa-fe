@@ -65,7 +65,7 @@ const Sidebar = () => {
     return (
         <Container>
             <TitleBox>
-                <BrandName medium='medium'>{strings.title} <span>{strings.subTitle}</span></BrandName>
+                <BrandName medium='medium'>Kapitan<span>Basa</span></BrandName>
             </TitleBox>
             <NavContainer>
                 {
