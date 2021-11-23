@@ -61,7 +61,7 @@ const ProfileContainer = styled.div`
     border-radius: 8px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     transition: all 0.6s ease-in-out;
-`
+`;
 
 const TextBox = styled.div`
     display: flex;
@@ -69,17 +69,17 @@ const TextBox = styled.div`
     line-height: 1.6rem;
     margin-bottom: .4rem;
     cursor: pointer;
-`
+`;
 const Placeholder = styled.span`
     font-size: 0.9rem;
     color: ${({ theme }) => theme.app.nav.normal.TERTIARY_TEXT_COLOR};
-`
+`;
 
 const TextLabel = styled.span`
     font-size: 1rem;
     font-weight: 600;
     color: ${({ theme }) => theme.app.nav.normal.SECONDARY_TEXT_COLOR};
-`
+`;
 
 const TopHeader = () => {
     const [popover, setPopOver] = useState(false);

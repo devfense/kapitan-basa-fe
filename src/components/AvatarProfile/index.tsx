@@ -13,7 +13,7 @@ const Avatar = styled(MuiAvatar)`
         width: 20px;
         cursor: pointer;
     }
-`
+`;
 
 const index = () => {
     return (
@@ -23,4 +23,4 @@ const index = () => {
     )
 }
 
-export default index
+export default index;

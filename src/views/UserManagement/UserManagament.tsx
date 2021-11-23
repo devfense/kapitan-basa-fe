@@ -9,4 +9,4 @@ const UserManagament = () => {
     )
 }
 
-export default UserManagament
+export default UserManagament;
