@@ -3,6 +3,10 @@ import { AppColors } from "../../types";
 const colors: AppColors = {
     nav: {
         normal: {
+            BG_COLOR: 'transparent',
+            TEXT_COLOR: '#25396F'
+        },
+        active: {
             BG_COLOR: '#435EBE',
             TEXT_COLOR: '#FFFFFF'
         }

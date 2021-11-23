@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import Items from '../../constants/MenuItem/MenuItem';
 import BrandName from '../../components/Brand';
@@ -29,26 +29,27 @@ const NavContainer = styled.div`
     overflow: hidden;
 `;
 
-const MenuBox = styled(Link)`
+const MenuBox = styled(NavLink)`
     height: 45px;
     width: auto;
     display: flex;
     align-items: center;
     border-radius: 7px;
-    color: #25396F;
+    color: ${({theme}) => theme.app.nav.normal.TEXT_COLOR};
     font-weight: 600;
     padding: 0px 15px;
     cursor: pointer;
     text-decoration: none;
 
     &:hover {
-        color: #FFF;
-        background-color: #435EBE;
+        color: ${({theme}) => theme.app.nav.hover?.TEXT_COLOR};
+        background-color: ${({theme}) => theme.app.nav.hover?.BG_COLOR};
         border-radius: 7px;
         transition: all 0.5s ease-in-out; 
     }
     &.active {
-        background-color: #435EBE;
+        color: ${({theme}) => theme.app.nav.active?.TEXT_COLOR};
+        background-color: ${({theme}) => theme.app.nav.active?.BG_COLOR};
         border-radius: 7px;
     }  
 `;
