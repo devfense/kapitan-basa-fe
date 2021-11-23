@@ -1,6 +1,7 @@
 import React from 'react';
-import { FaBars, FaUserCircle } from 'react-icons/fa'
+import { FaBars } from 'react-icons/fa'
 import styled from 'styled-components';
+import UserProfile from '../../components/AvatarProfile/index'
 
 const Container = styled.div` 
     height: 51px;
@@ -43,16 +44,7 @@ const MobileIcon = styled.div`
     }
 `
 
-const UserIcon = styled.div`
-    font-size: 30px;
-    color: #FFF;
 
-    @media screen and (max-width: 960px) {
-        display: block;
-        font-size: 1.8rem;
-        cursor: pointer;
-    }
-`
 
 const TopHeader = () => {
     return (
@@ -61,9 +53,7 @@ const TopHeader = () => {
                 <MobileIcon>
                     <FaBars />
                 </MobileIcon>
-                <UserIcon>
-                    <FaUserCircle/>
-                </UserIcon>
+                <UserProfile />
             </SubContainer>
         </Container>
     )
