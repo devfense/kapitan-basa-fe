@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Items from '../../constants/MenuItem/MenuItem';
+import BrandName from '../../components/Brand';
 import { useLocaleContext } from '../../providers/localization';
 
 const Container = styled.div`
@@ -49,7 +50,7 @@ const MenuBox = styled(Link)`
         background-color: #435EBE;
         border-radius: 7px;
     }  
-`
+`;
 
 const TitleBox = styled.div`
     height: 51px;
@@ -57,24 +58,14 @@ const TitleBox = styled.div`
     align-items: center;
     padding: 0px 30px;
     margin-bottom: 40px;
-`
-
-const Title = styled.span`
-    color: #435EBE;
-    font-size: 20px;
-    font-weight: 700;
-    > span {
-        color: #41BBDD;
-    }
-`
+`;
 
 const Sidebar = () => {
-    const strings = useLocaleContext(); // for localization
-    
+    const strings = useLocaleContext();
     return (
         <Container>
             <TitleBox>
-                <Title>Kapitan <span>Basa</span></Title>
+                <BrandName medium='medium'>Kapitan<span>Basa</span></BrandName>
             </TitleBox>
             <NavContainer>
                 {
