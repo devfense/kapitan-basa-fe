@@ -116,7 +116,6 @@ const TopHeader = () => {
                         </ProfileContainer> 
                     : null 
                 }
-               
             </SubContainer>
         </Container>
     )
