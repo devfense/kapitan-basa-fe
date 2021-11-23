@@ -8,7 +8,6 @@ const AvatarBox = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 8.5rem;
     margin-bottom: 0.5rem;
 `
 

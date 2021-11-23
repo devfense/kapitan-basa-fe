@@ -10,6 +10,9 @@ const strings: LocaleStrings = {
     gameLevel: 'Mga Level ng Laro',
     login: 'Login',
     name: 'Pangalan',
+    tabResults: 'Tabyulasyon at Mga Resulta',
+    userMgmt: 'Pag-manage ng Users',
+    appDesc: 'Taga pag mana nag applikasyon.'
 };
 
 export default strings;

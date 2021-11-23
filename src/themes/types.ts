@@ -3,8 +3,10 @@
 interface Properties {
     BG_COLOR: string;
     SECONDARY_BG_COLOR?: string;
+    TERTIARY_BG_COLOR?: string;
     TEXT_COLOR: string;
     SECONDARY_TEXT_COLOR?: string;
+    TERTIARY_TEXT_COLOR? : string;
     BORDER_COLOR?: string;
     SHADOW_COLOR?: string;
 };
@@ -13,7 +15,7 @@ type States = {
     normal: Properties;
 } & Partial<Record<'active' | 'hover' | 'checked' | 'unchecked' | 'error', Properties>>;
 
-export type AppColors = Record<'nav' | 'sidebar' | 'brand', States>;
+export type AppColors = Record<'nav' | 'header' | 'sidebar' | 'brand', States>;
 export type ButtonColors = Record<'filled' | 'outlined', States>;
 export type TextFieldColors = Record<'placeholder' | 'text', States>;
 

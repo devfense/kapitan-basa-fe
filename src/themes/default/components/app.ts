@@ -3,6 +3,16 @@ import { AppColors } from "../../types";
 const colors: AppColors = {
     nav: {
         normal: {
+            BG_COLOR: 'transparent',
+            TEXT_COLOR: '#25396F'
+        },
+        active: {
+            BG_COLOR: '#435EBE',
+            TEXT_COLOR: '#FFFFFF'
+        }
+    },
+    header: {
+        normal: {
             BG_COLOR: '#435EBE',
             TEXT_COLOR: '#FFFFFF'
         }
@@ -11,8 +21,14 @@ const colors: AppColors = {
         normal: {
             BG_COLOR: '#FFFFFF',
             SECONDARY_BG_COLOR: '#EBF3FF',
+            TERTIARY_BG_COLOR: '#F2F7FF',
             TEXT_COLOR: '#788FE0',
-            SECONDARY_TEXT_COLOR: '#8197E6'
+            SECONDARY_TEXT_COLOR: '#8197E6',
+            TERTIARY_TEXT_COLOR: '#3E5490'
+        },
+        hover: {
+            TEXT_COLOR: '#FFFFFF',
+            BG_COLOR: '#788FE0'
         }
     },
     brand: {

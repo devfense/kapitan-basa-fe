@@ -32,6 +32,7 @@ const LoginContainer = styled.div`
     flex-direction: column;
     align-items: center;
     width: 25%;
+    padding: 7% 0;
     background-color: ${({ theme }) => theme.app.sidebar.normal.BG_COLOR};
 `;
 
@@ -127,7 +128,7 @@ const Landing: FunctionComponent = () => {
             <LoginContainer>
                 <AvatarLogo />
                 <TitleBox>
-                    <BrandName>Kapitan<span>Basa</span></BrandName>
+                    <BrandName medium='large'>Kapitan <span>Basa</span></BrandName>
                 </TitleBox>
                 <TextBox>
                     <StyledTextField 
