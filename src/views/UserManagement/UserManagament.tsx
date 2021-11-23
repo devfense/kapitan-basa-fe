@@ -1,10 +1,11 @@
 import React from 'react'
+import { Container } from '../../globalStyles'
 
 const UserManagament = () => {
     return (
-        <div>
+        <Container>
             This is User Management Page.
-        </div>
+        </Container>
     )
 }
 

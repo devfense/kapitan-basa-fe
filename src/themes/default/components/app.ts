@@ -4,11 +4,13 @@ const colors: AppColors = {
     nav: {
         normal: {
             BG_COLOR: 'transparent',
-            TEXT_COLOR: '#25396F'
+            TEXT_COLOR: '#25396F',
+            SECONDARY_TEXT_COLOR: '#435EBE',
+            TERTIARY_TEXT_COLOR: '#7C8DB5'
         },
         active: {
             BG_COLOR: '#435EBE',
-            TEXT_COLOR: '#FFFFFF'
+            TEXT_COLOR: '#FFFFFF',
         }
     },
     header: {

@@ -6,7 +6,7 @@ import styled from 'styled-components'
 const Avatar = styled(MuiAvatar)`
     width: 20px;
     color: #FFF;
-    border: 3px solid green;
+    border: 3px solid #5371dd;
 
     @media screen and (max-width: 960px) {
         display: block;
