@@ -58,7 +58,7 @@ const MenuBox = styled(NavLink)`
 
 
 const TitleBox = styled.div`
-    height: 51px;
+    height: 55px;
     display: flex;
     align-items: center;
     padding: 0px 30px;
