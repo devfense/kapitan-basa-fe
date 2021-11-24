@@ -15,7 +15,7 @@ type States = {
     normal: Properties;
 } & Partial<Record<'active' | 'hover' | 'checked' | 'unchecked' | 'error', Properties>>;
 
-export type AppColors = Record<'nav' | 'header' | 'sidebar' | 'brand', States>;
+export type AppColors = Record<'nav' | 'header' | 'sidebar' | 'brand' | 'content', States>;
 export type ButtonColors = Record<'filled' | 'outlined', States>;
 export type TextFieldColors = Record<'placeholder' | 'text', States>;
 

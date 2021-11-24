@@ -10,6 +10,10 @@ const colors: ButtonColors = {
         hover: {
             BG_COLOR: '#4B93FF',
             TEXT_COLOR: '#FFFFFF'
+        },
+        error: {
+            TEXT_COLOR: '#FFFFFF',
+            BG_COLOR: '#FF7976',
         }
     },
     outlined: {

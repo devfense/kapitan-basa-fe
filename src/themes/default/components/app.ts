@@ -39,6 +39,15 @@ const colors: AppColors = {
             SECONDARY_BG_COLOR: '#41BBDD',
             TEXT_COLOR: '#41BBDD',
         }
+    },
+    content: {
+        normal: {
+            TEXT_COLOR: '#25396F',
+            SECONDARY_TEXT_COLOR: '#25396F',
+            TERTIARY_TEXT_COLOR: '#7C8DB5',
+            BG_COLOR: '#F2F7FF',
+            SECONDARY_BG_COLOR: '#FFFFFF',
+        }
     }
 };
 
