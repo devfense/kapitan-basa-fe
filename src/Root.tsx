@@ -25,12 +25,12 @@ const MainContainer = styled.div`
 
 const Root = () => {
   const contextStrings = useLocaleContext();
-  contextStrings.setLanguage('en');
+  contextStrings.setLanguage('tagalog');
 
-  const [click, setClick ] = useState(false);
+  const [toggle, setToggle ] = useState(false);
 
   const handleClick = () => {
-    setClick(!click);
+    setToggle(!toggle);
   }
 
   return (
@@ -39,7 +39,7 @@ const Root = () => {
         <LocaleContext.Provider value={contextStrings}>
           {window.location.pathname === '/' ? <Landing /> :
             <Container>
-              <Sidebar click={click} handleClick={() => handleClick()}/>
+              <Sidebar toggle={toggle} handleClick={() => handleClick()}/>
               <TopHeader handleClick={() => handleClick()}/>
               <MainContainer>
                   <Routes>

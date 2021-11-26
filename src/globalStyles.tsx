@@ -6,7 +6,7 @@ export const Container = styled.div`
     overflow: auto;
     padding: 35px 35px;
 
-    @media screen and (max-width: 991px) {
+    @media screen and (max-width: 991px) { 
         padding-right: 30px;
         padding-left: 30px;
     }

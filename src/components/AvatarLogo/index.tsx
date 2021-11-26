@@ -13,7 +13,7 @@ const Avatar = styled.div`
     height: 100px;
     width: 100px;
     border-radius: 100%;
-    background-color: ${({ theme }) => theme.app.sidebar.normal.SECONDARY_BG_COLOR};
+    background-color: ${({ theme }) => theme.card.secondary.normal.SECONDARY_BG_COLOR};
     display: flex;
     justify-content: center;
     align-items: center;

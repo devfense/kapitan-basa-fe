@@ -8,7 +8,7 @@ import { LocaleStrings } from '../../providers/localization/types';
 import AvatarLogo from '../../components/AvatarLogo/index'
 import { IoCloseOutline } from 'react-icons/io5'
 
-const Container = styled.div<{ click?: false | true}>`
+const Container = styled.div<{ toggle?: false | true}>`
     display: flex;
     flex-direction: column;
     width: 18%;
@@ -19,7 +19,7 @@ const Container = styled.div<{ click?: false | true}>`
     @media screen and (max-width: 960px) {
         position: fixed;
         top: 0;
-        left: ${({ click }) => (click ? 0 : '-100%')};
+        left: ${({ toggle }) => (toggle ? 0 : '-100%')};
         width: 75%;
         z-index: 20;
         transition: all 0.5s ease-in-out;
@@ -48,22 +48,17 @@ const MenuBox = styled(NavLink)`
     display: flex;
     align-items: center;
     border-radius: 7px;
-    color: ${({theme}) => theme.app.nav.normal.TEXT_COLOR};
+    color: ${({theme}) => theme.menuItem.text.normal.TEXT_COLOR};
     font-weight: 600;
     padding: 0px 15px;
     cursor: pointer;
     text-decoration: none;
 
-    &:hover {
-        color: ${({theme}) => theme.app.nav.hover?.TEXT_COLOR};
-        background-color: ${({theme}) => theme.app.nav.hover?.BG_COLOR};
-        border-radius: 7px;
-        transition: all 0.5s ease-in-out; 
-    }
     &.active {
-        color: ${({theme}) => theme.app.nav.active?.TEXT_COLOR};
-        background-color: ${({theme}) => theme.app.nav.active?.BG_COLOR};
+        color: ${({theme}) => theme.menuItem.text.active?.TEXT_COLOR};
+        background-color: ${({theme}) => theme.menuItem.text.active?.BG_COLOR};
         border-radius: 7px;
+        transition: all 0.5s ease-in-out;
     }  
     @media screen and (max-width: 960px) {
         font-size: 1.1rem;
@@ -86,14 +81,14 @@ const TitleBox = styled.div`
 
 const MobileIcon = styled.div`
     display: none;
-    color: #000;
+    color: ${({ theme }) => theme.icon.primary.normal.BG_COLOR};
 
     @media screen and (max-width: 960px) {
         display: block;
         padding: 0px 0px;
         font-size: 1.5rem;
         cursor: pointer;
-        color: #cac2c2;
+        color: ${({ theme }) => theme.icon.primary.normal.SECONDARY_TEXT_COLOR};
         position: absolute;
         top: 2.3%;
         right: 5%;
@@ -102,7 +97,7 @@ const MobileIcon = styled.div`
 
 const BrandCard = styled.div`
     width: 67%;
-    background-color: ${({ theme }) => theme.app.sidebar.normal.TERTIARY_BG_COLOR};
+    background-color: ${({ theme }) => theme.card.secondary.normal.BG_COLOR};
     margin: 0px auto;
     display: flex;
     flex-direction: column;
@@ -129,22 +124,22 @@ const DetailContainer = styled.div`
 const Typography = styled.span`
     display: flex;
     justify-content: center;
-    font-weight: 400;
-    color: ${({ theme }) => theme.app.sidebar.normal.TERTIARY_TEXT_COLOR};
+    font-weight: 500;
+    color: ${({ theme }) => theme.card.secondary.normal.TEXT_COLOR};
     @media screen and (max-width: 960px) {
         font-size: 0.8rem;
     }
 `;
 
 type ButtonClick = {
-    click: boolean;
+    toggle: boolean;
     handleClick: () => void
 }
 
 const Sidebar = (props: ButtonClick) => {
     const strings = useLocaleContext();
     return (
-        <Container click={props.click}>
+        <Container toggle={props.toggle}>
             <TitleBox>
                 <BrandName medium='large'>Kapitan <span>Basa</span></BrandName>
                 <MobileIcon onClick={props.handleClick}><IoCloseOutline /></MobileIcon>

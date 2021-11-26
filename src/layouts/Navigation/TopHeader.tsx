@@ -1,32 +1,35 @@
 import React, { useState } from 'react';
-import { FaBars } from 'react-icons/fa'
+import { GoThreeBars } from 'react-icons/go'
 import styled from 'styled-components';
 import UserProfile from '../../components/AvatarProfile/index'
+import { useLocaleContext } from '../../providers/localization';
 
 const Container = styled.div` 
     height: 55px;
-    width: 83vw;
+    width: 84vw;
     background-color: ${({ theme }) => theme.app.header.normal.BG_COLOR};
     position: fixed;
     left: 15.2%;
     display: flex;
+    justify-content: center;
     align-items: center;
-    padding: 0px 20px;
     z-index: 10;
 
     @media screen and (max-width: 960px) {
-        width: 100vw;
+        width: 100%;
         left: 0;
         display: flex;
         align-items: center;
+        padding: 0;
     }
 `;
 
 const SubContainer = styled.div`
-    width: 90vw;
+    width: 100vw;
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    padding: 0px 15px;
     
     @media screen and (max-width: 960px) {
         display: flex;
@@ -36,7 +39,7 @@ const SubContainer = styled.div`
 `;
 const MobileIcon = styled.div`
     display: none;
-    color: #FFF;
+    color: ${({ theme }) => theme.icon.primary.normal.TEXT_COLOR};
 
     @media screen and (max-width: 960px) {
         display: block;
@@ -53,7 +56,7 @@ const ProfileBtn = styled.div`
 const ProfileContainer = styled.div`
     height: auto;
     width: auto;
-    background-color: #FFF;
+    background-color: ${({ theme }) => theme.profile.background.normal.BG_COLOR};
     position: absolute;
     top: 52px;
     right: 30px;
@@ -61,6 +64,12 @@ const ProfileContainer = styled.div`
     border-radius: 8px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     transition: all 0.6s ease-in-out;
+
+    @media screen and (max-width: 768px) {
+        position: absolute;
+        top: 52px;
+        right: 58px;
+    }
 `;
 
 const TextBox = styled.div`
@@ -72,13 +81,21 @@ const TextBox = styled.div`
 `;
 const Placeholder = styled.span`
     font-size: 0.9rem;
-    color: ${({ theme }) => theme.app.nav.normal.TERTIARY_TEXT_COLOR};
+    color: ${({ theme }) => theme.profile.placeholder.normal.TEXT_COLOR};
+
+    @media screen and (max-width: 420px) {
+        font-size: 0.8rem;
+    }
 `;
 
 const TextLabel = styled.span`
     font-size: 1rem;
     font-weight: 600;
-    color: ${({ theme }) => theme.app.nav.normal.SECONDARY_TEXT_COLOR};
+    color: ${({ theme }) => theme.profile.label.normal.TEXT_COLOR};
+
+    @media screen and (max-width: 420px) {
+        font-size: 0.9rem;
+    }
 `;
 
 type ButtonProps = {
@@ -86,6 +103,8 @@ type ButtonProps = {
 }
 
 const TopHeader = (props: ButtonProps) => {
+    const strings = useLocaleContext();
+
     const [popover, setPopOver] = useState(false);
 
     const handleProfileClick = () => setPopOver(!popover);
@@ -93,33 +112,34 @@ const TopHeader = (props: ButtonProps) => {
         <Container>
             <SubContainer>
                 <MobileIcon onClick={props.handleClick}>
-                    <FaBars />
+                    <GoThreeBars />
                 </MobileIcon>
                 <ProfileBtn onClick={handleProfileClick}>
                     <UserProfile />
                 </ProfileBtn>
+            </SubContainer>
                 { 
                     popover &&  
                         <ProfileContainer>
                             <TextBox> 
-                                <Placeholder>Username:</Placeholder>
+                                <Placeholder>{ strings.userName }</Placeholder>
                                 <TextLabel>Juan Dela Cruz</TextLabel>
                             </TextBox>
                             <TextBox> 
-                                <Placeholder>Student ID:</Placeholder>
+                                <Placeholder>{ strings.studID }</Placeholder>
                                 <TextLabel>87-240398</TextLabel>
                             </TextBox>
                             <TextBox> 
-                                <Placeholder>Grade and Section:</Placeholder>
+                                <Placeholder>{ strings.gradeSection }</Placeholder>
                                 <TextLabel>10 / Our Lady of Peace</TextLabel>
                             </TextBox>
                             <TextBox> 
-                                <Placeholder>Email Address:</Placeholder>
+                                <Placeholder>{ strings.emailAddress }</Placeholder>
                                 <TextLabel>juandelacruz@gmail.com</TextLabel>
                             </TextBox>
                         </ProfileContainer> 
                 }
-            </SubContainer>
+            
         </Container>
     )
 }

@@ -13,7 +13,11 @@ const strings: LocaleStrings = {
     tabResults: 'Tabulation/Results',
     userMgmt: 'User Management',
     accUser: 'Account User',
-    appDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi culpa magnam nulla, sint ex voluptas labore voluptatibus.'
+    appDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi culpa magnam nulla, sint ex voluptas labore voluptatibus.',
+    userName: 'Username:',
+    studID: 'Student ID:',
+    gradeSection: 'Grade and Section',
+    emailAddress: 'Email Address'
 };
 
 export default strings;
