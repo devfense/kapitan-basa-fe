@@ -5,7 +5,7 @@ const colors: IconColors = {
         normal: {
             BG_COLOR: '#000000',
             TEXT_COLOR: '#FFFFFF',
-            SECONDARY_TEXT_COLOR: '#CAC2C2',
+            SECONDARY_TEXT_COLOR: '#435EBE',
         }
     },
 

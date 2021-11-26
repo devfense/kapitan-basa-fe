@@ -10,7 +10,7 @@ const ContentTable = styled.table`
     border-collapse: collapse;
     margin: 25px 0;
     font-size: 0.9em;
-    min-width: 1480px;
+    min-width: 100%;
     border-radius: 5px 5px 0 0;
     overflow: hidden;
     box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;

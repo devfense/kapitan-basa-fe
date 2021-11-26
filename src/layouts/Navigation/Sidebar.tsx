@@ -6,7 +6,8 @@ import BrandName from '../../components/Brand';
 import { useLocaleContext } from '../../providers/localization';
 import { LocaleStrings } from '../../providers/localization/types';
 import AvatarLogo from '../../components/AvatarLogo/index'
-import { IoCloseOutline } from 'react-icons/io5'
+import { IoChevronBack } from 'react-icons/io5'
+
 
 const Container = styled.div<{ toggle?: false | true}>`
     display: flex;
@@ -22,7 +23,7 @@ const Container = styled.div<{ toggle?: false | true}>`
         left: ${({ toggle }) => (toggle ? 0 : '-100%')};
         width: 75%;
         z-index: 20;
-        transition: all 0.5s ease-in-out;
+        transition: all 0.3s ease-in-out;
     }
 
     @media screen and (max-width: 1024px) {
@@ -84,14 +85,14 @@ const MobileIcon = styled.div`
     color: ${({ theme }) => theme.icon.primary.normal.BG_COLOR};
 
     @media screen and (max-width: 960px) {
-        display: block;
-        padding: 0px 0px;
-        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+        font-size: 1.7rem;
         cursor: pointer;
         color: ${({ theme }) => theme.icon.primary.normal.SECONDARY_TEXT_COLOR};
         position: absolute;
         top: 2.3%;
-        right: 5%;
+        right: 5.5%;
     }
 `;
 
@@ -142,7 +143,7 @@ const Sidebar = (props: ButtonClick) => {
         <Container toggle={props.toggle}>
             <TitleBox>
                 <BrandName medium='large'>Kapitan <span>Basa</span></BrandName>
-                <MobileIcon onClick={props.handleClick}><IoCloseOutline /></MobileIcon>
+                <MobileIcon onClick={props.handleClick}><IoChevronBack /></MobileIcon>
             </TitleBox>
             <NavContainer>
                 {
