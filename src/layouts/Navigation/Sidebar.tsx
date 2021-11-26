@@ -108,7 +108,7 @@ const BrandCard = styled.div`
         height: auto;
         width: 59%;
     }
-`
+`;
 
 const AvatarContainer = styled.div`
     padding: 5% 0px;
