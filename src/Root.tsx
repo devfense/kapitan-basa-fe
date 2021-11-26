@@ -25,7 +25,7 @@ const MainContainer = styled.div`
 
 const Root = () => {
   const contextStrings = useLocaleContext();
-  contextStrings.setLanguage('tagalog');
+  contextStrings.setLanguage('en');
 
   const [toggle, setToggle ] = useState(false);
 

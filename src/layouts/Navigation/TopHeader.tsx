@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { GoThreeBars } from 'react-icons/go'
+import { IoMenuSharp } from 'react-icons/io5'
 import styled from 'styled-components';
 import UserProfile from '../../components/AvatarProfile/index'
 import { useLocaleContext } from '../../providers/localization';
 
 const Container = styled.div` 
     height: 55px;
-    width: 84vw;
+    width: 85vw;
     background-color: ${({ theme }) => theme.app.header.normal.BG_COLOR};
     position: fixed;
     left: 15.2%;
@@ -112,7 +112,7 @@ const TopHeader = (props: ButtonProps) => {
         <Container>
             <SubContainer>
                 <MobileIcon onClick={props.handleClick}>
-                    <GoThreeBars />
+                    <IoMenuSharp />
                 </MobileIcon>
                 <ProfileBtn onClick={handleProfileClick}>
                     <UserProfile />
