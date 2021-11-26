@@ -5,6 +5,7 @@ const colors: TextFieldColors = {
     placeholder: {
         normal: {
             BG_COLOR: '#EBF3FF',
+            SECONDARY_BG_COLOR: '#7C8DB5',
             TEXT_COLOR: '#B8D3FF',
             BORDER_COLOR: '#EBF3FF'
         }

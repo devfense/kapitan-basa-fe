@@ -19,6 +19,13 @@ const HeroBannerContainer = styled.div`
     height: 100vh; 
     background: ${({ theme }) => theme.app.nav.normal.BG_COLOR};
     overflow-y: hidden;
+
+    @media screen and (max-width: 960px) {
+        display: none;
+    }
+    @media screen and (max-width: 1024px) {
+        display: none;
+    }
 `;
 
 const BoxImage = styled.img`
@@ -34,19 +41,32 @@ const LoginContainer = styled.div`
     width: 25%;
     padding: 7% 0;
     background-color: ${({ theme }) => theme.app.sidebar.normal.BG_COLOR};
+    @media screen and (max-width: 960px) {
+        width: 100%;
+        margin: 7% auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    @media screen and (max-width: 1024px) {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 7% 0px;
+    }
 `;
 
 const BannerRow = styled.div`
     display: flex;
 `;
 
-
 const TextBox = styled.div`
     width: 75%;
     display: flex;
     flex-direction: column;
     margin-bottom: 1rem;
-`
+`;
 
 const TitleBox = styled.div`
     height: 51px;
@@ -58,7 +78,8 @@ const TitleBox = styled.div`
 
 const LineBox = styled.div`
     height: 40px;
-    width: 288px;
+    width: 100%;
+    max-width: 75%;
     margin: 15px 0 0;
     display: flex;
     justify-content: center;
@@ -67,8 +88,11 @@ const LineBox = styled.div`
 
 const Line = styled.div`
     height: 3px;
-    width: 288px;
+    width: 100%;
     background-color: ${({theme}) => theme.app.sidebar.normal.SECONDARY_TEXT_COLOR};
+    @media screen and (max-width: 960px) {
+            width: 100%;
+    }
 `;
 
 const Label = styled.span`
@@ -79,11 +103,14 @@ const Label = styled.span`
     font-weight: 700;
     position: absolute;
     text-transform: uppercase;
-`
+`;
 
 const StyledTextField = styled(TextField)`
     &.MuiTextField-root > div {
-        width: 288px;
+        width: auto;
+        @media screen and (max-width: 960px) {
+            width: 100%;
+        }
     }
 `;
 

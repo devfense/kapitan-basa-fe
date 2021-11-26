@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Root.css';
 import { ThemeProvider } from 'styled-components';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -25,7 +25,13 @@ const MainContainer = styled.div`
 
 const Root = () => {
   const contextStrings = useLocaleContext();
-  contextStrings.setLanguage('en');
+  contextStrings.setLanguage('tagalog');
+
+  const [toggle, setToggle ] = useState(false);
+
+  const handleClick = () => {
+    setToggle(!toggle);
+  }
 
   return (
     <ThemeProvider theme={theme.default}>
@@ -33,8 +39,8 @@ const Root = () => {
         <LocaleContext.Provider value={contextStrings}>
           {window.location.pathname === '/' ? <Landing /> :
             <Container>
-              <Sidebar />
-              <TopHeader />
+              <Sidebar toggle={toggle} handleClick={() => handleClick()}/>
+              <TopHeader handleClick={() => handleClick()}/>
               <MainContainer>
                   <Routes>
                     <Route path="/dashboard" element={<Dashboard />} />

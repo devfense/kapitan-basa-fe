@@ -22,6 +22,6 @@ const Items: Routes[] = [
         key: 'userMgmt'
     },
 
-]
+];
 
 export default Items;

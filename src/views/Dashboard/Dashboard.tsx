@@ -1,11 +1,12 @@
 import React from 'react'
+import { Container } from '../../globalStyles'
 
 const Dashboard = () => {
     return (
-        <div>
+        <Container>
             This is Dashboard
-        </div>
+        </Container>
     )
 }
 
-export default Dashboard
+export default Dashboard;

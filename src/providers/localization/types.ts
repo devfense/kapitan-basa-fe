@@ -11,7 +11,12 @@ export interface LocaleStrings {
     name: string;
     tabResults: string;
     userMgmt: string;
+    accUser: string;
     appDesc: string;
+    userName: string;
+    studID: string;
+    gradeSection: string;
+    emailAddress: string;
 }
 
 export type Languages = 'en' | 'tagalog';

@@ -6,14 +6,14 @@ import styled from 'styled-components'
 const Avatar = styled(MuiAvatar)`
     width: 20px;
     color: #FFF;
-    border: 3px solid green;
+    border: 3px solid ${({ theme }) => theme.app.header.normal.SECONDARY_BG_COLOR};
 
     @media screen and (max-width: 960px) {
         display: block;
         width: 20px;
         cursor: pointer;
     }
-`
+`;
 
 const index = () => {
     return (
@@ -23,4 +23,4 @@ const index = () => {
     )
 }
 
-export default index
+export default index;

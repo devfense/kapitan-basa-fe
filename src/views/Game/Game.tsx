@@ -1,11 +1,12 @@
 import React from 'react'
+import { Container } from '../../globalStyles'
 
 const Game = () => {
     return (
-        <div>
+        <Container>
             This is Game Level Page.
-        </div>
+        </Container>
     )
 }
 
-export default Game
+export default Game;

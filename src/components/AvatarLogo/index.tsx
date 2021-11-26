@@ -3,8 +3,6 @@ import styled from 'styled-components'
 import BoyReading from '../../assets/media/reading/Reading'
 
 const AvatarBox = styled.div`
-    height: 140px;
-    width: 140px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,17 +10,18 @@ const AvatarBox = styled.div`
 `
 
 const Avatar = styled.div`
-    height: 140px;
-    width: 140px;
+    height: 100px;
+    width: 100px;
     border-radius: 100%;
-    background-color: ${({ theme }) => theme.app.sidebar.normal.SECONDARY_BG_COLOR};
+    background-color: ${({ theme }) => theme.card.secondary.normal.SECONDARY_BG_COLOR};
     display: flex;
     justify-content: center;
     align-items: center;
 `
 
 const AvatarImg = styled.img`
-    width: 85%;
+    width: 100%;
+
 `
 
 const index = () => {

@@ -7,6 +7,12 @@ const BrandName = styled.label<{ medium?: 'medium' | 'large' }>`
     > span {
         color: ${({ theme }) => theme.app.brand.normal.SECONDARY_BG_COLOR};
     }
+    @media screen and (max-width: 960px) {
+        font-size: ${({ medium }) => medium === 'medium' ? '1.2rem' : '1.5rem'};
+    }
+    @media screen and (max-width: 320px) {
+        font-size: ${({ medium }) => medium === 'medium' ? '1.1rem' : '1.2rem'};
+    }
 `;
 
 export default BrandName;
