@@ -7,7 +7,7 @@ const AvatarBox = styled.div`
     justify-content: center;
     align-items: center;
     margin-bottom: 0.5rem;
-`
+`;
 
 const Avatar = styled.div`
     height: 100px;
@@ -17,12 +17,11 @@ const Avatar = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-`
+`;
 
 const AvatarImg = styled.img`
     width: 100%;
-
-`
+`;
 
 const index = () => {
     return (

@@ -42,7 +42,7 @@ const MobileIcon = styled.div`
     color: ${({ theme }) => theme.icon.primary.normal.TEXT_COLOR};
 
     @media screen and (max-width: 960px) {
-        display: block;
+        display: flex;
         font-size: 1.8rem;
         cursor: pointer;
     }
@@ -59,7 +59,7 @@ const ProfileContainer = styled.div`
     background-color: ${({ theme }) => theme.profile.background.normal.BG_COLOR};
     position: absolute;
     top: 52px;
-    right: 30px;
+    right: 20px;
     padding: 15px 25px;
     border-radius: 8px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
@@ -68,7 +68,7 @@ const ProfileContainer = styled.div`
     @media screen and (max-width: 768px) {
         position: absolute;
         top: 52px;
-        right: 58px;
+        right: 20px;
     }
 `;
 
