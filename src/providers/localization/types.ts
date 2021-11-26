@@ -11,6 +11,7 @@ export interface LocaleStrings {
     name: string;
     tabResults: string;
     userMgmt: string;
+    accUser: string;
     appDesc: string;
 }
 

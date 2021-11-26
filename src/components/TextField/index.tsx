@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const TextField = styled(MuiTextField)`
     &.MuiTextField-root > div {
         height: 50px;
-        width: 270px;
+        width: 288px;
         font-size: 0.9rem;
         font-weight: 500;
         color: ${({theme}) => theme.textField.text.normal.TEXT_COLOR};
@@ -27,7 +27,9 @@ const TextField = styled(MuiTextField)`
         &:after, &:before {
             display: none;
         }
+       
     }
+  
 `;
 
 export default TextField;

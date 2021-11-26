@@ -6,8 +6,9 @@ import BrandName from '../../components/Brand';
 import { useLocaleContext } from '../../providers/localization';
 import { LocaleStrings } from '../../providers/localization/types';
 import AvatarLogo from '../../components/AvatarLogo/index'
+import { IoCloseOutline } from 'react-icons/io5'
 
-const Container = styled.div`
+const Container = styled.div<{ click?: false | true}>`
     display: flex;
     flex-direction: column;
     width: 18%;
@@ -16,10 +17,17 @@ const Container = styled.div`
     z-index: 10;
 
     @media screen and (max-width: 960px) {
-        position: absolute;
+        position: fixed;
         top: 0;
-        left: -100%;
-        width: 100%;
+        left: ${({ click }) => (click ? 0 : '-100%')};
+        width: 75%;
+        z-index: 20;
+        transition: all 0.5s ease-in-out;
+    }
+
+    @media screen and (max-width: 1024px) {
+        z-index: 20;
+        box-shadow: rgba(0, 0, 0, 0.09) 0px 5px 5px;
     }
 `;
 
@@ -29,6 +37,9 @@ const NavContainer = styled.div`
     padding: 0px 15px;
     overflow: hidden;
     margin-bottom: 100px;
+    @media screen and (max-width: 960px) {
+        margin-bottom: 20%;
+    }
 `;
 
 const MenuBox = styled(NavLink)`
@@ -54,15 +65,39 @@ const MenuBox = styled(NavLink)`
         background-color: ${({theme}) => theme.app.nav.active?.BG_COLOR};
         border-radius: 7px;
     }  
+    @media screen and (max-width: 960px) {
+        font-size: 1.1rem;
+    }
+
+    @media screen and (max-width: 420px) {
+        font-size: 0.9rem;
+    }
 `;
 
 
 const TitleBox = styled.div`
     height: 55px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     padding: 0px 30px;
-    margin-bottom: 20%;
+    margin-bottom: 11%;
+`;
+
+const MobileIcon = styled.div`
+    display: none;
+    color: #000;
+
+    @media screen and (max-width: 960px) {
+        display: block;
+        padding: 0px 0px;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #cac2c2;
+        position: absolute;
+        top: 2.3%;
+        right: 5%;
+    }
 `;
 
 const BrandCard = styled.div`
@@ -73,10 +108,15 @@ const BrandCard = styled.div`
     flex-direction: column;
     padding: 10px 23px;
     border-radius: 8px;
+    
+    @media screen and (max-width: 960px) {
+        height: auto;
+        width: 59%;
+    }
 `
 
 const AvatarContainer = styled.div`
-    padding: 15px 0px;
+    padding: 5% 0px;
     display: flex;
     justify-content: center;
 `;
@@ -89,16 +129,25 @@ const DetailContainer = styled.div`
 const Typography = styled.span`
     display: flex;
     justify-content: center;
-    font-size: 600;
+    font-weight: 400;
     color: ${({ theme }) => theme.app.sidebar.normal.TERTIARY_TEXT_COLOR};
+    @media screen and (max-width: 960px) {
+        font-size: 0.8rem;
+    }
 `;
 
-const Sidebar = () => {
+type ButtonClick = {
+    click: boolean;
+    handleClick: () => void
+}
+
+const Sidebar = (props: ButtonClick) => {
     const strings = useLocaleContext();
     return (
-        <Container>
+        <Container click={props.click}>
             <TitleBox>
                 <BrandName medium='large'>Kapitan <span>Basa</span></BrandName>
+                <MobileIcon onClick={props.handleClick}><IoCloseOutline /></MobileIcon>
             </TitleBox>
             <NavContainer>
                 {

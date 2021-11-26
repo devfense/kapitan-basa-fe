@@ -12,6 +12,7 @@ const strings: LocaleStrings = {
     name: 'Pangalan',
     tabResults: 'Tabyulasyon at Mga Resulta',
     userMgmt: 'Pag-manage ng Users',
+    accUser: 'Gumagamit ng Account',
     appDesc: 'Taga pag mana nag applikasyon.'
 };
 

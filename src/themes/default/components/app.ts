@@ -43,7 +43,7 @@ const colors: AppColors = {
     content: {
         normal: {
             TEXT_COLOR: '#25396F',
-            SECONDARY_TEXT_COLOR: '#25396F',
+            SECONDARY_TEXT_COLOR: '#7C8DB5',
             TERTIARY_TEXT_COLOR: '#7C8DB5',
             BG_COLOR: '#F2F7FF',
             SECONDARY_BG_COLOR: '#FFFFFF',

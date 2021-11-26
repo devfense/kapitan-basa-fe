@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    z-index: 1;
+    height: 100vh;
     width: 100%;
+    overflow: auto;
     padding: 35px 35px;
 
     @media screen and (max-width: 991px) {
@@ -10,4 +11,3 @@ export const Container = styled.div`
         padding-left: 30px;
     }
 `;
-

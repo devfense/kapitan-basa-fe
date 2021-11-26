@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Root.css';
 import { ThemeProvider } from 'styled-components';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -27,14 +27,20 @@ const Root = () => {
   const contextStrings = useLocaleContext();
   contextStrings.setLanguage('en');
 
+  const [click, setClick ] = useState(false);
+
+  const handleClick = () => {
+    setClick(!click);
+  }
+
   return (
     <ThemeProvider theme={theme.default}>
       <Router>
         <LocaleContext.Provider value={contextStrings}>
           {window.location.pathname === '/' ? <Landing /> :
             <Container>
-              <Sidebar />
-              <TopHeader />
+              <Sidebar click={click} handleClick={() => handleClick()}/>
+              <TopHeader handleClick={() => handleClick()}/>
               <MainContainer>
                   <Routes>
                     <Route path="/dashboard" element={<Dashboard />} />

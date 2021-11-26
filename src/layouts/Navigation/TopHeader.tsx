@@ -12,6 +12,7 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     padding: 0px 20px;
+    z-index: 10;
 
     @media screen and (max-width: 960px) {
         width: 100vw;
@@ -56,7 +57,6 @@ const ProfileContainer = styled.div`
     position: absolute;
     top: 52px;
     right: 30px;
-    z-index: 10;
     padding: 15px 25px;
     border-radius: 8px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
@@ -81,17 +81,21 @@ const TextLabel = styled.span`
     color: ${({ theme }) => theme.app.nav.normal.SECONDARY_TEXT_COLOR};
 `;
 
-const TopHeader = () => {
+type ButtonProps = {
+    handleClick: () => void
+}
+
+const TopHeader = (props: ButtonProps) => {
     const [popover, setPopOver] = useState(false);
 
-    const handleClick = () => setPopOver(!popover);
+    const handleProfileClick = () => setPopOver(!popover);
     return (
         <Container>
             <SubContainer>
-                <MobileIcon>
+                <MobileIcon onClick={props.handleClick}>
                     <FaBars />
                 </MobileIcon>
-                <ProfileBtn onClick={handleClick}>
+                <ProfileBtn onClick={handleProfileClick}>
                     <UserProfile />
                 </ProfileBtn>
                 { 
