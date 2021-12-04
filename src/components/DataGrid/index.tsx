@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import styled from 'styled-components'
-import columns from '../../constants/UserItem/UserItem';
-import { data } from '../../constants/UserItem/UserItem';
-import Button from '../GridButton/button'
-import Button2 from '../GridButton/button2'
-import { FaEdit, FaTrash } from 'react-icons/fa';
+
+interface Props<T> {
+    data: T[];
+    columns: ReactNode[];
+}
 
 const ContentTable = styled.table`
     border-collapse: collapse;
@@ -60,16 +60,9 @@ const TableData = styled.td`
 
 `;
 
-const ApprovalBTN = styled(Button)`
-    font-size: 0.9em;
-    
-`;
-
-const Buttontwo = styled(Button2)`
-
-`;
-
-const index = () => {
+function Table<T> (props: Props<T>): JSX.Element {
+    const { data, columns } = props;
+    const displayKeys = data.length > 0 ? Object.keys(data[0]) as Array<keyof T> : [];
     return (
         <ContentTable>
             <TableHeader>
@@ -77,32 +70,30 @@ const index = () => {
                     {
                         columns.map((column, index) => {
                             return(
-                                <TableHead key={index}>{ column.header }</TableHead>
+                                <TableHead key={index}>{ column }</TableHead>
                             )
                         })
                     }
                 </TableRow>
             </TableHeader>
             <TableBody>
-                <TableRow>
-                    {
+                    {                        
                         data.map((item, index) => {
-                            return(
-                                <TableData key={index}>{ item.dataItem }</TableData>
+                            console.log(displayKeys);
+                            return (
+                                <TableRow>
+                                    {displayKeys.map((key, indx) => {
+                                        return(
+                                            <TableData key={`${index}${indx}`}>{ item[key] }</TableData>
+                                        )
+                                    })}
+                                </TableRow>
                             )
                         })
                     }
-                    <TableData>
-                        <ApprovalBTN variant='contained'>Accept</ApprovalBTN>
-                    </TableData>
-                    <TableData width="200px">
-                        <Buttontwo types='edit' variant='contained'><FaEdit /></Buttontwo>
-                        <Buttontwo types='delete' variant='contained'><FaTrash /></Buttontwo>
-                    </TableData>
-                </TableRow>
             </TableBody>
         </ContentTable>
     )
 };
-export default index
+export default Table;
 

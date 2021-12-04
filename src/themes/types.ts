@@ -13,8 +13,11 @@ type States = {
     normal: Properties;
 } & Partial<Record<'active' | 'hover' | 'checked' | 'unchecked' | 'error', Properties>>;
 
+export type ActionTypes = 'edit' | 'delete' | 'approve' | 'reject';
+
 export type AppColors = Record<'nav' | 'header' | 'sidebar' | 'brand' | 'content', States>;
 export type ButtonColors = Record<'filled' | 'outlined', States>;
+export type ActionButtonColors = Record<ActionTypes, States>;
 export type TextFieldColors = Record<'placeholder' | 'text', States>;
 export type ProfileColors = Record<'placeholder' | 'label' | 'background', States>;
 export type MenuItemColors = Record<'text', States>;
@@ -23,6 +26,7 @@ export type IconColors = Record<'primary' | 'secondary', States>;
 
 interface Theme {
     app: AppColors;
+    actionButton: ActionButtonColors;
     button: ButtonColors;
     textField: TextFieldColors;
     profile: ProfileColors;
