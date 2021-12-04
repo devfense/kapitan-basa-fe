@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const Button = styled(MuiButton)<{ shade?: 'filled' | 'outlined' }>`
     &.MuiButton-root {
-        height: 55px;
+        height: 45px;
         font-size: 0.9rem;
         font-weight: 700;
         min-width: 100px;
@@ -16,6 +16,10 @@ const Button = styled(MuiButton)<{ shade?: 'filled' | 'outlined' }>`
             background-color: ${({theme, shade}) => shade === 'outlined' ? theme.button.outlined.hover?.BG_COLOR : theme.button.filled.hover?.BG_COLOR};
             color: ${({theme, shade}) => shade === 'outlined' ? theme.button.outlined.hover?.TEXT_COLOR : theme.button.filled.hover?.TEXT_COLOR};
             transition: all 0.2s ease-in-out;
+        }
+        > span {
+            font-family: 'QuickSand-Bold', sans-serif;
+            text-transform: none;
         }
     }
 `;

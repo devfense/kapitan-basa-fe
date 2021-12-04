@@ -50,7 +50,7 @@ const index = (props: BrandedCard) => {
             <AvatarContainer>
                 <AvatarLogo />
             </AvatarContainer>
-            <BrandName medium='medium'>Kapitan <span>Basa</span></BrandName>
+            <BrandName />
             <DetailContainer>
                 <Typography>
                     { props.strings }

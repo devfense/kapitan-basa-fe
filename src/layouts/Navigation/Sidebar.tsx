@@ -129,7 +129,7 @@ const Sidebar = (props: ButtonClick) => {
     return (
         <Container toggle={props.toggle}>
             <TitleBox>
-                <BrandName medium='large'>Kapitan <span>Basa</span></BrandName>
+                <BrandName />
                 <MobileIcon>
                     <IoChevronBack onClick={props.handleClick} />
                 </MobileIcon>

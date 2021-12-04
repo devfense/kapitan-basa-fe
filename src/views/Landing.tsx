@@ -104,6 +104,7 @@ const Label = styled.span`
     padding: 0px 5px;
     font-size: 0.9rem;
     font-weight: 700;
+    font-family: QuickSand-Bold;
     position: absolute;
     text-transform: uppercase;
 `;
@@ -158,7 +159,7 @@ const Landing: FunctionComponent = () => {
             <LoginContainer>
                 <AvatarLogo />
                 <TitleBox>
-                    <BrandName medium='large'>Kapitan <span>Basa</span></BrandName>
+                    <BrandName />
                 </TitleBox>
                 <TextBox>
                     <StyledTextField 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Root.css';
+import './styles/index.css';
 import { ThemeProvider } from 'styled-components';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -13,6 +13,7 @@ import { theme } from './themes';
 import Landing from './views/Landing';
 import LocaleContext, { useLocaleContext } from './providers/localization';
 import store from './store';
+import DialogProvider from './providers/dialog';
 
 const Container = styled.div`
     display: flex;
@@ -40,6 +41,7 @@ const Root = () => {
       <ThemeProvider theme={theme.default}>
         <Router>
           <LocaleContext.Provider value={contextStrings}>
+            <DialogProvider>
             {window.location.pathname === '/' ? <Landing /> :
               <Container>
                 <Sidebar toggle={toggle} handleClick={() => handleClick()}/>
@@ -53,6 +55,7 @@ const Root = () => {
                 </MainContainer>
               </Container>
             }
+            </DialogProvider>
           </LocaleContext.Provider>
         </Router>
       </ThemeProvider>

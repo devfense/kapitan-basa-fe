@@ -5,6 +5,8 @@ import { useLocaleContext } from '../../providers/localization';
 import DataGrid from '../../components/DataGrid/index'
 import { AccountStatus, AllUser } from '../../modules/users/types';
 import ActionButton from '../../components/ActionButtons';
+import { useDialog } from '../../providers/dialog';
+import EditUser from '../../dialogs/users/EditUser';
 
 const LabelContainer = styled.div`
     height: 40px;
@@ -40,23 +42,6 @@ const UserListContainer = styled.div`
     }
 `;
 
-// const TextFieldContainer = styled.div`
-//     display: flex;
-// `;
-
-// const GradeTextfieldBox = styled.div`
-//     width: 30%;
-//     margin-right: 3%;
-// `;
-
-// const SectionTextfieldBox = styled.div`
-//     width: 40%;
-//     margin-right: 3%;
-// `;
-
-// const StudentIDTextfieldBox = styled.div`
-//     width: 40%;
-// `;
 const mockUsers: AllUser[] = [
     { 
         lastName: 'Dela Cruz', 
@@ -92,11 +77,17 @@ type TableAllUsers = AllUser & { approve: ReactNode, actions: ReactNode };
 
 const UserManagament = () => {
     const strings = useLocaleContext();
+    const [openDialog, closeDialog] = useDialog();
     const users = mockUsers.map((users) => {
+        const handleEdit = () => {
+            openDialog({
+                children: <EditUser />,
+            })
+        }
         return {
             ...users,
             approve: <><ActionButton types={'approve'}>Approve</ActionButton> <ActionButton types={'reject'}>Reject</ActionButton></>,
-            actions: <><ActionButton types={'edit'}>{strings.edit}</ActionButton> <ActionButton types={'delete'}>{strings.delete}</ActionButton></>
+            actions: <><ActionButton types={'edit'} onClick={handleEdit}>{strings.edit}</ActionButton> <ActionButton types={'delete'}>{strings.delete}</ActionButton></>
         }
     });
     
