@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Root.css';
+import './styles/index.css';
 import { ThemeProvider } from 'styled-components';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';

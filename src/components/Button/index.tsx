@@ -17,6 +17,10 @@ const Button = styled(MuiButton)<{ shade?: 'filled' | 'outlined' }>`
             color: ${({theme, shade}) => shade === 'outlined' ? theme.button.outlined.hover?.TEXT_COLOR : theme.button.filled.hover?.TEXT_COLOR};
             transition: all 0.2s ease-in-out;
         }
+        > span {
+            font-family: 'QuickSand-Bold', sans-serif;
+            text-transform: none;
+        }
     }
 `;
 

@@ -35,6 +35,11 @@ const SwitchContainer = styled.div`
     align-items: center;
 `;
 
+const Label = styled.span`
+    font-size: 12px;
+    font-family: OpenSans-SemiBold;
+`;
+
 export const LabeledSwitch: FunctionComponent<Props> = (props: Props) => {
     const { value, checkedLabel, uncheckedLabel, onChange } = props;
     const [checked, setCheck] = useState(value);
@@ -48,7 +53,7 @@ export const LabeledSwitch: FunctionComponent<Props> = (props: Props) => {
     return (
         <SwitchContainer>
             <Switch value={checked} onChange={handleChange}/> 
-            <span>{checked ? checkedLabel : uncheckedLabel}</span>
+            <Label>{checked ? checkedLabel : uncheckedLabel}</Label>
         </SwitchContainer>
     )
 }
