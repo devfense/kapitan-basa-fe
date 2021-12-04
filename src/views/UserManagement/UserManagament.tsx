@@ -3,7 +3,7 @@ import { Container } from '../../globalStyles';
 import styled from 'styled-components';
 import { useLocaleContext } from '../../providers/localization';
 import ModalCard from '../../components/Modal/index';
-import TextField from '../../components/TextField/modalTextField';
+import TextField from '../../components/TextField/LabeledTextField';
 import DataGrid from '../../components/DataGrid/index';
 
 const LabelContainer = styled.div`
@@ -57,7 +57,7 @@ const StudentIDTextfieldBox = styled.div`
     width: 40%;
 `;
 
-const ModalTextField = styled(TextField) `
+const LabeledTextField = styled(TextField) `
     &.MuiTextField-root > div {
         width: auto;
     }
@@ -77,19 +77,19 @@ const UserManagament = () => {
                 <DataGrid />
             </UserListContainer>
             <ModalCard modalTitle="Edit User">
-                <ModalTextField label="First Name"/>
-                <ModalTextField label="Middle Name"/>
-                <ModalTextField label="Last Name"/>
-                <ModalTextField label="Email Address"/>
+                <LabeledTextField label="First Name"/>
+                <LabeledTextField label="Middle Name"/>
+                <LabeledTextField label="Last Name"/>
+                <LabeledTextField label="Email Address"/>
                 <TextFieldContainer>
                     <GradeTextfieldBox>
-                        <ModalTextField label="Grade"/>
+                        <LabeledTextField label="Grade"/>
                     </GradeTextfieldBox>
                     <SectionTextfieldBox>
-                        <ModalTextField label="Section"/>
+                        <LabeledTextField label="Section"/>
                     </SectionTextfieldBox>
                     <StudentIDTextfieldBox>
-                        <ModalTextField label="Student ID"/>
+                        <LabeledTextField label="Student ID"/>
                     </StudentIDTextfieldBox>
                 </TextFieldContainer>
             </ModalCard>
