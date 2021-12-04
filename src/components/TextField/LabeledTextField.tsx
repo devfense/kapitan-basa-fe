@@ -48,11 +48,11 @@ const TextField = styled(MuiTextField) `
     }
 `;
 
-type TextField2Props = {
+type TextFieldProps = {
     label: string;
 };
 
-const index2 = (props: TextField2Props) => {
+const index = (props: TextFieldProps) => {
     return (
         <TextFieldBox>
             <Label>{ props.label } <span>*</span></Label>
@@ -61,4 +61,4 @@ const index2 = (props: TextField2Props) => {
     )
 }
 
-export default index2;
+export default index;

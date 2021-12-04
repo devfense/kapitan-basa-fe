@@ -33,6 +33,7 @@ const UserListContainer = styled.div`
     border-radius: 13px;
     padding: 10px 25px;
     box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+    overflow-y: auto;
 
     @media screen and (max-width: 1024px) {
         padding: 15px 15px;
@@ -60,7 +61,7 @@ const mockUsers: AllUser[] = [
     { 
         lastName: 'Dela Cruz', 
         firstName: 'Juan', 
-        middleName: 'A', 
+        middleName: 'A.', 
         section: 'Kamagong', 
         grade: 10, 
         emailAdd: 'jdc@jdc.com', 
@@ -69,10 +70,19 @@ const mockUsers: AllUser[] = [
     { 
         lastName: 'Cabusao', 
         firstName: 'Mark', 
-        middleName: 'A', 
+        middleName: 'A.', 
         section: 'Ipil-Ipil', 
         grade: 10, 
         emailAdd: 'cm@cmd.com', 
+        accountStatus: AccountStatus.ACTIVE
+    },
+    { 
+        lastName: 'Viernes', 
+        firstName: 'Jephunneh', 
+        middleName: 'B.', 
+        section: 'Narra', 
+        grade: 10, 
+        emailAdd: 'jephv4@cmd.com', 
         accountStatus: AccountStatus.ACTIVE
     },
 ];
