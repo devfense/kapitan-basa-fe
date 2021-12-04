@@ -10,22 +10,22 @@ import {
   
   const StyledMuiDialogTitle = styled(MuiDialogTitle)`
     margin: 0;
-    font-size: 17px;
     max-height: 117px;
     overflow-y: hidden;
     &:hover {
       overflow-y: auto;
     }
     margin: 0;
+    margin-bottom: 15px;
     white-space: pre-wrap;
     white-space: -moz-pre-wrap;
     white-space: -pre-wrap;
     white-space: -o-pre-wrap;
     word-wrap: break-word;
     > h6 {
-      font-size: 17px;
-      font-weight: 700;
-      color: #565554;
+      font-size: 24px;
+      font-family: OpenSans-SemiBold;
+      color: ${({ theme }) => theme.dialog.header.normal.TEXT_COLOR};
     }
   `;
   

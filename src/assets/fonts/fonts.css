@@ -1,0 +1,49 @@
+@font-face {
+    font-family: QuickSand;
+    src: url(Quicksand-Regular.ttf);
+}
+
+@font-face {
+    font-family: QuickSand-Bold;
+    src: url(Quicksand-Bold.ttf);
+}
+
+@font-face {
+    font-family: QuickSand-SemiBold;
+    src: url(Quicksand-SemiBold.ttf);
+}
+
+@font-face {
+    font-family: QuickSand-Light;
+    src: url(Quicksand-Light.ttf);
+}
+
+@font-face {
+    font-family: QuickSand-Medium;
+    src: url(Quicksand-Light.ttf);
+}
+
+@font-face {
+    font-family: OpenSans;
+    src: url(OpenSans-Regular.ttf);
+}
+
+@font-face {
+    font-family: OpenSans-Bold;
+    src: url(OpenSans-Bold.ttf);
+}
+
+@font-face {
+    font-family: OpenSans-SemiBold;
+    src: url(OpenSans-SemiBold.ttf);
+}
+
+@font-face {
+    font-family: OpenSans-Light;
+    src: url(OpenSans-Light.ttf);
+}
+
+@font-face {
+    font-family: OpenSans-Medium;
+    src: url(OpenSans-Light.ttf);
+}

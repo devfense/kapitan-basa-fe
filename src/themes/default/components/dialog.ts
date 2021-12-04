@@ -4,7 +4,7 @@ const colors: DialogColors = {
     header: {
         normal: {
             BG_COLOR: '#FFFFFF',
-            TEXT_COLOR: '#000000',
+            TEXT_COLOR: '#25396F',
         }
     },
     body: {
