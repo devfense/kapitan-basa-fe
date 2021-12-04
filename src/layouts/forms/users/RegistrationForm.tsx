@@ -22,11 +22,11 @@ const Container = styled.div`
 const InlineFields = styled.div`
     display: flex;
     flex-direction: row;
-    > .MuiTextField-root {
+    > div {
         width: 32%;
         margin-right: 10px;
     }
-    > .MuiTextField-root:last-of-type {
+    > div:last-of-type {
         width: 33%;
         margin-right: 0;
     }
