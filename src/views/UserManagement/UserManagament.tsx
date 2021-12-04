@@ -1,10 +1,10 @@
-import React from 'react';
-import { Container } from '../../globalStyles';
-import styled from 'styled-components';
+import React, { ReactNode } from 'react'
+import { Container } from '../../globalStyles'
+import styled from 'styled-components'
 import { useLocaleContext } from '../../providers/localization';
-import ModalCard from '../../components/Modal/index';
-import TextField from '../../components/TextField/LabeledTextField';
-import DataGrid from '../../components/DataGrid/index';
+import DataGrid from '../../components/DataGrid/index'
+import { AccountStatus, AllUser } from '../../modules/users/types';
+import ActionButton from '../../components/ActionButtons';
 
 const LabelContainer = styled.div`
     height: 40px;
@@ -39,32 +39,58 @@ const UserListContainer = styled.div`
     }
 `;
 
-const TextFieldContainer = styled.div`
-    display: flex;
-`;
+// const TextFieldContainer = styled.div`
+//     display: flex;
+// `;
 
-const GradeTextfieldBox = styled.div`
-    width: 30%;
-    margin-right: 3%;
-`;
+// const GradeTextfieldBox = styled.div`
+//     width: 30%;
+//     margin-right: 3%;
+// `;
 
-const SectionTextfieldBox = styled.div`
-    width: 40%;
-    margin-right: 3%;
-`;
+// const SectionTextfieldBox = styled.div`
+//     width: 40%;
+//     margin-right: 3%;
+// `;
 
-const StudentIDTextfieldBox = styled.div`
-    width: 40%;
-`;
+// const StudentIDTextfieldBox = styled.div`
+//     width: 40%;
+// `;
+const mockUsers: AllUser[] = [
+    { 
+        lastName: 'Dela Cruz', 
+        firstName: 'Juan', 
+        middleName: 'A', 
+        section: 'Kamagong', 
+        grade: 10, 
+        emailAdd: 'jdc@jdc.com', 
+        accountStatus: AccountStatus.ACTIVE
+    },
+    { 
+        lastName: 'Cabusao', 
+        firstName: 'Mark', 
+        middleName: 'A', 
+        section: 'Ipil-Ipil', 
+        grade: 10, 
+        emailAdd: 'cm@cmd.com', 
+        accountStatus: AccountStatus.ACTIVE
+    },
+];
+/*TODO: Integrate Userlist API */
 
-const LabeledTextField = styled(TextField) `
-    &.MuiTextField-root > div {
-        width: auto;
-    }
-`;
+type TableAllUsers = AllUser & { approve: ReactNode, actions: ReactNode };
 
 const UserManagament = () => {
     const strings = useLocaleContext();
+    const users = mockUsers.map((users) => {
+        return {
+            ...users,
+            approve: <><ActionButton types={'approve'}>Approve</ActionButton> <ActionButton types={'reject'}>Reject</ActionButton></>,
+            actions: <><ActionButton types={'edit'}>{strings.edit}</ActionButton> <ActionButton types={'delete'}>{strings.delete}</ActionButton></>
+        }
+    });
+    
+    const columns = ['Last Name', 'First Name', 'MiddleName', 'Section', 'Grade', 'Email Address', 'Account Status', 'Approve/Reject', 'Actions'];
     return (
         <Container>
             <LabelContainer>
@@ -74,25 +100,8 @@ const UserManagament = () => {
                 <LabelContainer>
                     <PageLabel size='subheader'>{ strings.accUser }</PageLabel>
                 </LabelContainer>
-                <DataGrid />
+                <DataGrid<TableAllUsers> data={users} columns={columns}/>
             </UserListContainer>
-            <ModalCard modalTitle="Edit User">
-                <LabeledTextField label="First Name"/>
-                <LabeledTextField label="Middle Name"/>
-                <LabeledTextField label="Last Name"/>
-                <LabeledTextField label="Email Address"/>
-                <TextFieldContainer>
-                    <GradeTextfieldBox>
-                        <LabeledTextField label="Grade"/>
-                    </GradeTextfieldBox>
-                    <SectionTextfieldBox>
-                        <LabeledTextField label="Section"/>
-                    </SectionTextfieldBox>
-                    <StudentIDTextfieldBox>
-                        <LabeledTextField label="Student ID"/>
-                    </StudentIDTextfieldBox>
-                </TextFieldContainer>
-            </ModalCard>
         </Container>
     )
 }
