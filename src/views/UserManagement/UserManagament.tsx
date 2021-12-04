@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { Container } from '../../globalStyles'
 import styled from 'styled-components'
 import { useLocaleContext } from '../../providers/localization';
 import DataGrid from '../../components/DataGrid/index'
 import { AccountStatus, AllUser } from '../../modules/users/types';
+import ActionButton from '../../components/ActionButtons';
 
 const LabelContainer = styled.div`
     height: 40px;
@@ -38,11 +39,41 @@ const UserListContainer = styled.div`
     }
 `;
 
-const mockUser: AllUser = { lastName: 'Dela Cruz', firstName: 'Juan', middleName: 'A', section: 'Kamagong', grade: 10, emailAdd: 'jdc@jdc.com', accountStatus: AccountStatus.ACTIVE};
+const mockUsers: AllUser[] = [
+    { 
+        lastName: 'Dela Cruz', 
+        firstName: 'Juan', 
+        middleName: 'A', 
+        section: 'Kamagong', 
+        grade: 10, 
+        emailAdd: 'jdc@jdc.com', 
+        accountStatus: AccountStatus.ACTIVE
+    },
+    { 
+        lastName: 'Cabusao', 
+        firstName: 'Mark', 
+        middleName: 'A', 
+        section: 'Ipil-Ipil', 
+        grade: 10, 
+        emailAdd: 'cm@cmd.com', 
+        accountStatus: AccountStatus.ACTIVE
+    },
+];
 /*TODO: Integrate Userlist API */
+
+type TableAllUsers = AllUser & { approve: ReactNode, actions: ReactNode };
 
 const UserManagament = () => {
     const strings = useLocaleContext();
+    const users = mockUsers.map((users) => {
+        return {
+            ...users,
+            approve: <><ActionButton types={'approve'}>Approve</ActionButton> <ActionButton types={'reject'}>Reject</ActionButton></>,
+            actions: <><ActionButton types={'edit'}>{strings.edit}</ActionButton> <ActionButton types={'delete'}>{strings.delete}</ActionButton></>
+        }
+    });
+    
+    const columns = ['Last Name', 'First Name', 'MiddleName', 'Section', 'Grade', 'Email Address', 'Account Status', 'Approve/Reject', 'Actions'];
     return (
         <Container>
             <LabelContainer>
@@ -52,7 +83,7 @@ const UserManagament = () => {
                 <LabelContainer>
                     <PageLabel size='subheader'>{ strings.accUser }</PageLabel>
                 </LabelContainer>
-                <DataGrid<AllUser> data={[mockUser]} columns={['Last Name', 'First Name', 'MiddleName', 'Section', 'Grade', 'Email Address', 'Account Status']}/>
+                <DataGrid<TableAllUsers> data={users} columns={columns}/>
             </UserListContainer>
         </Container>
     )

@@ -77,18 +77,20 @@ function Table<T> (props: Props<T>): JSX.Element {
                 </TableRow>
             </TableHeader>
             <TableBody>
-                <TableRow>
                     {                        
                         data.map((item, index) => {
                             console.log(displayKeys);
-                            return displayKeys.map((key, indx) => {
-                                return(
-                                    <TableData key={`${index}${indx}`}>{ item[key] }</TableData>
-                                )
-                            })
+                            return (
+                                <TableRow>
+                                    {displayKeys.map((key, indx) => {
+                                        return(
+                                            <TableData key={`${index}${indx}`}>{ item[key] }</TableData>
+                                        )
+                                    })}
+                                </TableRow>
+                            )
                         })
                     }
-                </TableRow>
             </TableBody>
         </ContentTable>
     )
