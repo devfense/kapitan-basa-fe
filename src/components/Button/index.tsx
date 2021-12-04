@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const Button = styled(MuiButton)<{ shade?: 'filled' | 'outlined' }>`
     &.MuiButton-root {
-        height: 55px;
+        height: 45px;
         font-size: 0.9rem;
         font-weight: 700;
         min-width: 100px;

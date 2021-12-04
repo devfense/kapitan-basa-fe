@@ -6,11 +6,3 @@ interface Routes {
 };
 
 export default Routes;
-
-export interface DataHeader {
-    header?: string;
-};
-
-export interface DataItem {
-    dataItem: string;
-}

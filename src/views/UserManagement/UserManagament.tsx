@@ -1,10 +1,12 @@
-import React from 'react';
-import { Container } from '../../globalStyles';
-import styled from 'styled-components';
+import React, { ReactNode } from 'react'
+import { Container } from '../../globalStyles'
+import styled from 'styled-components'
 import { useLocaleContext } from '../../providers/localization';
-import ModalCard from '../../components/Modal/index';
-import TextField from '../../components/TextField/modalTextField';
-import DataGrid from '../../components/DataGrid/index';
+import DataGrid from '../../components/DataGrid/index'
+import { AccountStatus, AllUser } from '../../modules/users/types';
+import ActionButton from '../../components/ActionButtons';
+import { useDialog } from '../../providers/dialog';
+import EditUser from '../../dialogs/users/EditUser';
 
 const LabelContainer = styled.div`
     height: 40px;
@@ -39,32 +41,47 @@ const UserListContainer = styled.div`
     }
 `;
 
-const TextFieldContainer = styled.div`
-    display: flex;
-`;
+const mockUsers: AllUser[] = [
+    { 
+        lastName: 'Dela Cruz', 
+        firstName: 'Juan', 
+        middleName: 'A', 
+        section: 'Kamagong', 
+        grade: 10, 
+        emailAdd: 'jdc@jdc.com', 
+        accountStatus: AccountStatus.ACTIVE
+    },
+    { 
+        lastName: 'Cabusao', 
+        firstName: 'Mark', 
+        middleName: 'A', 
+        section: 'Ipil-Ipil', 
+        grade: 10, 
+        emailAdd: 'cm@cmd.com', 
+        accountStatus: AccountStatus.ACTIVE
+    },
+];
+/*TODO: Integrate Userlist API */
 
-const GradeTextfieldBox = styled.div`
-    width: 30%;
-    margin-right: 3%;
-`;
-
-const SectionTextfieldBox = styled.div`
-    width: 40%;
-    margin-right: 3%;
-`;
-
-const StudentIDTextfieldBox = styled.div`
-    width: 40%;
-`;
-
-const ModalTextField = styled(TextField) `
-    &.MuiTextField-root > div {
-        width: auto;
-    }
-`;
+type TableAllUsers = AllUser & { approve: ReactNode, actions: ReactNode };
 
 const UserManagament = () => {
     const strings = useLocaleContext();
+    const [openDialog, closeDialog] = useDialog();
+    const users = mockUsers.map((users) => {
+        const handleEdit = () => {
+            openDialog({
+                children: <EditUser />,
+            })
+        }
+        return {
+            ...users,
+            approve: <><ActionButton types={'approve'}>Approve</ActionButton> <ActionButton types={'reject'}>Reject</ActionButton></>,
+            actions: <><ActionButton types={'edit'} onClick={handleEdit}>{strings.edit}</ActionButton> <ActionButton types={'delete'}>{strings.delete}</ActionButton></>
+        }
+    });
+    
+    const columns = ['Last Name', 'First Name', 'MiddleName', 'Section', 'Grade', 'Email Address', 'Account Status', 'Approve/Reject', 'Actions'];
     return (
         <Container>
             <LabelContainer>
@@ -74,25 +91,8 @@ const UserManagament = () => {
                 <LabelContainer>
                     <PageLabel size='subheader'>{ strings.accUser }</PageLabel>
                 </LabelContainer>
-                <DataGrid />
+                <DataGrid<TableAllUsers> data={users} columns={columns}/>
             </UserListContainer>
-            <ModalCard modalTitle="Edit User">
-                <ModalTextField label="First Name"/>
-                <ModalTextField label="Middle Name"/>
-                <ModalTextField label="Last Name"/>
-                <ModalTextField label="Email Address"/>
-                <TextFieldContainer>
-                    <GradeTextfieldBox>
-                        <ModalTextField label="Grade"/>
-                    </GradeTextfieldBox>
-                    <SectionTextfieldBox>
-                        <ModalTextField label="Section"/>
-                    </SectionTextfieldBox>
-                    <StudentIDTextfieldBox>
-                        <ModalTextField label="Student ID"/>
-                    </StudentIDTextfieldBox>
-                </TextFieldContainer>
-            </ModalCard>
         </Container>
     )
 }
