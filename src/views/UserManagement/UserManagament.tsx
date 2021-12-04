@@ -3,7 +3,8 @@ import { Container } from '../../globalStyles';
 import styled from 'styled-components';
 import { useLocaleContext } from '../../providers/localization';
 import ModalCard from '../../components/Modal/index';
-import TextField from '../../components/TextField/modalTextField'
+import TextField from '../../components/TextField/modalTextField';
+import DataGrid from '../../components/DataGrid/index';
 
 const LabelContainer = styled.div`
     height: 40px;
@@ -73,6 +74,7 @@ const UserManagament = () => {
                 <LabelContainer>
                     <PageLabel size='subheader'>{ strings.accUser }</PageLabel>
                 </LabelContainer>
+                <DataGrid />
             </UserListContainer>
             <ModalCard modalTitle="Edit User">
                 <ModalTextField label="First Name"/>

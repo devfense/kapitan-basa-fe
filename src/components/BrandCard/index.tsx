@@ -33,6 +33,7 @@ const Typography = styled.span`
     display: flex;
     justify-content: center;
     font-weight: 500;
+    font-size: 0.9rem;
     color: ${({ theme }) => theme.card.secondary.normal.TEXT_COLOR};
     @media screen and (max-width: 960px) {
         font-size: 0.8rem;

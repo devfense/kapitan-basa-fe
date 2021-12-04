@@ -48,13 +48,6 @@ const TableData = styled.td`
     color: ${({ theme }) => theme.app.content.normal.SECONDARY_TEXT_COLOR};
     padding: 0px 15px;
     font-size: 1em;
-    &:nth-child(6) {
-        text-align: center;
-    }
-    &:last-child {
-        text-align: center;
-    }
-
 `;
 
 const index = () => {
