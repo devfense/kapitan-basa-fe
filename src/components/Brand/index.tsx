@@ -10,8 +10,11 @@ const BrandName = styled.label<{ medium?: 'medium' | 'large' }>`
     @media screen and (max-width: 960px) {
         font-size: ${({ medium }) => medium === 'medium' ? '1.2rem' : '1.5rem'};
     }
-    @media screen and (max-width: 320px) {
+    @media screen and (max-width: 540px) {
         font-size: ${({ medium }) => medium === 'medium' ? '1.1rem' : '1.2rem'};
+    }
+    @media screen and (min-width: 320px) {
+        font-size: ${({ medium }) => medium === 'medium' ? '1.1rem' : '1.1rem'} !important;
     }
 `;
 

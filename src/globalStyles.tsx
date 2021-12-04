@@ -6,9 +6,11 @@ export const Container = styled.div`
     padding: 35px 35px;
 
     @media screen and (max-width: 1024px) {
-        height: 88.2vh;
+        height: auto; 
         padding: 25px 17px;
     }
+
+    /* 88.2vh */
 
     /* @media screen and (max-width: 991px) { 
         padding-right: 30px;

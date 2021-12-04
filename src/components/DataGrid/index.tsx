@@ -2,13 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 import columns from '../../constants/UserItem/UserItem';
 import { data } from '../../constants/UserItem/UserItem';
-import Button from '../GridButton/button'
-import Button2 from '../GridButton/button2'
-import { FaEdit, FaTrash } from 'react-icons/fa';
 
 const ContentTable = styled.table`
     border-collapse: collapse;
-    margin: 25px 0;
+    margin: 0 0 20px;
     font-size: 0.9em;
     min-width: 100%;
     border-radius: 5px 5px 0 0;
@@ -60,15 +57,6 @@ const TableData = styled.td`
 
 `;
 
-const ApprovalBTN = styled(Button)`
-    font-size: 0.9em;
-    
-`;
-
-const Buttontwo = styled(Button2)`
-
-`;
-
 const index = () => {
     return (
         <ContentTable>
@@ -92,13 +80,6 @@ const index = () => {
                             )
                         })
                     }
-                    <TableData>
-                        <ApprovalBTN variant='contained'>Accept</ApprovalBTN>
-                    </TableData>
-                    <TableData width="200px">
-                        <Buttontwo types='edit' variant='contained'><FaEdit /></Buttontwo>
-                        <Buttontwo types='delete' variant='contained'><FaTrash /></Buttontwo>
-                    </TableData>
                 </TableRow>
             </TableBody>
         </ContentTable>

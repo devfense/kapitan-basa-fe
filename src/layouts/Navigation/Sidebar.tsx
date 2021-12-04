@@ -3,10 +3,10 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import Items from '../../constants/MenuItem/MenuItem';
 import BrandName from '../../components/Brand';
+import BrandCard from '../../components/BrandCard/index'
 import { useLocaleContext } from '../../providers/localization';
 import { LocaleStrings } from '../../providers/localization/types';
-import AvatarLogo from '../../components/AvatarLogo/index'
-import { IoChevronBack } from 'react-icons/io5'
+import { IoChevronBack } from 'react-icons/io5';
 
 
 const Container = styled.div<{ toggle?: false | true}>`
@@ -17,19 +17,30 @@ const Container = styled.div<{ toggle?: false | true}>`
     height: 100vh;
     z-index: 10;
 
-    @media screen and (max-width: 960px) {
+    @media screen and (max-width: 420px) {
         position: fixed;
         top: 0;
         left: ${({ toggle }) => (toggle ? 0 : '-100%')};
-        width: 75%;
+        width: 75% !important;
         z-index: 20;
         transition: all 0.3s ease-in-out;
     }
 
     @media screen and (max-width: 1024px) {
+        position: fixed;
+        top: 0;
+        left: ${({ toggle }) => (toggle ? 0 : '-100%')};
+        width: 40%;
         z-index: 20;
-        box-shadow: rgba(0, 0, 0, 0.09) 0px 5px 5px;
+        transition: all 0.3s ease-in-out;
     }
+
+    /* @media screen and (max-width: 1024px) {
+        left: ${({ toggle }) => (toggle ? 0 : '-100%')};
+        z-index: 20;
+        width: 50%;
+        box-shadow: rgba(0, 0, 0, 0.09) 0px 5px 5px;
+    } */
 `;
 
 const NavContainer = styled.div`
@@ -65,17 +76,16 @@ const MenuBox = styled(NavLink)`
         font-size: 1.1rem;
     }
 
-    @media screen and (max-width: 420px) {
+    @media screen and (max-width: 540px) {
         font-size: 0.9rem;
     }
 `;
-
 
 const TitleBox = styled.div`
     height: 55px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: center !important;
     padding: 0px 30px;
     margin-bottom: 11%;
 `;
@@ -84,51 +94,37 @@ const MobileIcon = styled.div`
     display: none;
     color: ${({ theme }) => theme.icon.primary.normal.BG_COLOR};
 
-    @media screen and (max-width: 960px) {
+    @media screen and (max-width: 320px) {
+        display: flex;
+        align-items: center;
+        font-size: 1.5rem !important;
+        cursor: pointer;
+        color: ${({ theme }) => theme.icon.primary.normal.SECONDARY_TEXT_COLOR};
+        position: absolute;
+        top: 2% !important;
+        right: 5.5%;
+    }
+
+    @media screen and (max-width: 540px) {
+        display: flex;
+        align-items: center;
+        font-size: 1.2rem !important;
+        cursor: pointer;
+        color: ${({ theme }) => theme.icon.primary.normal.SECONDARY_TEXT_COLOR};
+        position: absolute;
+        top: 2% !important;
+        right: 5.5%;
+    }
+
+    @media screen and (max-width: 1024px) {
         display: flex;
         align-items: center;
         font-size: 1.7rem;
         cursor: pointer;
         color: ${({ theme }) => theme.icon.primary.normal.SECONDARY_TEXT_COLOR};
         position: absolute;
-        top: 2.3%;
+        top: 1.5%;
         right: 5.5%;
-    }
-`;
-
-const BrandCard = styled.div`
-    width: 67%;
-    background-color: ${({ theme }) => theme.card.secondary.normal.BG_COLOR};
-    margin: 0px auto;
-    display: flex;
-    flex-direction: column;
-    padding: 10px 23px;
-    border-radius: 8px;
-    
-    @media screen and (max-width: 960px) {
-        height: auto;
-        width: 59%;
-    }
-`;
-
-const AvatarContainer = styled.div`
-    padding: 5% 0px;
-    display: flex;
-    justify-content: center;
-`;
-
-const DetailContainer = styled.div`
-    display: flex;
-    padding: 15px 0;
-`;
-
-const Typography = styled.span`
-    display: flex;
-    justify-content: center;
-    font-weight: 500;
-    color: ${({ theme }) => theme.card.secondary.normal.TEXT_COLOR};
-    @media screen and (max-width: 960px) {
-        font-size: 0.8rem;
     }
 `;
 
@@ -143,7 +139,9 @@ const Sidebar = (props: ButtonClick) => {
         <Container toggle={props.toggle}>
             <TitleBox>
                 <BrandName medium='large'>Kapitan <span>Basa</span></BrandName>
-                <MobileIcon onClick={props.handleClick}><IoChevronBack /></MobileIcon>
+                <MobileIcon>
+                    <IoChevronBack onClick={props.handleClick} />
+                </MobileIcon>
             </TitleBox>
             <NavContainer>
                 {
@@ -154,17 +152,7 @@ const Sidebar = (props: ButtonClick) => {
                     })
                 }
             </NavContainer>
-            <BrandCard>
-                <AvatarContainer>
-                    <AvatarLogo />
-                </AvatarContainer>
-                <BrandName medium='medium'>Kapitan <span>Basa</span></BrandName>
-                <DetailContainer>
-                    <Typography>
-                        { strings.appDesc }
-                    </Typography>
-                </DetailContainer>
-            </BrandCard>
+            <BrandCard strings={strings.appDesc}/>
         </Container>
     )
 };

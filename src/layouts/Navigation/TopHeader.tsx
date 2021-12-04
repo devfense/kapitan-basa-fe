@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { IoMenuSharp } from 'react-icons/io5'
 import styled from 'styled-components';
-import UserProfile from '../../components/AvatarProfile/index'
+import UserProfile from '../../components/AvatarProfile/index';
 import { useLocaleContext } from '../../providers/localization';
 
 const Container = styled.div` 
@@ -22,6 +22,14 @@ const Container = styled.div`
         align-items: center;
         padding: 0;
     }
+
+    @media screen and (max-width: 1024px) {
+        width: 100%;
+        left: 0;
+        display: flex;
+        align-items: center;
+        padding: 0;
+    }
 `;
 
 const SubContainer = styled.div`
@@ -36,12 +44,24 @@ const SubContainer = styled.div`
         justify-content: space-between;
         align-items: center;
     }
+
+    @media screen and (max-width: 1024px) {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 `;
 const MobileIcon = styled.div`
     display: none;
     color: ${({ theme }) => theme.icon.primary.normal.TEXT_COLOR};
 
     @media screen and (max-width: 960px) {
+        display: flex;
+        font-size: 1.8rem;
+        cursor: pointer;
+    }
+
+    @media screen and (max-width: 1024px) {
         display: flex;
         font-size: 1.8rem;
         cursor: pointer;
@@ -111,11 +131,11 @@ const TopHeader = (props: ButtonProps) => {
     return (
         <Container>
             <SubContainer>
-                <MobileIcon onClick={props.handleClick}>
-                    <IoMenuSharp />
+                <MobileIcon>
+                    <IoMenuSharp onClick={props.handleClick} />
                 </MobileIcon>
-                <ProfileBtn onClick={handleProfileClick}>
-                    <UserProfile />
+                <ProfileBtn>
+                    <UserProfile handleProfileClick={handleProfileClick} />
                 </ProfileBtn>
             </SubContainer>
                 { 
