@@ -3,6 +3,7 @@ import { Container } from '../../globalStyles'
 import styled from 'styled-components'
 import { useLocaleContext } from '../../providers/localization';
 import DataGrid from '../../components/DataGrid/index'
+import { AccountStatus, AllUser } from '../../modules/users/types';
 
 const LabelContainer = styled.div`
     height: 40px;
@@ -37,6 +38,9 @@ const UserListContainer = styled.div`
     }
 `;
 
+const mockUser: AllUser = { lastName: 'Dela Cruz', firstName: 'Juan', middleName: 'A', section: 'Kamagong', grade: 10, emailAdd: 'jdc@jdc.com', accountStatus: AccountStatus.ACTIVE};
+/*TODO: Integrate Userlist API */
+
 const UserManagament = () => {
     const strings = useLocaleContext();
     return (
@@ -48,7 +52,7 @@ const UserManagament = () => {
                 <LabelContainer>
                     <PageLabel size='subheader'>{ strings.accUser }</PageLabel>
                 </LabelContainer>
-                <DataGrid />
+                <DataGrid<AllUser> data={[mockUser]} columns={['Last Name', 'First Name', 'MiddleName', 'Section', 'Grade', 'Email Address', 'Account Status']}/>
             </UserListContainer>
         </Container>
     )
