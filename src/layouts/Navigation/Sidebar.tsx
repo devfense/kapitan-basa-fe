@@ -94,15 +94,12 @@ const MobileIcon = styled.div`
     display: none;
     color: ${({ theme }) => theme.icon.primary.normal.BG_COLOR};
 
-    @media screen and (max-width: 320px) {
+    @media screen and (max-width: 325px) {
         display: flex;
         align-items: center;
-        font-size: 1.5rem !important;
+        font-size: 1rem !important;
         cursor: pointer;
         color: ${({ theme }) => theme.icon.primary.normal.SECONDARY_TEXT_COLOR};
-        position: absolute;
-        top: 2% !important;
-        right: 5.5%;
     }
 
     @media screen and (max-width: 540px) {
@@ -111,20 +108,14 @@ const MobileIcon = styled.div`
         font-size: 1.2rem !important;
         cursor: pointer;
         color: ${({ theme }) => theme.icon.primary.normal.SECONDARY_TEXT_COLOR};
-        position: absolute;
-        top: 2% !important;
-        right: 5.5%;
     }
 
     @media screen and (max-width: 1024px) {
         display: flex;
         align-items: center;
-        font-size: 1.7rem;
+        font-size: 1.3rem;
         cursor: pointer;
         color: ${({ theme }) => theme.icon.primary.normal.SECONDARY_TEXT_COLOR};
-        position: absolute;
-        top: 1.5%;
-        right: 5.5%;
     }
 `;
 
