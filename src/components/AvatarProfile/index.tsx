@@ -15,10 +15,14 @@ const Avatar = styled(MuiAvatar)`
     }
 `;
 
-const index = () => {
+type ProfileProps = {
+    handleProfileClick: () => void;
+}
+
+const index = (props: ProfileProps) => {
     return (
         <div>
-            <Avatar alt="Dylan Lee" src={Profile.Dylan}  />
+            <Avatar alt="Dylan Lee" src={Profile.Dylan}  onClick={props.handleProfileClick}/>
         </div>
     )
 }

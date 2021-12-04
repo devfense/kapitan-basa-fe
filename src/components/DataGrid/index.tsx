@@ -8,7 +8,7 @@ interface Props<T> {
 
 const ContentTable = styled.table`
     border-collapse: collapse;
-    margin: 25px 0;
+    margin: 0 0 20px;
     font-size: 0.9em;
     min-width: 100%;
     border-radius: 5px 5px 0 0;

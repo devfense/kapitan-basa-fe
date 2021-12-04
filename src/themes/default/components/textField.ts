@@ -13,7 +13,7 @@ const colors: TextFieldColors = {
     text: {
         normal: {
             BG_COLOR: '#EBF3FF',
-            TEXT_COLOR: '#435EBE',
+            TEXT_COLOR: '#25396F',
             BORDER_COLOR: '#EBF3FF'
         },
         hover: {

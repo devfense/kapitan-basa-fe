@@ -47,13 +47,16 @@ const LoginContainer = styled.div`
         display: flex;
         flex-direction: column;
         align-items: center;
+        padding: auto !important;
     }
-    @media screen and (max-width: 1024px) {
+    @media screen and (max-width: 1366px) {
         width: 100%;
+        height: auto;
         display: flex;
         flex-direction: column;
         align-items: center;
         margin: 7% 0px;
+        padding: auto;
     }
 `;
 

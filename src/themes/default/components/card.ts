@@ -4,7 +4,7 @@ const colors: CardColors = {
     primary: {
         normal: {
             BG_COLOR: '#FFFFFF',
-            TEXT_COLOR: '',
+            TEXT_COLOR: '#25396F',
         }
     },
 
