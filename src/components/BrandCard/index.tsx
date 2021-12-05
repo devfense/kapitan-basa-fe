@@ -36,7 +36,7 @@ const Typography = styled.span`
     font-size: 0.9rem;
     color: ${({ theme }) => theme.card.secondary.normal.TEXT_COLOR};
     @media screen and (max-width: 960px) {
-        font-size: 0.8rem;
+        font-size: 11px;
     }
 `;
 

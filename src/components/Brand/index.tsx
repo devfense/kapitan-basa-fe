@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Brand = styled.label<{ medium?: 'medium' | 'large' }>`
     color: ${({ theme }) => theme.app.brand.normal.BG_COLOR};
-    font-size: ${({ medium }) => medium === 'medium' ? '1.2rem' : '1.7rem'} !important;
+    font-size: ${({ medium }) => medium === 'medium' ? '25px' : '1.7rem'} !important;
     font-weight: ${({ medium }) => medium === 'medium' ? '600' : '700'};
     font-family: 'QuickSand-Bold', 'sans-serif';
     > span {
@@ -10,6 +10,7 @@ const Brand = styled.label<{ medium?: 'medium' | 'large' }>`
         color: ${({ theme }) => theme.app.brand.normal.SECONDARY_BG_COLOR};
     }
     @media screen and (max-width: 960px) {
+        margin-top: 25px;
         font-size: ${({ medium }) => medium === 'medium' ? '1.2rem' : '1.5rem'};
     }
     @media screen and (max-width: 540px) {
