@@ -21,6 +21,7 @@ const Container = styled.div`
     background-color: ${({theme}) => theme.card.primary.normal.BG_COLOR};
     padding: 15px;
     border-radius: 10px;
+
     > p {
         margin: 0;
         margin-bottom: 10px;
@@ -42,6 +43,10 @@ const Container = styled.div`
         display: -webkit-box;
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
+    }
+    @media screen and (max-width: 800px) {
+        width: 100%;
+        margin-right: 0;
     }
 `;
 
