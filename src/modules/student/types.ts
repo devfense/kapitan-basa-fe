@@ -11,7 +11,7 @@ export enum Actions {
 }
 
 export interface Student extends User {
-    studentID: string;
+    studentID?: string;
     section: string;
     grade: number;
 }

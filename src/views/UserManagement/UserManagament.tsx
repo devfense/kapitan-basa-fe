@@ -35,6 +35,7 @@ const UserListContainer = styled.div`
     border-radius: 13px;
     padding: 10px 25px;
     box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+    overflow-y: auto;
 
     @media screen and (max-width: 1024px) {
         padding: 15px 15px;
@@ -46,7 +47,7 @@ const mockUsers: AllUser[] = [
         studentID: '010101',
         lastName: 'Dela Cruz',
         firstName: 'Juan', 
-        middleName: 'A', 
+        middleName: 'A.', 
         section: 'Kamagong', 
         grade: 10,
         emailAddress: 'jdc@jdc.com', 
@@ -56,10 +57,19 @@ const mockUsers: AllUser[] = [
         studentID: '020202',
         lastName: 'Cabusao', 
         firstName: 'Mark', 
-        middleName: 'A', 
+        middleName: 'A.', 
         section: 'Ipil-Ipil', 
         grade: 10, 
         emailAddress: 'cm@cmd.com', 
+        accountStatus: AccountStatus.ACTIVE
+    },
+    { 
+        lastName: 'Viernes', 
+        firstName: 'Jephunneh', 
+        middleName: 'B.', 
+        section: 'Narra', 
+        grade: 10, 
+        emailAdd: 'jephv4@cmd.com', 
         accountStatus: AccountStatus.ACTIVE
     },
 ];
@@ -69,17 +79,23 @@ type TableAllUsers = AllUser & { approve: ReactNode, actions: ReactNode };
 
 const UserManagament = () => {
     const strings = useLocaleContext();
-    const [openDialog, closeDialog] = useDialog();
+    const [openDialog] = useDialog();
     const users = mockUsers.map((users) => {
         const handleEdit = () => {
             openDialog({
                 children: <EditUser />,
             })
         }
+
         return {
             ...users,
             approve: <><ActionButton types={'approve'}>Approve</ActionButton> <ActionButton types={'reject'}>Reject</ActionButton></>,
             actions: <><ActionButton types={'edit'} onClick={handleEdit}>{strings.edit}</ActionButton> <ActionButton types={'delete'}>{strings.delete}</ActionButton></>
+        }
+    }).map((u) => {
+        delete u.studentID;
+        return {
+            ...u
         }
     });
     
