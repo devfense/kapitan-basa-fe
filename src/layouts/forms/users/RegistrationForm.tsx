@@ -14,7 +14,7 @@ interface RegistrationProps {
 }
 
 const Container = styled.div`
-    > button {
+    > form > button {
         float: right;
     }
 `;
