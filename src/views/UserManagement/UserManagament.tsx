@@ -77,7 +77,7 @@ type TableAllUsers = AllUser & { approve: ReactNode, actions: ReactNode };
 
 const UserManagament = () => {
     const strings = useLocaleContext();
-    const [openDialog, closeDialog] = useDialog();
+    const [openDialog] = useDialog();
     const users = mockUsers.map((users) => {
         const handleEdit = () => {
             openDialog({

@@ -16,9 +16,6 @@ const TextFieldBox = styled.div`
 const Label = styled.span`
     font-size: 0.70rem;
     font-weight: 600;
-    span {
-        color: red;
-    }
 
     @media screen and (max-width: 420px) {
         font-size: 0.65rem;
@@ -55,7 +52,7 @@ type TextFieldProps = {
 const index = (props: TextFieldProps) => {
     return (
         <TextFieldBox>
-            <Label>{ props.label } <span>*</span></Label>
+            <Label>{ props.label }</Label>
             <TextField />
         </TextFieldBox>
     )
