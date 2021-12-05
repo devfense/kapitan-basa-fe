@@ -76,10 +76,16 @@ const UserManagament = () => {
                 children: <EditUser />,
             })
         }
+
         return {
             ...users,
             approve: <><ActionButton types={'approve'}>Approve</ActionButton> <ActionButton types={'reject'}>Reject</ActionButton></>,
             actions: <><ActionButton types={'edit'} onClick={handleEdit}>{strings.edit}</ActionButton> <ActionButton types={'delete'}>{strings.delete}</ActionButton></>
+        }
+    }).map((u) => {
+        delete u.studentID;
+        return {
+            ...u
         }
     });
     
