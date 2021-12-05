@@ -2,16 +2,11 @@ import axios, { AxiosRequestConfig, AxiosRequestHeaders } from 'axios';
 
 import { HttpStatus } from '../constants/httpStatus' 
 
-const host = process.env.REACT_APP_HOST;
-const port = process.env.REACT_APP_PORT;
-const API_PORT = port !== undefined ? ':' + port : '';
-const protocol = process.env.REACT_APP_PROTOCOL;
-
-const SERVER_BASE_URL = `${protocol}://${host}${API_PORT}`;
+const SERVER_BASE_URL = process.env.REACT_APP_SERVER_BASE_URL;
 const timeout = 25000;
 
 const config: AxiosRequestConfig = {
-    baseURL: SERVER_BASE_URL + '/clushop/',
+    baseURL: SERVER_BASE_URL,
     timeout,
     headers: { 'Content-Type': 'application/json' }
 }
