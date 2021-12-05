@@ -69,7 +69,7 @@ const mockUsers: AllUser[] = [
         middleName: 'B.', 
         section: 'Narra', 
         grade: 10, 
-        emailAdd: 'jephv4@cmd.com', 
+        emailAddress: 'jephv4@cmd.com', 
         accountStatus: AccountStatus.ACTIVE
     },
 ];

@@ -9,7 +9,7 @@ export const registrationValidation = Yup.object().shape({
     section: Yup.string().required('Section is required')
         .max(20, 'Max of 20 characters only'),
     suffix: Yup.string().notRequired()          
-        .max(4, 'Max of 20 characters only')
+        .max(4, 'Max of 4 characters only')
         .matches(/Jr|Sr|III|IV|V|VI|VII|VIII|IX|X|^$/, 'Only supported Suffixes are: Jr, Sr, III, IV, V, VI, VII, VIII, IX, X'),
     studentID: Yup.string().max(15, 'Max of 15 characters only'),
     password: Yup.string()
@@ -24,3 +24,18 @@ export const registrationValidation = Yup.object().shape({
 });
 
 export const regValidationOption = { resolver: yupResolver(registrationValidation) };
+
+export const userUpdateValidation = Yup.object().shape({
+    grade: Yup.number().required('Grade is required')
+        .min(7, 'Min of Grade 7')
+        .max(12, 'Max of Grade 12 only')
+        .typeError('Should be a number'),
+    section: Yup.string().required('Section is required')
+        .max(20, 'Max of 20 characters only'),
+    suffix: Yup.string().notRequired()          
+        .max(4, 'Max of 4 characters only')
+        .matches(/Jr|Sr|III|IV|V|VI|VII|VIII|IX|X|^$/, 'Only supported Suffixes are: Jr, Sr, III, IV, V, VI, VII, VIII, IX, X'),
+    studentID: Yup.string().max(15, 'Max of 15 characters only'),            
+});
+
+export const userUpdateValidationOption = { resolver: yupResolver(userUpdateValidation) };
