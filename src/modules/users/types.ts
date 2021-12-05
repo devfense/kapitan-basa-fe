@@ -10,9 +10,9 @@ export enum AccountStatus {
 export interface User {
     firstName: string;
     middleName?: string;
-    suffix?: string;
     lastName: string;
-    emailAdd: string;
+    suffix?: string;
+    emailAddress: string;
     accountStatus: AccountStatus;
 };
 

@@ -1,4 +1,5 @@
 import { TextField as MuiTextField } from '@material-ui/core';
+import { FunctionComponent } from 'react';
 import styled from 'styled-components';
 
 const TextField = styled(MuiTextField)`
@@ -39,7 +40,6 @@ export const LabeledTextField = styled(MuiTextField) `
         padding: 5px 10px;
         box-sizing: border-box;
         border-radius: 10px;
-        margin-bottom: 10px;
         > div {
             height: 25px;
             width: 100%;
@@ -71,5 +71,33 @@ export const LabeledTextField = styled(MuiTextField) `
         }
      }
 `;
+
+interface HelperProps {
+    errorText?: string;
+}
+
+const HContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+`;
+
+const HelperText = styled.p`
+    margin-top: 2px;
+    margin-bottom: 2px;
+    color: red;
+    font-size: 11px;
+    padding: 5px;
+    box-sizing: border-box;
+`;
+
+export const HelperContainer: FunctionComponent<HelperProps> = ({ errorText, children }) => {
+    return (
+        <HContainer>
+            {children}
+            {errorText && <HelperText>{errorText}</HelperText>}
+        </HContainer>
+    )
+}
 
 export default TextField;

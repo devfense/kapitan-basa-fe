@@ -44,21 +44,23 @@ const UserListContainer = styled.div`
 
 const mockUsers: AllUser[] = [
     { 
-        lastName: 'Dela Cruz', 
+        studentID: '010101',
+        lastName: 'Dela Cruz',
         firstName: 'Juan', 
         middleName: 'A.', 
         section: 'Kamagong', 
-        grade: 10, 
-        emailAdd: 'jdc@jdc.com', 
+        grade: 10,
+        emailAddress: 'jdc@jdc.com', 
         accountStatus: AccountStatus.ACTIVE
     },
     { 
+        studentID: '020202',
         lastName: 'Cabusao', 
         firstName: 'Mark', 
         middleName: 'A.', 
         section: 'Ipil-Ipil', 
         grade: 10, 
-        emailAdd: 'cm@cmd.com', 
+        emailAddress: 'cm@cmd.com', 
         accountStatus: AccountStatus.ACTIVE
     },
     { 
@@ -84,10 +86,16 @@ const UserManagament = () => {
                 children: <EditUser />,
             })
         }
+
         return {
             ...users,
             approve: <><ActionButton types={'approve'}>Approve</ActionButton> <ActionButton types={'reject'}>Reject</ActionButton></>,
             actions: <><ActionButton types={'edit'} onClick={handleEdit}>{strings.edit}</ActionButton> <ActionButton types={'delete'}>{strings.delete}</ActionButton></>
+        }
+    }).map((u) => {
+        delete u.studentID;
+        return {
+            ...u
         }
     });
     
