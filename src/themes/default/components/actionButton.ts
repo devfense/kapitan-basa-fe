@@ -7,7 +7,7 @@ const colors: ActionButtonColors = {
             TEXT_COLOR: '#FFFFFF',
         },
         hover: {
-            BG_COLOR: '#5d9dff',
+            BG_COLOR: '#5D9DFF',
             TEXT_COLOR: '#FFFFFF'
         },
         error: {
@@ -44,6 +44,19 @@ const colors: ActionButtonColors = {
             BG_COLOR: '#FF7976',
             TEXT_COLOR: '#FFFFFF'
         }
+    },
+    start: {
+        normal: {
+            BG_COLOR: '#5D9DFF',
+            TEXT_COLOR: '#FFFFFF',
+        },
+    },
+    cleared: {
+        normal: {
+            BG_COLOR: '#6EBF67',
+            BORDER_COLOR: '#6EBF67',
+            TEXT_COLOR: '#FFFFFF',
+        },
     }
 };
 

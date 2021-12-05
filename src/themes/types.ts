@@ -16,7 +16,8 @@ type States = {
 export type ActionTypes = 'edit' | 'delete' | 'approve' | 'reject';
 
 export type AppColors = Record<'nav' | 'header' | 'sidebar' | 'brand' | 'content', States>;
-export type ActionButtonColors = Record<ActionTypes, States>;
+export type GameButtonColors = Record<'start' | 'cleared', States>;
+export type ActionButtonColors = Record<ActionTypes, States> & GameButtonColors;
 export type ButtonColors = Record<'filled' | 'outlined', States>;
 export type DialogColors = Record<'header' | 'body', States>;
 export type TextFieldColors = Record<'placeholder' | 'text', States>;
