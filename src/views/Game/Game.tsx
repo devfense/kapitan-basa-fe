@@ -3,6 +3,7 @@ import { Container } from '../../globalStyles'
 import { useLocaleContext } from '../../providers/localization';
 import SearchBar from '../../components/SearchBar/index';
 import styled from 'styled-components'
+import ContentDialog from '../../dialogs/content/Content';
 
 const LabelContainer = styled.div`
     height: 40px;
@@ -34,6 +35,7 @@ const Game = () => {
                 <PageLabel>{ strings.gameLevel }</PageLabel>
             </LabelContainer>
             <SearchBar />
+            <ContentDialog />
         </Container>
     )
 }

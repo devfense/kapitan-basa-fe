@@ -124,7 +124,7 @@ const LoginForm = () => {
                     placeholder="Password"
                 />
             </TextBox>
-            <StyledButton>{strings.login}</StyledButton>
+            <StyledButton shade='filled'>{strings.login}</StyledButton>
             <LineBox>
                 <Line />
                 <Label>{strings.regLabel}</Label>

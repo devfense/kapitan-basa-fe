@@ -15,7 +15,8 @@ const Container = styled.div<{ toggle?: false | true}>`
     width: 18%;
     background-color: ${({theme}) => theme.app.sidebar.normal.BG_COLOR};
     height: 100vh;
-    z-index: 10;
+    z-index: 20;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 
     @media screen and (max-width: 420px) {
         position: fixed;
@@ -24,6 +25,7 @@ const Container = styled.div<{ toggle?: false | true}>`
         width: 75% !important;
         z-index: 20;
         transition: all 0.3s ease-in-out;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     }
 
     @media screen and (max-width: 1024px) {
@@ -33,6 +35,7 @@ const Container = styled.div<{ toggle?: false | true}>`
         width: 40%;
         z-index: 20;
         transition: all 0.3s ease-in-out;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     }
 
     /* @media screen and (max-width: 1024px) {

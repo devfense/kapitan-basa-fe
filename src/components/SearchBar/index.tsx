@@ -8,6 +8,7 @@ const Search = styled.div`
     border-radius: 8px;
     display: flex;
     box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+    margin-bottom: 15px;
 `;
 
 const SearchIconWrapper = styled.div`
