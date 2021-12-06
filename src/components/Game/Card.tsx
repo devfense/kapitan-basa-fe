@@ -1,6 +1,8 @@
 import React, { FunctionComponent, ReactNode } from 'react';
 import styled from 'styled-components';
 import Button from '../Button';
+import { useDialog } from '../../providers/dialog';
+import ContentDialog from '../../dialogs/content/Content';
 
 interface Props {
     gameId?: string;
@@ -34,6 +36,7 @@ const Container = styled.div`
     }
     > .title {
         color: #25396F;
+        font-weight: 700;
     }
     > .desc {
         color: #7C8DB5;
@@ -62,9 +65,16 @@ const GameLevelButton = styled(Button)<{ isCleared?: boolean}>`
     &.MuiButton-root {
         margin-top: 10px;
         border-radius: 24px;
-        ${({isCleared, theme}) => isCleared && `
+        ${({isCleared, theme}) => isCleared ? `
             background-color: ${theme.actionButton.cleared.normal.BG_COLOR};
             border-color: ${theme.actionButton.cleared.normal.BORDER_COLOR};
+        ` : `
+            background-color: ${theme.actionButton.start.normal.BG_COLOR};
+            border-color: ${theme.actionButton.start.normal.BORDER_COLOR};
+            &:hover {
+                background-color: ${theme.actionButton.start.hover?.BG_COLOR};
+                border-color: ${theme.actionButton.start.hover?.BORDER_COLOR};
+            }
         `}
         color: #FFFFFF !important;
     }
@@ -73,8 +83,13 @@ const GameLevelButton = styled(Button)<{ isCleared?: boolean}>`
 const Card: FunctionComponent<Props> = (props: Props) => {
     const { level, title, description, thumbnail, isCleared, onStart } = props;
 
+    const [openDialog] = useDialog();
+
     const handleStart = () => {
         if(typeof onStart === 'function') onStart();
+        openDialog({
+            children: <ContentDialog />
+        })
     }
 
     return (

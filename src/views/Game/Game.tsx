@@ -40,21 +40,25 @@ const gamelevels = [
     },
     {
         level: 2,
+        isCleared: true,
         title: 'ABNKKBSANPLKO',
         description: 'Aba nakakabasa na pala ako',
     },
     {
         level: 3,
+        isCleared: false,
         title: 'ABNKKBSANPLKO',
         description: 'Aba nakakabasa na pala ako',
     },
     {
         level: 4,
+        isCleared: false,
         title: 'ABNKKBSANPLKO',
         description: 'Aba nakakabasa na pala ako',
     },
     {
         level: 5,
+        isCleared: false,
         title: 'ABNKKBSANPLKO',
         description: 'Aba nakakabasa na pala ako',
     }

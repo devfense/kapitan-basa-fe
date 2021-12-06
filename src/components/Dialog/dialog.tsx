@@ -32,7 +32,6 @@ const StyledMuiDialogTitle = styled(MuiDialogTitle)`
 
 const Container = styled.div`
     width: 100%;
-    border-radius: 15px;
     background-color: ${({ theme }) => theme.dialog.body.normal.BG_COLOR};
     .MuiDialogContent-root {
       padding: 0px 40px 20px;
