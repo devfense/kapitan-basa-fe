@@ -1,9 +1,9 @@
 import React from 'react'
+import styled from 'styled-components'
+import Card from '../../components/Game/Card';
 import { Container } from '../../globalStyles'
 import { useLocaleContext } from '../../providers/localization';
 import SearchBar from '../../components/SearchBar/index';
-import styled from 'styled-components'
-import ContentDialog from '../../dialogs/content/Content';
 
 const LabelContainer = styled.div`
     height: 40px;
@@ -25,6 +25,41 @@ const PageLabel = styled.span<{size?: 'subheader' | 'header'}>`
     }
 `;
 
+const LevelsContainer = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+`;
+
+const gamelevels = [
+    {
+        level: 1,
+        isCleared: true,
+        title: 'ABNKKBSANPLKO',
+        description: 'Aba nakakabasa na pala ako Lorem Ipsum Dolor sit amet consectetitur omet si kamalisodum. Sem nalsi oranda chomp, goda mil te hasemsn dusakla karaibus mendaiksu oreberum ambis nena',
+    },
+    {
+        level: 2,
+        title: 'ABNKKBSANPLKO',
+        description: 'Aba nakakabasa na pala ako',
+    },
+    {
+        level: 3,
+        title: 'ABNKKBSANPLKO',
+        description: 'Aba nakakabasa na pala ako',
+    },
+    {
+        level: 4,
+        title: 'ABNKKBSANPLKO',
+        description: 'Aba nakakabasa na pala ako',
+    },
+    {
+        level: 5,
+        title: 'ABNKKBSANPLKO',
+        description: 'Aba nakakabasa na pala ako',
+    }
+]
+
 const Game = () => {
 
     const strings = useLocaleContext();
@@ -35,7 +70,15 @@ const Game = () => {
                 <PageLabel>{ strings.gameLevel }</PageLabel>
             </LabelContainer>
             <SearchBar />
-            <ContentDialog />
+            <LevelsContainer>
+                {
+                    gamelevels.map((g) => {
+                        return (    
+                            <Card level={g.level} description={g.description} title={g.title} isCleared={g.isCleared}/>
+                        )
+                    })
+                }
+            </LevelsContainer>
         </Container>
     )
 }
