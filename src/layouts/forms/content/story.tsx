@@ -1,21 +1,26 @@
-import React, { FunctionComponent } from 'react'
-import { DialogContentText as MuiDialogContentText } from '@material-ui/core';
+import React, { FunctionComponent, ReactNode } from 'react'
 import styled from 'styled-components';
 
-const ContentText = styled(MuiDialogContentText)`
-    max-height: 350px;
-    padding: 25px 15px;
-`
-
 interface Props {
-  content: string;
+  content: ReactNode;
 }
 
-const Story: FunctionComponent<Props> = (props: Props) => {
-    const { content } = props;
+const ContentText = styled.pre`
+    max-height: 350px;
+    margin-top: -20px;
+    overflow: hidden;
+    overflow-y: scroll;
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word; 
+`
+
+const Story: FunctionComponent<Props> = ({content}) => {
     return (
-        <ContentText  tabIndex={-1}>
-          { content }
+        <ContentText>
+          {content}
         </ContentText>
     )
 }

@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const Search = styled.div`
     background-color: #FFF;
-    width: 17%;
+    width: 200px;
     border-radius: 8px;
     display: flex;
     box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;

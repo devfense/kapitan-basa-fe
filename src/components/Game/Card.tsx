@@ -2,7 +2,7 @@ import React, { FunctionComponent, ReactNode } from 'react';
 import styled from 'styled-components';
 import Button from '../Button';
 import { useDialog } from '../../providers/dialog';
-import ContentDialog from '../../dialogs/content/Content';
+import StoryDialog from '../../dialogs/content/StoryDialog';
 
 interface Props {
     gameId?: string;
@@ -48,7 +48,22 @@ const Container = styled.div`
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
     }
+    @media screen and (min-width: 2000px) {
+        max-width: 372px;
+    }
+    @media screen and (min-width: 1444px) and (max-width: 1700px) {
+        width: 21%;
+        margin-right: 1%;
+    }
+    @media screen and (min-width: 805px) and (max-width: 1366px) {
+        width: 20%;
+        margin-right: 1%;
+    }
     @media screen and (max-width: 800px) {
+        width: 44%;
+        margin-right: 1%;
+    }
+    @media screen and (max-width: 630px) {
         width: 100%;
         margin-right: 0;
     }
@@ -89,7 +104,7 @@ const Card: FunctionComponent<Props> = (props: Props) => {
     const handleStart = () => {
         if(typeof onStart === 'function') onStart();
         openDialog({
-            children: <ContentDialog />
+            children: <StoryDialog level={level} title={title} />
         })
     }
 
