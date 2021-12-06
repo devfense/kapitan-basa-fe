@@ -37,7 +37,9 @@ type DialogProps = {
 const StyledDialogContainer = styled(DialogContainer)`
   .MuiPaper-root {
     min-width: 300px;
-    max-width: 50vw;
+    max-width: 90vw;
+    width: 100
+    overflow: hidden;
     border-radius: 26px;
   }
 `;
