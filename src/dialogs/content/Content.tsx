@@ -11,7 +11,7 @@ const StyledDialogContentContainer = styled(DialogContentContainer)`
 const Content = () => {
     return (
         <StyledDialogContentContainer level={'Level 1'} title={'The Passion of Christ'} submitText={'Done Reading'}>
-            <Story />
+            <Story content={'content story'}/>
         </StyledDialogContentContainer>
     )
 }

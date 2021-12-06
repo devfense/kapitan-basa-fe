@@ -126,7 +126,7 @@ const DialogActionButton = (props: DialogActionProps) => {
   const { children, ...other } = props;
   return (
     <StyledDialogContentActions {...other}>
-      <Button shade='submit'>
+      <Button shade='filled'>
         { children }
       </Button>
     </StyledDialogContentActions>
