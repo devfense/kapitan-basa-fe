@@ -48,13 +48,19 @@ const colors: ActionButtonColors = {
     start: {
         normal: {
             BG_COLOR: '#5D9DFF',
+            BORDER_COLOR: '#5D9DFF',
             TEXT_COLOR: '#FFFFFF',
         },
+        hover: {
+            BG_COLOR: '#7DB0FF',
+            BORDER_COLOR: '#7DB0FF',
+            TEXT_COLOR: '#FFFFFF'
+        }
     },
     cleared: {
         normal: {
-            BG_COLOR: '#6EBF67',
-            BORDER_COLOR: '#6EBF67',
+            BG_COLOR: '#7BDC73',
+            BORDER_COLOR: '#7BDC73',
             TEXT_COLOR: '#FFFFFF',
         },
     }

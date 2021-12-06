@@ -81,7 +81,7 @@ const UserForm: FunctionComponent<Props> = (props: Props) => {
                 </InlineFields>
 
                 <LabeledSwitch value={isActive} checkedLabel={'Active'} uncheckedLabel={'Inactive'} onChange={handleSwitchChange} defaultChecked />
-                <Button type='submit'>{submitText ?? 'Submit'}</Button>
+                <Button shade='filled' type='submit'>{submitText ?? 'Submit'}</Button>
             </form>
         </Container>
     )

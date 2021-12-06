@@ -90,7 +90,7 @@ const RegistrationForm: FunctionComponent<Props> = (props: Props) => {
                 <HelperContainer errorText={errors.confirmPassword?.message}>
                     <LabeledTextField label={'Confirm Password'} type='password' required {...register('confirmPassword')}/>
                 </HelperContainer>
-                <Button type='submit'>{submitText ?? 'Submit'}</Button>
+                <Button shade="filled" type='submit'>{submitText ?? 'Submit'}</Button>
             </form>
         </Container>
     )

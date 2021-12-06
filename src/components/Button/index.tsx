@@ -9,7 +9,7 @@ const Button = styled(MuiButton)<{ shade?: 'filled' | 'outlined' }>`
         min-width: 100px;
         color: ${({theme, shade}) => shade === 'outlined' ? theme.button.outlined.normal.TEXT_COLOR : theme.button.filled.normal.TEXT_COLOR};
         background-color: ${({theme, shade}) => shade === 'outlined' ? theme.button.outlined.normal.BG_COLOR : theme.button.filled.normal.BG_COLOR};
-        border: 2px solid ${({theme, shade}) => shade === 'outlined' ? theme.button.outlined.normal.BORDER_COLOR : theme.button.filled.normal.BORDER_COLOR};
+        border: 2px solid ${({theme, shade}) => shade === 'outlined' ? theme.button.outlined.hover?.BG_COLOR : theme.button.filled.hover?.BG_COLOR};
         border-radius: .5rem;
         &:hover {
             cursor: pointer;
@@ -21,6 +21,8 @@ const Button = styled(MuiButton)<{ shade?: 'filled' | 'outlined' }>`
             font-family: 'QuickSand-Bold', sans-serif;
             text-transform: none;
         }
+
+        /* shade === 'outlined' ? theme.button.outlined.normal.BG_COLOR : theme.button.filled.normal.BG_COLOR} */
     }
 `;
 
