@@ -13,7 +13,7 @@ interface Props {
 
 const StyledDialogContentContainer = styled(DialogContainer)`
     width: 1093px;
-    @media screen and (max-width: 800px) {
+    @media screen and (max-width: 1093px) {
         width: 100%;
     }
     overflow: hidden;
