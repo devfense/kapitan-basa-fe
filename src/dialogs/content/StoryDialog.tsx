@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react'
 import styled from 'styled-components';
 import Button from '../../components/Button';
 import { DialogContainer } from '../../components/Dialog';
-import Story from '../../layouts/forms/content/Story';
+import Story from '../../layouts/story/Story';
 
 interface Props {
     storyId?: string;
