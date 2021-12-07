@@ -23,6 +23,6 @@ const Story: FunctionComponent<Props> = ({content}) => {
           {content}
         </ContentText>
     )
-}
+} 
 
 export default Story;
