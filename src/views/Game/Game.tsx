@@ -29,6 +29,7 @@ const LevelsContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
     width: 100%;
+    padding: 15px 0px;
 `;
 
 const gamelevels = [
