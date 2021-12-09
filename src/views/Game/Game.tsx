@@ -68,9 +68,14 @@ const gamelevels = [
 const Game = () => {
 
     const strings = useLocaleContext();
+    
+    // bind to constant data "gamelevels"
     const [gameList] = React.useState(gamelevels);
+
+    // search title upon typing
     const [searchGame, setSearchGame] = React.useState("");
 
+    // function search
     const onSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchGame(e.target.value);
     }
