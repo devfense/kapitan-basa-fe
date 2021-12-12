@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import Button from '../../components/Button';
 import { DialogContainer } from '../../components/Dialog';
 import Story from '../../layouts/story/Story';
+import { useDialog } from '../../providers/dialog';
+import QuizDialog from './QuizDialog';
 
 interface Props {
     storyId?: string;
@@ -235,13 +237,20 @@ Cras justo odio, dapibus ac facilisis in, egestas eget quam.
 Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
 Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`;
 
-const Content: FunctionComponent<Props> = ({ storyId, level, title, content }) => {
+const StoryDialog: FunctionComponent<Props> = ({ storyId, level, title, content }) => {
+    const [openDialog, closeDialog] = useDialog();
+    const handleDoneRead = () => {
+        openDialog({
+            children: <QuizDialog level={level} title={title} />
+        })
+    }
+
     return (
         <StyledDialogContentContainer title={<TitleHeader level={level} title={title} />}>
             <Story content={content || sampleContent} />
-            <Button>Done Reading</Button>
+            <Button onClick={handleDoneRead}>Done Reading</Button>
         </StyledDialogContentContainer>
     )
 }
 
-export default Content;
+export default StoryDialog;
