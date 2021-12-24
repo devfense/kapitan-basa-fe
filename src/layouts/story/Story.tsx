@@ -6,7 +6,7 @@ interface Props {
 }
 
 const ContentText = styled.pre`
-    max-height: 350px;
+    max-height: 550px;
     margin-top: -20px;
     overflow: hidden;
     overflow-y: scroll;
