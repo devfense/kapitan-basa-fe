@@ -13,7 +13,7 @@ export enum Actions {
 export interface Student extends User {
     studentID?: string;
     section: string;
-    grade: number;
+    grade: string;
 }
 
 export interface StudentUser extends Student {

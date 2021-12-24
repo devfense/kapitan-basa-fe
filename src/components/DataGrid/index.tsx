@@ -45,7 +45,16 @@ const TableRow = styled(MuiTableRow)`
 
 const TableHead = styled(MuiTableCell)`
     padding: 12px 15px;
+    &:nth-child(5) {
+      text-align: center;
+    }
     &:nth-child(6) {
+      text-align: center;
+    }
+    &:nth-child(7) {
+      text-align: center;
+    }
+    &:nth-child(8) {
       text-align: center;
     }
     &:last-child {
@@ -61,8 +70,17 @@ const TableData = styled(MuiTableCell)`
     color: ${({ theme }) => theme.app.content.normal.SECONDARY_TEXT_COLOR};
     padding: 0px 15px;
     font-size: 1em;
+    &:nth-child(5) {
+      text-align: center;
+    }
     &:nth-child(6) {
         text-align: center;
+    }
+    &:nth-child(7) {
+      text-align: center;
+    }
+    &:nth-child(8) {
+      text-align: center;
     }
     &:last-child {
         text-align: center;
