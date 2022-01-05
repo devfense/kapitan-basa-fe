@@ -57,7 +57,7 @@ const RegistrationForm: FunctionComponent<Props> = (props: Props) => {
 
     const handleAlert = () => {
         openAlert({
-            children: <Alert message="Account Registered Successfully"/>
+            children: <Alert type="Error" title="Error" message="Account Registered Failed"/>
         })
     }
 

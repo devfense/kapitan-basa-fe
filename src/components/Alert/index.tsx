@@ -3,7 +3,9 @@ import AlertType from '../../assets/media/Alert/Alert';
 import styled from 'styled-components'
 
 interface AlertInfoProps {
-    message?: string;
+    type: string;
+    title: string;
+    message: string;
 }
 
 // const ModalMask = styled.div`
@@ -32,10 +34,9 @@ const ModalContainer = styled.div`
     margin: 0px auto;
     width: 20rem;
     background-color: #fff;
-    border-radius: 15px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
     transition: all 0.3s ease;
-    padding: 20px 35px 20px 35px;
+    padding: 15px 35px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -49,20 +50,27 @@ const BoxImage = styled.img`
     padding: 25px 0px 20px;
 `;
 
-const Message = styled.span`
-    font-size: 1.1rem;
+const Title = styled.span`
+    font-size: 1.2rem;
     font-weight: 600;
     color: #000;
-    padding: 5px 0px 20px;
+    padding: 0px 0px 10px;
+`;
+
+const Message = styled.span`
+    font-size: 1rem;
+    color: #000;
+    padding: 0px 0px 20px;
 `;
 
 type Props = AlertInfoProps;
 
 const index: FunctionComponent<Props> = (props: Props) => {
-    const { message } = props
+    const { type, title, message } = props
     return (
         <ModalContainer>
-            <BoxImage src={AlertType.Success} />
+            <BoxImage src={type === 'Error' ? AlertType.Error : AlertType.Success} />
+            <Title>{ title }</Title>
             <Message>{ message }</Message>
         </ModalContainer>
     )
