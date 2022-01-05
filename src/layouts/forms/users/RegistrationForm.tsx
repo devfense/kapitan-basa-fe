@@ -8,6 +8,8 @@ import Button from '../../../components/Button';
 import { StudentUser } from '../../../modules/student/types';
 import * as studentActions from '../../../modules/student/actions';
 import { regValidationOption } from '../../../constants/validations';
+import Alert from '../../../../src/components/Alert/index';
+import { useDialog } from '../../../providers/dialog/index'; 
 
 interface RegistrationProps {
     submitText?: string;
@@ -32,6 +34,10 @@ const InlineFields = styled.div`
     }
 `;
 
+const OpenAlert = {
+    openAlert: true
+}
+
 type RegistrationData = StudentUser & { confirmPassword: string };
 
 type Props = RegistrationProps & ReduxProps;
@@ -45,6 +51,14 @@ const RegistrationForm: FunctionComponent<Props> = (props: Props) => {
         data.grade = data.grade.toString()
         const regData = _.omit(data, 'confirmPassword', 'middleName', 'suffix');
         registerStudent(regData);
+    }
+
+    const [openAlert] = useDialog();
+
+    const handleAlert = () => {
+        openAlert({
+            children: <Alert message="Account Registered Successfully"/>
+        })
     }
 
     return (
@@ -91,7 +105,7 @@ const RegistrationForm: FunctionComponent<Props> = (props: Props) => {
                 <HelperContainer errorText={errors.confirmPassword?.message}>
                     <LabeledTextField label={'Confirm Password'} type='password' required {...register('confirmPassword')}/>
                 </HelperContainer>
-                <Button shade="filled" type='submit'>{submitText ?? 'Submit'}</Button>
+                <Button shade="filled" type='submit' onClick={handleAlert}>{submitText ?? 'Submit'}</Button>
             </form>
         </Container>
     )

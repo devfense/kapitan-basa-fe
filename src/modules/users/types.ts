@@ -13,7 +13,7 @@ export interface User {
     lastName: string;
     suffix?: string;
     emailAddress: string;
-    accountStatus: AccountStatus;
+    accountStatus?: AccountStatus;
 };
 
 export interface AllUser extends User, Student {};

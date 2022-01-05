@@ -9,7 +9,7 @@ const StyledDialogContainer = styled(DialogContainer)`
 
 const RegisterStudent = () => {
     return (
-        <StyledDialogContainer title={'Register as Student'}> 
+        <StyledDialogContainer title={'Register as Student'}>
             <RegistrationForm submitText={'Register'}/>
         </StyledDialogContainer>
     )

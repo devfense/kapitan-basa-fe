@@ -38,7 +38,7 @@ const StyledDialogContainer = styled(DialogContainer)`
   .MuiPaper-root {
     min-width: 300px;
     max-width: 90vw;
-    width: 100
+    width: 100;
     overflow: hidden;
     border-radius: 26px;
   }

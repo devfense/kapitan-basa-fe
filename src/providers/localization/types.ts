@@ -17,6 +17,7 @@ export interface LocaleStrings {
     studID: string;
     gradeSection: string;
     emailAddress: string;
+    listStud: string;
 }
 
 export type Languages = 'en' | 'tagalog';

@@ -47,7 +47,7 @@ const TitleContainer = styled.div`
 `;
 
 interface TitleProps {
-    level: number;
+    level?: number;
     title: string;
 }
 
