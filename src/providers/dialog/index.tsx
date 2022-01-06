@@ -52,6 +52,7 @@ export const DialogProvider: FunctionComponent<DialogProps> = (props: DialogProp
     setDialogs((ds) => [...ds, dialog]);
   };
   const closeDialog = () => {
+    console.log('I am closed')
     setDialogs((ds) => {
       const latestDialog = ds.pop();
       if (!latestDialog) return ds;

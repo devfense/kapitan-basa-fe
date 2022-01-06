@@ -1,6 +1,8 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useEffect, useState } from 'react';
 import _ from 'lodash';
-import { connect, ConnectedProps } from 'react-redux';
+import { useNavigate } from 'react-router-dom';import { RootState } from '../../../store'
+import { connect, ConnectedProps, useSelector } from 'react-redux';
+import { sanitizeServerMessage } from '../../../helpers/globalHelpers'
 import { useForm } from 'react-hook-form';
 import { HelperContainer, LabeledTextField } from '../../../components/TextField';
 import styled from 'styled-components';
@@ -10,9 +12,10 @@ import * as studentActions from '../../../modules/student/actions';
 import { regValidationOption } from '../../../constants/validations';
 import Alert from '../../../../src/components/Alert/index';
 import { useDialog } from '../../../providers/dialog/index'; 
-
+import { ALERT_TIMEOUT } from '../../../constants/variables'
 interface RegistrationProps {
     submitText?: string;
+    handleClose: () => void
 }
 
 const Container = styled.div`
@@ -34,32 +37,45 @@ const InlineFields = styled.div`
     }
 `;
 
-const OpenAlert = {
-    openAlert: true
-}
-
 type RegistrationData = StudentUser & { confirmPassword: string };
 
 type Props = RegistrationProps & ReduxProps;
 
 const RegistrationForm: FunctionComponent<Props> = (props: Props) => {
-    const { submitText, registerStudent } = props;
-    
+    const { submitText, registerStudent, handleClose } = props;
+     
     const { register, handleSubmit, formState: { errors } } = useForm<RegistrationData>(regValidationOption);
+
+    const { apiResponse } = useSelector((state: RootState) => state.student)
+
+    const [isRegistering, setIsRegistering] = useState(false)
+
+    const [openAlert] = useDialog();
+
+    const navigate = useNavigate();
 
     const handleRegistration = (data: RegistrationData) => {
         data.grade = data.grade.toString()
         const regData = _.omit(data, 'confirmPassword', 'middleName', 'suffix');
         registerStudent(regData);
+        setIsRegistering(true)
     }
 
-    const [openAlert] = useDialog();
 
-    const handleAlert = () => {
-        openAlert({
-            children: <Alert type="Error" title="Error" message="Account Registered Failed"/>
-        })
-    }
+    useEffect(() => {
+
+        const { message, success, statusCode} = apiResponse
+
+        if(statusCode > 0){
+            openAlert({
+                children: <Alert type={success ? 'Success' : 'Error'} title={success ? 'Success' : 'Application Error'} message={sanitizeServerMessage(message)}/>
+            })
+
+            statusCode === 201 && setTimeout(() => window.open('/', '_self'), ALERT_TIMEOUT)
+            statusCode > 200 && setIsRegistering(false)
+        } 
+
+    }, [apiResponse])
 
     return (
         <Container>
@@ -105,7 +121,7 @@ const RegistrationForm: FunctionComponent<Props> = (props: Props) => {
                 <HelperContainer errorText={errors.confirmPassword?.message}>
                     <LabeledTextField label={'Confirm Password'} type='password' required {...register('confirmPassword')}/>
                 </HelperContainer>
-                <Button shade="filled" type='submit' onClick={handleAlert}>{submitText ?? 'Submit'}</Button>
+                <Button disabled={isRegistering} shade="filled" type='submit' >{isRegistering ? 'Submitting...' : submitText ?? 'Submit'}</Button>
             </form>
         </Container>
     )
@@ -114,6 +130,7 @@ const RegistrationForm: FunctionComponent<Props> = (props: Props) => {
 const mapDispatchToProps = {
     registerStudent: studentActions.registerStudent,
 };
+
 
 const connector = connect(null, mapDispatchToProps);
 

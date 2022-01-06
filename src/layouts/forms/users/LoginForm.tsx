@@ -100,9 +100,10 @@ const LoginForm = () => {
     const strings = useLocaleContext();
     const [openDialog, closeDialog] = useDialog();
 
+
     const handleStudentReg = () => {
         openDialog({
-            children: <RegisterStudent />
+            children: <RegisterStudent handleClose={closeDialog}/>
         })
     }
 
