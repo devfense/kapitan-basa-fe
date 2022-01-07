@@ -2,9 +2,9 @@ import { Student } from "../student/types";
 
 
 export enum AccountStatus {
-    PENDING = 'pending',
-    ACTIVE = 'active',
-    REJECTED = 'rejected'
+    PENDING = 'PENDING',
+    ACTIVE = 'ACTIVE',
+    REJECTED = 'REJECTED'
 }
 
 export interface User {
@@ -13,7 +13,7 @@ export interface User {
     lastName: string;
     suffix?: string;
     emailAddress: string;
-    accountStatus?: AccountStatus;
+    status?: AccountStatus;
 };
 
 export interface AllUser extends User, Student {};

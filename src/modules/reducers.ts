@@ -1,9 +1,11 @@
 import { student } from './student/reducers';
-import { StudentState } from "../modules/student/types";
-import { ApiResponseDetails } from '../helpers/api';
+import { auth } from './auth/reducers';
+
+
 
 const reducers = {
-    student
+    student,
+    auth
 }
 
 export default reducers;

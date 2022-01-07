@@ -38,4 +38,4 @@ export const NOCACHE: AxiosRequestHeaders = {
     'Expires':  '0'
 };
 
-export type Response<T extends object = {}, S extends HttpStatus = 200> = { data: ResponseDetails<S> & T, response: ResponseDetails<S> & T};
+export type Response<T extends object = {}, S extends HttpStatus = 200> = { data: ResponseDetails<S> & T };

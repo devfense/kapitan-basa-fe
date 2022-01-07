@@ -6,14 +6,11 @@ import RegistrationForm from '../../layouts/forms/users/RegistrationForm';
 const StyledDialogContainer = styled(DialogContainer)`
     width: 517px;
 `
-interface RegStudentProps {
-    handleClose: () => void
-}
 
-const RegisterStudent = ({handleClose}: RegStudentProps) => {
+const RegisterStudent = () => {
     return (
         <StyledDialogContainer title={'Register as Student'}>
-            <RegistrationForm submitText={'Register'} handleClose={handleClose}/>
+            <RegistrationForm submitText={'Register'} />
         </StyledDialogContainer>
     )
 }

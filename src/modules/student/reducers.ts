@@ -16,7 +16,7 @@ const initialState: StudentState = {
     apiResponse: mockResponse
 }
 
-export const student = (state = initialState, action: StudentTypes): StudentState | ApiResponseDetails => {
+export const student = (state = initialState, action: StudentTypes): StudentState => {
     switch(action.type) {
         case Actions.GET_STUDENT_LIST_START: {
             return {
