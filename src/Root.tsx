@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './styles/index.css';
 import { ThemeProvider } from 'styled-components';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import Sidebar from './layouts/Navigation/Sidebar';
 import TopHeader from './layouts/Navigation/TopHeader';
@@ -28,6 +28,8 @@ const MainContainer = styled.div`
 `;
 
 const Root = () => {
+
+
   const contextStrings = useLocaleContext();
   contextStrings.setLanguage('en');
 
@@ -36,6 +38,8 @@ const Root = () => {
   const handleClick = () => {
     setToggle(!toggle);
   }
+  
+  
 
   return (
     <Provider store={store}>
@@ -43,7 +47,9 @@ const Root = () => {
         <Router>
           <LocaleContext.Provider value={contextStrings}>
             <DialogProvider>
-            {window.location.pathname === '/' ? <Landing /> :
+              <Routes>
+                 <Route path="/" element={<Landing />} />
+              </Routes>
               <Container>
                 <Sidebar toggle={toggle} handleClick={() => handleClick()}/>
                 <TopHeader handleClick={() => handleClick()}/>
@@ -56,7 +62,7 @@ const Root = () => {
                     </Routes>
                 </MainContainer>
               </Container>
-            }
+            
             </DialogProvider>
           </LocaleContext.Provider>
         </Router>
