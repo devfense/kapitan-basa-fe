@@ -1,6 +1,6 @@
 import type { SagaIterator } from 'redux-saga';
 import { all, call, put, takeLatest } from 'redux-saga/effects'
-import { api, Response, NOCACHE } from '../helpers/api';
+import { api, Response, NOCACHE, ApiResponseDetails } from '../helpers/api';
 import { Actions, RegisterStudentRequest } from '../modules/student/types';
 import { Student } from '../modules/student/types';
 import type {
@@ -25,14 +25,17 @@ export function* getStudentList(action: GetStudentListRequest): SagaIterator {
 
 export function* registerStudent(action: RegisterStudentRequest): SagaIterator {
     try {
-        yield call(api, {
+        const { data, response }: Response<{ data: ApiResponseDetails}> = yield call(api, {
             url: '/student/register',
             data: action.payload,
             method: 'post'
         });
-        yield put({ type: Actions.REGISTER_STUDENT_FULFILLED });
-    } catch (error) {
-        yield put({ type: Actions.REGISTER_STUDENT_REJECTED });
+    
+        yield put({ type: Actions.REGISTER_STUDENT_FULFILLED, payload: data });
+    } catch (error: any) {
+
+        yield put({ type: Actions.REGISTER_STUDENT_REJECTED, payload: error.response.data });
+        
     }
 }
 

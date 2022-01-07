@@ -1,12 +1,13 @@
-import React, { ReactNode } from 'react'
-import { Container } from '../../globalStyles'
-import styled from 'styled-components'
+import React from 'react';
+import styled from 'styled-components';
+import { Container } from '../../globalStyles';
 import { useLocaleContext } from '../../providers/localization';
-import DataGrid from '../../components/DataGrid/index'
-import { AccountStatus, AllUser } from '../../modules/users/types';
+import SearchBar from '../../components/SearchBar/index';
+import DataGrid from '../../components/DataGrid/index';
+import { AllUser } from '../../modules/users/types';
 import ActionButton from '../../components/ActionButtons';
 import { useDialog } from '../../providers/dialog';
-import EditUser from '../../dialogs/users/EditUser';
+import TabulationDialog from '../../dialogs/content/TabulationDialog';
 
 const LabelContainer = styled.div`
     height: 40px;
@@ -36,6 +37,7 @@ const UserListContainer = styled.div`
     padding: 10px 25px;
     box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
     overflow-y: auto;
+    margin-top: 30px;
 
     @media screen and (max-width: 1024px) {
         padding: 15px 15px;
@@ -51,7 +53,6 @@ const mockUsers: AllUser[] = [
         section: 'Kamagong', 
         grade: '10',
         emailAddress: 'jdc@jdc.com', 
-        accountStatus: AccountStatus.ACTIVE
     },
     { 
         studentID: '020202',
@@ -61,58 +62,59 @@ const mockUsers: AllUser[] = [
         section: 'Ipil-Ipil', 
         grade: '10', 
         emailAddress: 'cm@cmd.com', 
-        accountStatus: AccountStatus.ACTIVE
     },
     { 
+        studentID: '030303',
         lastName: 'Viernes', 
         firstName: 'Jephunneh', 
         middleName: 'B.', 
         section: 'Narra', 
         grade: '10', 
         emailAddress: 'jephv4@cmd.com', 
-        accountStatus: AccountStatus.ACTIVE
     },
 ];
-/*TODO: Integrate Userlist API */
 
-type TableAllUsers = AllUser & { approve: ReactNode, actions: ReactNode };
+type TableAllUserStudent = AllUser
 
-const UserManagament = () => {
+const TabulationAndResult = () => {
+
     const strings = useLocaleContext();
+
     const [openDialog] = useDialog();
+
     const users = mockUsers.map((users) => {
-        const handleEdit = () => {
+        const handleView = () => {
             openDialog({
-                children: <EditUser />,
+                children: <TabulationDialog 
+                            title="Tabulation/Result" 
+                            fullname={`${users.firstName} ${users.middleName} ${users.lastName}`} 
+                            studentID={`${users.studentID}`} 
+                            grade={`${users.grade}`} 
+                            section={`${users.section}`}
+                          /> 
             })
         }
-
         return {
             ...users,
-            approve: <><ActionButton types={'approve'}>Approve</ActionButton> <ActionButton types={'reject'}>Reject</ActionButton></>,
-            actions: <><ActionButton types={'edit'} onClick={handleEdit}>{strings.edit}</ActionButton> <ActionButton types={'delete'}>{strings.delete}</ActionButton></>
+            view: <><ActionButton onClick={handleView}>View</ActionButton></>
         }
-    }).map((u) => {
-        delete u.studentID;
-        return {
-            ...u
-        }
-    });
-    
-    const columns = ['Last Name', 'First Name', 'MiddleName', 'Section', 'Grade', 'Email Address', 'Account Status', 'Approve/Reject', 'Actions'];
+    })
+
+    const columns = ['Student ID', 'Last Name', 'First Name', 'MiddleName', 'Section', 'Grade', 'Email Address', 'Action'];
     return (
         <Container>
             <LabelContainer>
-                <PageLabel>{ strings.userMgmt }</PageLabel>
+                <PageLabel>{ strings.tabResults }</PageLabel>
             </LabelContainer>
+            <SearchBar />
             <UserListContainer>
                 <LabelContainer>
-                    <PageLabel size='subheader'>{ strings.accUser }</PageLabel>
+                    <PageLabel size='subheader'>{ strings.listStud }</PageLabel>
                 </LabelContainer>
-                <DataGrid<TableAllUsers> data={users} columns={columns}/>
+                <DataGrid<TableAllUserStudent>  data={users} columns={columns} />
             </UserListContainer>
         </Container>
     )
 }
 
-export default UserManagament;
+export default TabulationAndResult

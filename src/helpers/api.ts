@@ -20,14 +20,22 @@ export const arrayBufferToBase64 = (buffer: Array<number>):string => {
 
 export const api = (options: AxiosRequestConfig = {}) => axios.request({...config, ...options});
 
-export interface ResponseDetails<S extends HttpStatus = 200> {
-    message: string;
-    status: S;
+export interface ResponseDetails<S extends HttpStatus> {
+    message: string | string[];
+    statusCode: S;
+    error?: string;
 }
 
+export interface ApiResponseDetails {
+    success?: boolean;
+    error?: string;
+    message: string;
+    statusCode?: number;
+    content?: string | Object | [];
+}
 export const NOCACHE: AxiosRequestHeaders = {
     'Cache-Control': 'no-cache, must-revalidate',
     'Expires':  '0'
 };
 
-export type Response<T extends object = {}, S extends HttpStatus = 200> = { data: ResponseDetails<S> & T };
+export type Response<T extends object = {}, S extends HttpStatus = 200> = { data: ResponseDetails<S> & T, response: ResponseDetails<S> & T};

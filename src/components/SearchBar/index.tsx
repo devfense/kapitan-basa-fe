@@ -37,13 +37,19 @@ const SearchBar = styled.input`
     padding-right: 13px;
 `;
 
-const index = () => {
+type SearchProps = {
+    searchTerm?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+
+}
+
+const index = (props: SearchProps) => {
+    const { searchTerm } = props;
     return (
         <Search>
             <SearchIconWrapper>
                 <SearchIcons />
             </SearchIconWrapper>
-            <SearchBar type="search" placeholder="search.." />
+            <SearchBar type="search" placeholder="search.." onChange={searchTerm} />
         </Search>
     )
 }
