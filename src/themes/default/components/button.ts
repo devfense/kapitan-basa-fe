@@ -17,6 +17,10 @@ const colors: ButtonColors = {
             TEXT_COLOR: '#FFFFFF',
             BG_COLOR: '#FF7976',
             SECONDARY_BG_COLOR: '#FF8683',
+        },
+        disabled: {
+            TEXT_COLOR: '#FFFFFF',
+            BG_COLOR: 'transparent'
         }
     },
     outlined: {

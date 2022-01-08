@@ -37,6 +37,15 @@ const InlineFields = styled.div`
     }
 `;
 
+const StyledButton = styled(Button)`
+    &:disabled {
+        color: ${({ theme }) => theme.button.filled.disabled?.TEXT_COLOR} !important;
+    }
+    /* &.MuiButtonBase-root {
+        margin-top: 1.2rem;
+    } */
+`;
+
 type RegistrationData = StudentUser & { confirmPassword: string };
 
 type Props = RegistrationProps & ReduxProps;
@@ -120,7 +129,7 @@ const RegistrationForm: FunctionComponent<Props> = (props: Props) => {
                 <HelperContainer errorText={errors.confirmPassword?.message}>
                     <LabeledTextField label={'Confirm Password'} type='password' required {...register('confirmPassword')}/>
                 </HelperContainer>
-                <Button disabled={isRegistering} shade="filled" type='submit' >{isRegistering ? 'Submitting...' : submitText ?? 'Submit'}</Button>
+                <StyledButton disabled={isRegistering} shade="filled" type='submit' >{isRegistering ? 'Submitting...' : submitText ?? 'Submit'}</StyledButton>
             </form>
         </Container>
     )
