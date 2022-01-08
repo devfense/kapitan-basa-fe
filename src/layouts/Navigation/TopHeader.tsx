@@ -3,6 +3,7 @@ import { IoMenuSharp } from 'react-icons/io5'
 import styled from 'styled-components';
 import UserProfile from '../../components/AvatarProfile/index';
 import { useLocaleContext } from '../../providers/localization';
+import Button from '../../components/Button/index';
 
 const Container = styled.div` 
     height: 55px;
@@ -95,12 +96,12 @@ const ProfileContainer = styled.div`
 const TextBox = styled.div`
     display: flex;
     flex-direction: column;
-    line-height: 1.6rem;
+    line-height: 1.4rem;
     margin-bottom: .4rem;
     cursor: pointer;
 `;
 const Placeholder = styled.span`
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: ${({ theme }) => theme.profile.placeholder.normal.TEXT_COLOR};
 
     @media screen and (max-width: 420px) {
@@ -109,12 +110,26 @@ const Placeholder = styled.span`
 `;
 
 const TextLabel = styled.span`
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 600;
     color: ${({ theme }) => theme.profile.label.normal.TEXT_COLOR};
 
     @media screen and (max-width: 420px) {
         font-size: 0.9rem;
+    }
+`;
+
+const LogoutButton = styled(Button)`
+    &.MuiButton-root {
+        height: 37px;
+        width: 100%;
+        margin-top: 10px;
+        border-radius: 8px;
+        border-color: ${({ theme }) => theme.button.outlined.error?.BORDER_COLOR};
+        color: ${({ theme }) => theme.button.outlined.error?.SECONDARY_TEXT_COLOR};
+        &:hover {
+            background-color: ${({ theme }) => theme.button.outlined.error?.BG_COLOR};
+        }
     }
 `;
 
@@ -157,6 +172,7 @@ const TopHeader = (props: ButtonProps) => {
                                 <Placeholder>{ strings.emailAddress }</Placeholder>
                                 <TextLabel>juandelacruz@gmail.com</TextLabel>
                             </TextBox>
+                            <LogoutButton shade="outlined">Logout</LogoutButton>
                         </ProfileContainer> 
                 }
             

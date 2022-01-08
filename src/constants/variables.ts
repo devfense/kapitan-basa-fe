@@ -1,4 +1,4 @@
-export const ALERT_TIMEOUT = 3000
+export const ALERT_TIMEOUT = 2000
 
 export const ALERT = {
     GENERAL_TITLE: {
