@@ -134,12 +134,11 @@ const LoginForm: FunctionComponent<Props> = (props: Props) => {
     }
 
     const handleLoginResponse = () => {
-        const {success, message, statusCode} = apiResponse
+        const {success, message, statusCode, content} = apiResponse
 
         if(statusCode && statusCode > 0){
             if(success){
-                redirect("dashboard", {replace: true})
-                redirect("game", {replace: true})
+                redirect("/dashboard", {replace: true})
             } else {
                 setIsLoggingIn(false)
                 openAlert({

@@ -7,6 +7,7 @@ export enum AccountStatus {
     REJECTED = 'REJECTED'
 }
 
+
 export interface User {
     firstName: string;
     middleName?: string;
@@ -14,6 +15,8 @@ export interface User {
     suffix?: string;
     emailAddress: string;
     status?: AccountStatus;
+    isAuthenticated?: boolean;
+    accountType?: string;
 };
 
 export interface AllUser extends User, Student {};
