@@ -124,6 +124,13 @@ const LoginForm: FunctionComponent<Props> = (props: Props) => {
     const redirect = useNavigate()
 
     useEffect(() => {
+        //CHECK FOR COOKIES ON MOUNT AND STORE TO REDUX
+
+        //IF COOKIES FOUND AND NOT EXPIRED REDIRECT TO DASHBOARD
+
+    }, [])
+
+    useEffect(() => {
         handleLoginResponse()
     }, [apiResponse])
 
@@ -138,11 +145,15 @@ const LoginForm: FunctionComponent<Props> = (props: Props) => {
 
         if(statusCode && statusCode > 0){
             if(success){
+                //STORE CONTENT IN COOKIES AND STORE TO REDUX
                 redirect("/dashboard", {replace: true})
             } else {
                 setIsLoggingIn(false)
                 openAlert({
-                    children: <Alert type="Error" title={statusCode === 404 ? ALERT.GENERAL_TITLE.LOGIN_FAILED : ALERT.GENERAL_TITLE.ERROR} message={sanitizeServerMessage(message)}/>
+                    children: <Alert type="Error" 
+                                     title={statusCode === 404 ? ALERT.GENERAL_TITLE.LOGIN_FAILED : ALERT.GENERAL_TITLE.ERROR} 
+                                    message={sanitizeServerMessage(message)}
+                              />
                 })
             }
             
