@@ -17,8 +17,8 @@ const strings: LocaleStrings = {
     appDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi culpa magnam nulla, sint ex voluptas labore voluptatibus.',
     userName: 'Username:',
     studID: 'Student ID:',
-    gradeSection: 'Grade and Section',
-    emailAddress: 'Email Address',
+    gradeSection: 'Grade and Section:',
+    emailAddress: 'Email Address:',
     listStud: 'List of Student'
 };
 

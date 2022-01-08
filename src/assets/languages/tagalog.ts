@@ -17,8 +17,8 @@ const strings: LocaleStrings = {
     appDesc: 'Taga pag mana nag applikasyon.',
     userName: 'Username:',
     studID: 'ID ng Studyante:',
-    gradeSection: 'Grado at Seksyon',
-    emailAddress: 'Email Address',
+    gradeSection: 'Grado at Seksyon:',
+    emailAddress: 'Email Address:',
     listStud: 'Listahan ng Studyante'
 };
 
