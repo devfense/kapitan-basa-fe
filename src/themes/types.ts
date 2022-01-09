@@ -11,7 +11,7 @@ interface Properties {
 
 type States = {
     normal: Properties;
-} & Partial<Record<'active' | 'hover' | 'checked' | 'unchecked' | 'error', Properties>>;
+} & Partial<Record<'active' | 'hover' | 'checked' | 'unchecked' | 'error' | 'disabled', Properties>>;
 
 export type ActionTypes = 'edit' | 'delete' | 'approve' | 'reject';
 

@@ -103,6 +103,9 @@ const StyledTextField = styled(TextField)`
 
 const StyledButton = styled(Button)`
     width: 75%;
+    &:disabled {
+        color: ${({ theme }) => theme.button.filled.disabled?.TEXT_COLOR} !important;
+    }
     &.MuiButtonBase-root {
         margin-top: 1.2rem;
     }
