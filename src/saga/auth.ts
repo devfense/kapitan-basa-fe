@@ -15,7 +15,6 @@ export function* authLogin(action: AuthLoginStart): SagaIterator {
     
         yield put({ type: Actions.AUTH_LOGIN_FULLFILLED, payload: data });
     } catch (error: any) {
-
         yield put({ type: Actions.AUTH_LOGIN_ERROR, payload: error.response.data });
         
     }

@@ -1,5 +1,10 @@
 import { Student } from "../student/types";
+import { Action } from "../../types/Redux";
 
+
+export enum Actions {
+    USER_STORE_INFO = '@user/USER_STORE_INFO',
+}
 
 export enum AccountStatus {
     PENDING = 'PENDING',
@@ -7,7 +12,9 @@ export enum AccountStatus {
     REJECTED = 'REJECTED'
 }
 
-
+export interface UserState {
+    userInfo: AllUser
+}
 export interface User {
     firstName: string;
     middleName?: string;
@@ -20,3 +27,8 @@ export interface User {
 };
 
 export interface AllUser extends User, Student {};
+
+export type UserStoreInfo = Action<typeof Actions.USER_STORE_INFO, AllUser>;
+
+
+export type UserTypes = UserStoreInfo ;

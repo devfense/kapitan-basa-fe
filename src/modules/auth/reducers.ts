@@ -17,6 +17,18 @@ export const auth = (state = initialState, action: AuthTypes): AuthState => {
                 apiResponse: action.payload
             }
         }
+        case Actions.AUTH_LOGIN_ERROR: {
+            return {
+                ...state,
+                apiResponse: action.payload
+            }
+        }
+        case Actions.AUTH_RESET_RESPONSE: {
+            return {
+                ...state,
+                apiResponse: mockResponse
+            }
+        }
         default: {
             return { ...state };
         }

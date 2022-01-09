@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig, AxiosRequestHeaders } from 'axios';
-
+import { AllUser } from '../modules/users/types'
 import { HttpStatus } from '../constants/httpStatus' 
 
 const SERVER_BASE_URL = process.env.REACT_APP_SERVER_BASE_URL;
@@ -31,7 +31,7 @@ export interface ApiResponseDetails {
     error?: string;
     message: string;
     statusCode?: number;
-    content?: string | Object | [];
+    content?: any;
 }
 export const NOCACHE: AxiosRequestHeaders = {
     'Cache-Control': 'no-cache, must-revalidate',
