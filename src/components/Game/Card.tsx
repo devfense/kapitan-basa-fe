@@ -9,7 +9,7 @@ interface Props {
     level: number;
     title: string;
     description: string;
-    thumbnail?: string;
+    thumbnail?: ReactNode;
     isCleared?: boolean;
     onStart?: () => void;
 }
