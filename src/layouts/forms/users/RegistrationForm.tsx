@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import _ from 'lodash';
-import { useNavigate } from 'react-router-dom';import { RootState } from '../../../store'
+import { useNavigate } from 'react-router-dom';
+import { RootState } from '../../../store'
 import { connect, ConnectedProps, useSelector } from 'react-redux';
 import { sanitizeServerMessage } from '../../../helpers/globalHelpers'
 import { useForm } from 'react-hook-form';
@@ -12,10 +13,9 @@ import * as studentActions from '../../../modules/student/actions';
 import { regValidationOption } from '../../../constants/validations';
 import Alert from '../../../../src/components/Alert/index';
 import { useDialog } from '../../../providers/dialog/index'; 
-import { ALERT_TIMEOUT } from '../../../constants/variables'
+import { ALERT_TIMEOUT, ALERT } from '../../../constants/variables'
 interface RegistrationProps {
     submitText?: string;
-    handleClose: () => void
 }
 
 const Container = styled.div`
@@ -42,7 +42,7 @@ type RegistrationData = StudentUser & { confirmPassword: string };
 type Props = RegistrationProps & ReduxProps;
 
 const RegistrationForm: FunctionComponent<Props> = (props: Props) => {
-    const { submitText, registerStudent, handleClose } = props;
+    const { submitText, registerStudent } = props;
      
     const { register, handleSubmit, formState: { errors } } = useForm<RegistrationData>(regValidationOption);
 
@@ -52,7 +52,9 @@ const RegistrationForm: FunctionComponent<Props> = (props: Props) => {
 
     const [openAlert] = useDialog();
 
-    const navigate = useNavigate();
+    useEffect(() => {
+        handleDisplayAlert()
+    }, [apiResponse])
 
     const handleRegistration = (data: RegistrationData) => {
         data.grade = data.grade.toString()
@@ -61,21 +63,18 @@ const RegistrationForm: FunctionComponent<Props> = (props: Props) => {
         setIsRegistering(true)
     }
 
-
-    useEffect(() => {
-
+    const handleDisplayAlert = () => {
         const { message, success, statusCode} = apiResponse
 
-        if(statusCode > 0){
+        if(statusCode && statusCode > 0){
             openAlert({
-                children: <Alert type={success ? 'Success' : 'Error'} title={success ? 'Success' : 'Application Error'} message={sanitizeServerMessage(message)}/>
+                children: <Alert type={success ? 'Success' : 'Error'} title={success ? ALERT.GENERAL_TITLE.SUCCESS : ALERT.GENERAL_TITLE.APP_ERROR} message={sanitizeServerMessage(message)}/>
             })
 
-            statusCode === 201 && setTimeout(() => window.open('/', '_self'), ALERT_TIMEOUT)
-            statusCode > 200 && setIsRegistering(false)
+            statusCode && statusCode === 201 && setTimeout(() => window.open('/', '_self'), ALERT_TIMEOUT)
+            statusCode && statusCode > 200 && setIsRegistering(false)
         } 
-
-    }, [apiResponse])
+    }
 
     return (
         <Container>

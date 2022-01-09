@@ -1,4 +1,12 @@
-import React from 'react';
+import React, { FunctionComponent, useState, useEffect } from 'react';
+import Cookies from 'js-cookie'
+import { connect, ConnectedProps, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router'
+import { RootState } from '../../../store'
+import * as authActions from '../../../modules/auth/actions';
+import * as userActions from '../../../modules/users/actions';
+import { mockUser } from '../../../modules/users/reducers'
+import { AllUser } from '../../../modules/users/types'
 import styled from 'styled-components';
 import BrandName from '../../../components/Brand';
 import AvatarLogo from '../../../components/AvatarLogo';
@@ -6,6 +14,10 @@ import TextField from '../../../components/TextField';
 import { useLocaleContext } from '../../../providers/localization';
 import Button from '../../../components/Button';
 import { useDialog } from '../../../providers/dialog';
+import Alert from '../../../components/Alert/index';
+import { ALERT_TIMEOUT, ALERT, COOKIE } from '../../../constants/variables'
+import { sanitizeServerMessage } from '../../../helpers/globalHelpers'
+
 import RegisterStudent from '../../../dialogs/users/RegisterStudent';
 
 const LoginContainer = styled.div`
@@ -96,15 +108,71 @@ const StyledButton = styled(Button)`
     }
 `;
 
-const LoginForm = () => {
-    const strings = useLocaleContext();
-    const [openDialog, closeDialog] = useDialog();
+type Props = ReduxProps;
 
+
+const LoginForm: FunctionComponent<Props> = (props: Props) => {
+
+    const { authLogin, storeUserInfo, authResetResponse } = props;
+    const { apiResponse } = useSelector((state: RootState) => state.auth)
+    const { userInfo } = useSelector((state: RootState) => state.users)
+
+
+    const strings = useLocaleContext();
+    const [openDialog] = useDialog();
+    const [openAlert] = useDialog();
+
+
+    const [loginFields, setLoginFields] = useState({ username: "", password: ""})
+    const [isLoggingIn, setIsLoggingIn] = useState(false)
+
+    const redirect = useNavigate()
+
+    useEffect(() => {
+        return () => {
+            authResetResponse()
+        }
+    }, [])
+
+    useEffect(() => {
+        handleLoginResponse()
+    }, [apiResponse])
 
     const handleStudentReg = () => {
         openDialog({
-            children: <RegisterStudent handleClose={closeDialog}/>
+            children: <RegisterStudent/>
         })
+    }
+
+    const handleLoginResponse = () => {
+        let {success, message, statusCode, content} = apiResponse
+
+        if(statusCode && statusCode > 0){
+            if(success){
+                //STORE CONTENT IN COOKIES AND STORE TO REDUX
+                content.isAuthenticated = true
+                storeUserInfo(content || mockUser)
+                Cookies.set(COOKIE.SETTINGS.NAME, JSON.stringify(content), { expires: COOKIE.SETTINGS.EXP, domain: COOKIE.SETTINGS.DOMAIN, path: '' })
+                redirect("/dashboard")
+
+            } else {
+                setIsLoggingIn(false)
+                openAlert({
+                    children: <Alert type="Error" 
+                                     title={statusCode === 404 ? ALERT.GENERAL_TITLE.LOGIN_FAILED : ALERT.GENERAL_TITLE.ERROR} 
+                                    message={sanitizeServerMessage(message)}
+                              />
+                })
+            }
+        }
+
+
+        
+    }
+
+    const handleLogin = () => {
+        setIsLoggingIn(true)
+        authLogin(loginFields)
     }
 
     return (
@@ -117,15 +185,17 @@ const LoginForm = () => {
                 <StyledTextField 
                     type="username" 
                     placeholder="Username"
+                    onChange={(event) => setLoginFields(prev => ({...prev, username: event.target.value}))}
                 />
             </TextBox>
             <TextBox>
                 <StyledTextField 
                     type="password" 
                     placeholder="Password"
+                    onChange={(event) => setLoginFields(prev => ({...prev, password: event.target.value}))}
                 />
             </TextBox>
-            <StyledButton shade='filled'>{strings.login}</StyledButton>
+            <StyledButton disabled={isLoggingIn} shade='filled' onClick={handleLogin}>{isLoggingIn ? strings.logingIn + '....' : strings.login}</StyledButton>
             <LineBox>
                 <Line />
                 <Label>{strings.regLabel}</Label>
@@ -135,4 +205,16 @@ const LoginForm = () => {
     )
 };
 
-export default LoginForm;
+
+const mapDispatchToProps = {
+    authLogin: authActions.authLogin,
+    storeUserInfo: userActions.storeUserInfo,
+    authResetResponse: authActions.authResetResponse
+};
+
+
+const connector = connect(null, mapDispatchToProps);
+
+type ReduxProps = ConnectedProps<typeof connector>;
+
+export default connector(LoginForm);

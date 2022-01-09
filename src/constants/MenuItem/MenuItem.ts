@@ -1,6 +1,6 @@
-import Routes from "../types";
+import { Routes } from "../types";
 
-const Items: Routes[] = [
+export const STUDENT_ACL: Routes[] = [
     {
         title: 'Dashboard',
         route: '/dashboard',
@@ -10,6 +10,16 @@ const Items: Routes[] = [
         title: 'Game Level',
         route: '/game',
         key: 'gameLevel'
+    },
+
+];
+
+
+export const ADMIN_ACL: Routes[] = [
+    {
+        title: 'Dashboard',
+        route: '/dashboard',
+        key: 'dashboard'
     },
     {
         title: 'Tabulation/Results',
@@ -24,4 +34,3 @@ const Items: Routes[] = [
 
 ];
 
-export default Items;

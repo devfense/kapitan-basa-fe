@@ -28,6 +28,13 @@ const colors: ButtonColors = {
         hover: {
             BG_COLOR: '#6B8AF8',
             TEXT_COLOR: '#FFFFFF'
+        },
+        error: {
+            TEXT_COLOR: '#FFFFFF',
+            SECONDARY_TEXT_COLOR: '#FF7976',
+            BG_COLOR: '#FF7976',
+            SECONDARY_BG_COLOR: '#FF8683',
+            BORDER_COLOR: '#FF7976',
         }
     }
 };

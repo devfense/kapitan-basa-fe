@@ -51,7 +51,7 @@ const mockUsers: AllUser[] = [
         section: 'Kamagong', 
         grade: '10',
         emailAddress: 'jdc@jdc.com', 
-        accountStatus: AccountStatus.ACTIVE
+        status: AccountStatus.ACTIVE
     },
     { 
         studentID: '020202',
@@ -61,7 +61,7 @@ const mockUsers: AllUser[] = [
         section: 'Ipil-Ipil', 
         grade: '10', 
         emailAddress: 'cm@cmd.com', 
-        accountStatus: AccountStatus.ACTIVE
+        status: AccountStatus.ACTIVE
     },
     { 
         lastName: 'Viernes', 
@@ -70,7 +70,7 @@ const mockUsers: AllUser[] = [
         section: 'Narra', 
         grade: '10', 
         emailAddress: 'jephv4@cmd.com', 
-        accountStatus: AccountStatus.ACTIVE
+        status: AccountStatus.ACTIVE
     },
 ];
 /*TODO: Integrate Userlist API */

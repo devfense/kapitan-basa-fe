@@ -25,7 +25,7 @@ export function* getStudentList(action: GetStudentListRequest): SagaIterator {
 
 export function* registerStudent(action: RegisterStudentRequest): SagaIterator {
     try {
-        const { data, response }: Response<{ data: ApiResponseDetails}> = yield call(api, {
+        const { data }: Response<{ data: ApiResponseDetails}> = yield call(api, {
             url: '/student/register',
             data: action.payload,
             method: 'post'

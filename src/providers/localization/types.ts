@@ -8,6 +8,7 @@ export interface LocaleStrings {
     edit: string;
     gameLevel: string;
     login: string;
+    logingIn: string,
     name: string;
     tabResults: string;
     userMgmt: string;
