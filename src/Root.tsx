@@ -8,6 +8,7 @@ import Sidebar from './layouts/Navigation/Sidebar';
 import TopHeader from './layouts/Navigation/TopHeader';
 import Dashboard from './views/Dashboard/Dashboard';
 import Game from './views/Game/Game';
+import TabulationAndResult from './views/TabulationAndResult/TabulationAndResult';
 import UserManagament from './views/UserManagement/UserManagament';
 import { theme } from './themes';
 import Landing from './views/Landing';
@@ -50,6 +51,7 @@ const Root = () => {
                     <Routes>
                       <Route path="/dashboard" element={<Dashboard />} />
                       <Route path="/game" element={<Game />} />
+                      <Route path="/results" element={<TabulationAndResult />} />
                       <Route path="/user-management" element={<UserManagament />} />
                     </Routes>
                 </MainContainer>

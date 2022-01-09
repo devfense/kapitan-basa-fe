@@ -38,7 +38,7 @@ const SearchBar = styled.input`
 `;
 
 type SearchProps = {
-    searchTerm: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    searchTerm?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 
 }
 

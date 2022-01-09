@@ -38,7 +38,7 @@ const StyledDialogContainer = styled(DialogContainer)`
   .MuiPaper-root {
     min-width: 300px;
     max-width: 90vw;
-    width: 100
+    width: 100;
     overflow: hidden;
     border-radius: 26px;
   }
@@ -52,6 +52,7 @@ export const DialogProvider: FunctionComponent<DialogProps> = (props: DialogProp
     setDialogs((ds) => [...ds, dialog]);
   };
   const closeDialog = () => {
+    console.log('I am closed')
     setDialogs((ds) => {
       const latestDialog = ds.pop();
       if (!latestDialog) return ds;
