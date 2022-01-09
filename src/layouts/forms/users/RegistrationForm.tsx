@@ -42,6 +42,7 @@ const RegistrationForm: FunctionComponent<Props> = (props: Props) => {
     const { register, handleSubmit, formState: { errors } } = useForm<RegistrationData>(regValidationOption);
 
     const handleRegistration = (data: RegistrationData) => {
+        data.grade = data.grade.toString()
         const regData = _.omit(data, 'confirmPassword', 'middleName', 'suffix');
         registerStudent(regData);
     }

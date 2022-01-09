@@ -1,7 +1,7 @@
 import { AccountStatus } from "../users/types";
 import { Actions, StudentTypes, StudentState } from "./types";
 
-const mockUser = { studentID: '00221', lastName: '', firstName: '', middleName: '', section: 'Kamagong', grade: 10, emailAddress: '', accountStatus: AccountStatus.ACTIVE};
+const mockUser = { studentID: '00221', lastName: '', firstName: '', middleName: '', section: 'Kamagong', grade: '7', emailAddress: '', accountStatus: AccountStatus.ACTIVE};
 
 const initialState: StudentState = {
     studentList: [

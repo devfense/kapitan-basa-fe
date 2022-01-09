@@ -17,12 +17,13 @@ interface Props {
 const Container = styled.div`
     display: flex;
     flex-direction: column;
-    width: 22%;
-    margin-right: 10px;
-    margin-bottom: 10px;
+    width: 21.7%;
+    margin-right: 20px;
+    margin-bottom: 20px;
     background-color: ${({theme}) => theme.card.primary.normal.BG_COLOR};
     padding: 15px;
     border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
 
     > p {
         margin: 0;

@@ -29,6 +29,7 @@ const LevelsContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
     width: 100%;
+    padding: 15px 0px;
 `;
 
 const gamelevels = [
@@ -53,13 +54,13 @@ const gamelevels = [
     {
         level: 4,
         isCleared: false,
-        title: 'ABNKKBSANPLKO',
+        title: 'DYLAN GAMING',
         description: 'Aba nakakabasa na pala ako',
     },
     {
         level: 5,
         isCleared: false,
-        title: 'ABNKKBSANPLKO',
+        title: 'TEST',
         description: 'Aba nakakabasa na pala ako',
     }
 ]
@@ -67,20 +68,32 @@ const gamelevels = [
 const Game = () => {
 
     const strings = useLocaleContext();
+    
+    // bind to constant data "gamelevels"
+    const [gameList] = React.useState(gamelevels);
+
+    // search title upon typing
+    const [searchGame, setSearchGame] = React.useState("");
+
+    // function search
+    const onSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchGame(e.target.value);
+    }
 
     return (
         <Container>
             <LabelContainer>
                 <PageLabel>{ strings.gameLevel }</PageLabel>
             </LabelContainer>
-            <SearchBar />
+            <SearchBar searchTerm={onSearchChange} />
             <LevelsContainer>
                 {
-                    gamelevels.map((g) => {
-                        return (    
-                            <Card level={g.level} description={g.description} title={g.title} isCleared={g.isCleared}/>
-                        )
-                    })
+                    gameList.length > 0 &&
+                        gameList.filter((g) => g.title.toLowerCase().includes(searchGame.toLowerCase())).map((g) => {
+                            return (    
+                                <Card level={g.level} description={g.description} title={g.title} isCleared={g.isCleared}/>
+                            )
+                        })
                 }
             </LevelsContainer>
         </Container>

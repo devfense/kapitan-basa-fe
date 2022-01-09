@@ -49,7 +49,7 @@ const mockUsers: AllUser[] = [
         firstName: 'Juan', 
         middleName: 'A.', 
         section: 'Kamagong', 
-        grade: 10,
+        grade: '10',
         emailAddress: 'jdc@jdc.com', 
         accountStatus: AccountStatus.ACTIVE
     },
@@ -59,7 +59,7 @@ const mockUsers: AllUser[] = [
         firstName: 'Mark', 
         middleName: 'A.', 
         section: 'Ipil-Ipil', 
-        grade: 10, 
+        grade: '10', 
         emailAddress: 'cm@cmd.com', 
         accountStatus: AccountStatus.ACTIVE
     },
@@ -68,7 +68,7 @@ const mockUsers: AllUser[] = [
         firstName: 'Jephunneh', 
         middleName: 'B.', 
         section: 'Narra', 
-        grade: 10, 
+        grade: '10', 
         emailAddress: 'jephv4@cmd.com', 
         accountStatus: AccountStatus.ACTIVE
     },
