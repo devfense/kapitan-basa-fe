@@ -1,13 +1,15 @@
 import { SagaIterator } from 'redux-saga';
 import { all, fork } from 'redux-saga/effects';
 
-import { studentWatchers } from './student';
 import { authWatchers } from './auth';
+import { studentWatchers } from './student';
+import { gameLevelWatchers } from './gameLevels';
 
 
 export function* rootSaga(): SagaIterator {
     yield all([
         fork(studentWatchers),
-        fork(authWatchers)
+        fork(authWatchers),
+        fork(gameLevelWatchers)
     ]);
 }

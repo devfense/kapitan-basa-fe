@@ -1,13 +1,13 @@
-import { student } from './student/reducers';
 import { auth } from './auth/reducers';
+import { gamelevel } from './game-levels/reducers';
+import { student } from './student/reducers';
 import { users } from './users/reducers';
 
 
-
-
 const reducers = {
-    student,
     auth,
+    gamelevel,
+    student,
     users
 }
 
