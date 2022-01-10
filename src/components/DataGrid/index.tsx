@@ -8,11 +8,13 @@ import { TableBody as MuiTableBody } from '@material-ui/core';
 import styled from 'styled-components'
 
 interface Props<T> {
-    data: T[];
-    columns: ReactNode[];
+    data?: T[];
+    columns?: ReactNode[];
+    header?: ReactNode;
+    children?: ReactNode;
 }
 
-const ContentTable = styled(MuiTableContainer)`
+export const ContentTable = styled(MuiTableContainer)`
     border-collapse: collapse;
     margin: 0 0 20px;
     font-size: 0.9em;
@@ -26,12 +28,12 @@ const MainTable = styled(MuiTable)`
     
 `;
 
-const TableHeader = styled(MuiTableHead)`
+export const TableHeader = styled(MuiTableHead)`
     background-color: ${({ theme }) => theme.app.content.normal.BG_COLOR};
    
 `;
 
-const TableRow = styled(MuiTableRow)`
+export const TableRow = styled(MuiTableRow)`
     color: ${({ theme }) => theme.app.content.normal.SECONDARY_TEXT_COLOR};
     text-align: left;
     /* &:nth-of-type(even) {
@@ -43,7 +45,7 @@ const TableRow = styled(MuiTableRow)`
     border-bottom: 1px solid  ${({ theme }) => theme.app.content.normal.BG_COLOR};
 `;
 
-const TableHead = styled(MuiTableCell)`
+export const TableHead = styled(MuiTableCell)`
     padding: 12px 15px;
     &:nth-child(5) {
       text-align: center;
@@ -62,11 +64,11 @@ const TableHead = styled(MuiTableCell)`
     }
 `;
 
-const TableBody = styled(MuiTableBody)`
+export const TableBody = styled(MuiTableBody)`
     font-weight: 400;
 `;
 
-const TableData = styled(MuiTableCell)`
+export const TableData = styled(MuiTableCell)`
     color: ${({ theme }) => theme.app.content.normal.SECONDARY_TEXT_COLOR};
     padding: 0px 15px;
     font-size: 1em;
@@ -89,26 +91,26 @@ const TableData = styled(MuiTableCell)`
 `;
 
 function Table<T> (props: Props<T>): JSX.Element {
-    const { data, columns } = props;
-    const displayKeys = data.length > 0 ? Object.keys(data[0]) as Array<keyof T> : [];
+    const { data, columns, header, children } = props;
+    const displayKeys = data && data.length > 0 ? Object.keys(data[0]) as Array<keyof T> : [];
+    console.log(header);
     return (
         <ContentTable>
             <MainTable>
                 <TableHeader>
                     <TableRow>
-                        {
+                        {   columns !== undefined ? 
                             columns.map((column, index) => {
                                 return(
                                     <TableHead key={index}>{ column }</TableHead>
                                 )
-                            })
+                            }) : header
                         }
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                        {                        
+                        {   data ?              
                             data.map((item, index) => {
-                                console.log(displayKeys);
                                 return (
                                     <TableRow>
                                         {displayKeys.map((key, indx) => {
@@ -118,7 +120,7 @@ function Table<T> (props: Props<T>): JSX.Element {
                                         })}
                                     </TableRow>
                                 )
-                            })
+                            }) : children
                         }
                 </TableBody>
             </MainTable>

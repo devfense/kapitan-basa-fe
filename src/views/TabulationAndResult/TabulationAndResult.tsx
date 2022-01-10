@@ -46,6 +46,7 @@ const UserListContainer = styled.div`
 
 const mockUsers: AllUser[] = [
     { 
+        username: 'Juan', 
         studentID: '010101',
         lastName: 'Dela Cruz',
         firstName: 'Juan', 
@@ -55,6 +56,7 @@ const mockUsers: AllUser[] = [
         emailAddress: 'jdc@jdc.com', 
     },
     { 
+        username: 'Juan', 
         studentID: '020202',
         lastName: 'Cabusao', 
         firstName: 'Mark', 
@@ -64,6 +66,7 @@ const mockUsers: AllUser[] = [
         emailAddress: 'cm@cmd.com', 
     },
     { 
+        username: 'Juan', 
         studentID: '030303',
         lastName: 'Viernes', 
         firstName: 'Jephunneh', 
