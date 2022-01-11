@@ -42,6 +42,7 @@
     "eject": "react-scripts eject",
     "lint": "eslint src --ext js,ts,tsx",
     "lint-fix": "eslint src --ext js,ts,tsx --fix",
+    "format": "prettier --write './src/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
     "dev": "yarn install && react-scripts start"
   },
   "husky": {

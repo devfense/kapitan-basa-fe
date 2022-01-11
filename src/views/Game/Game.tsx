@@ -74,7 +74,7 @@ const Game: FunctionComponent<Props> = ({
 			</LabelContainer>
 			<SearchBar searchTerm={onSearchChange} />
 			<LevelsContainer>
-				{
+				{	
 					levels.list.length > 0 &&
 						levels.list.filter((g: GameLevel) => g.levelTitle.toLowerCase().includes(searchGame.toLowerCase())).map((g: GameLevel, i) => {
 							return (
