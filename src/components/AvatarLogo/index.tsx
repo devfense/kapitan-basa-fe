@@ -11,7 +11,7 @@ const AvatarBox = styled.div`
 
 const Avatar = styled.div`
     height: 100px;
-    width: 100px;
+    width: 100px;   
     border-radius: 100%;
     background-color: ${({ theme }) => theme.card.secondary.normal.SECONDARY_BG_COLOR};
     display: flex;
