@@ -5,8 +5,12 @@ import Cookies from 'js-cookie'
 import { COOKIE } from '../../constants/variables'
 import styled from 'styled-components';
 import UserProfile from '../../components/AvatarProfile/index';
-import { useLocaleContext } from '../../providers/localization';
 import Button from '../../components/Button/index';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
+import { AccountTypes } from '../../constants/types';
+import StudentInfo from '../../components/UserInfo/Student';
+import AdminInfo from '../../components/UserInfo/Admin';
 
 const Container = styled.div` 
     height: 55px;
@@ -79,7 +83,7 @@ const ProfileBtn = styled.div`
 
 const ProfileContainer = styled.div`
     height: auto;
-    width: auto;
+    width: 180px;
     background-color: ${({ theme }) => theme.profile.background.normal.BG_COLOR};
     position: absolute;
     top: 52px;
@@ -90,37 +94,38 @@ const ProfileContainer = styled.div`
     transition: all 0.6s ease-in-out;
 
     @media screen and (max-width: 768px) {
+        max-width: 160px;
         position: absolute;
         top: 52px;
         right: 20px;
     }
 `;
 
-const TextBox = styled.div`
-    display: flex;
-    flex-direction: column;
-    line-height: 1.4rem;
-    margin-bottom: .4rem;
-    cursor: pointer;
-`;
-const Placeholder = styled.span`
-    font-size: 0.8rem;
-    color: ${({ theme }) => theme.profile.placeholder.normal.TEXT_COLOR};
+// const TextBox = styled.div`
+//     display: flex;
+//     flex-direction: column;
+//     line-height: 1.4rem;
+//     margin-bottom: .4rem;
+//     cursor: pointer;
+// `;
+// const Placeholder = styled.span`
+//     font-size: 0.8rem;
+//     color: ${({ theme }) => theme.profile.placeholder.normal.TEXT_COLOR};
 
-    @media screen and (max-width: 420px) {
-        font-size: 0.8rem;
-    }
-`;
+//     @media screen and (max-width: 420px) {
+//         font-size: 0.8rem;
+//     }
+// `;
 
-const TextLabel = styled.span`
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: ${({ theme }) => theme.profile.label.normal.TEXT_COLOR};
+// const TextLabel = styled.span`
+//     font-size: 0.9rem;
+//     font-weight: 600;
+//     color: ${({ theme }) => theme.profile.label.normal.TEXT_COLOR};
 
-    @media screen and (max-width: 420px) {
-        font-size: 0.9rem;
-    }
-`;
+//     @media screen and (max-width: 420px) {
+//         font-size: 0.9rem;
+//     }
+// `;
 
 const LogoutButton = styled(Button)`
     &.MuiButton-root {
@@ -144,7 +149,7 @@ const TopHeader = (props: ButtonProps) => {
 
     const redirect = useNavigate()
 
-    const strings = useLocaleContext();
+    const { userInfo } = useSelector((state: RootState) => state.users)
 
     const [popover, setPopOver] = useState(false);
 
@@ -170,26 +175,12 @@ const TopHeader = (props: ButtonProps) => {
                         { 
                             popover &&  
                                 <ProfileContainer>
-                                    <TextBox> 
-                                        <Placeholder>{ strings.userName }</Placeholder>
-                                        <TextLabel>Juan Dela Cruz</TextLabel>
-                                    </TextBox>
-                                    <TextBox> 
-                                        <Placeholder>{ strings.studID }</Placeholder>
-                                        <TextLabel>87-240398</TextLabel>
-                                    </TextBox>
-                                    <TextBox> 
-                                        <Placeholder>{ strings.gradeSection }</Placeholder>
-                                        <TextLabel>10 / Our Lady of Peace</TextLabel>
-                                    </TextBox>
-                                    <TextBox> 
-                                        <Placeholder>{ strings.emailAddress }</Placeholder>
-                                        <TextLabel>juandelacruz@gmail.com</TextLabel>
-                                    </TextBox>
+                                    { 
+                                        userInfo.accountType === AccountTypes.STUDENT ? <StudentInfo /> : <AdminInfo />
+                                    }
                                     <LogoutButton onClick={handleLogout} shade="outlined">Logout</LogoutButton>
                                 </ProfileContainer> 
                         }
-
                 </Container>
         </React.Fragment>
     )

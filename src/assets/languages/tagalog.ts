@@ -15,11 +15,11 @@ const strings: LocaleStrings = {
     userMgmt: 'Pag-manage ng Users',
     accUser: 'Gumagamit ng Account',
     appDesc: 'Taga pag mana nag applikasyon.',
-    userName: 'Username:',
+    userName: 'Buong Pangalan:',
     studID: 'ID ng Studyante:',
     gradeSection: 'Grado at Seksyon:',
     emailAddress: 'Email Address:',
-    listStud: 'Listahan ng Studyante'
+    listStud: 'Listahan ng Studyante',
 };
 
 export default strings;

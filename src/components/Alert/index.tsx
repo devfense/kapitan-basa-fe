@@ -60,6 +60,7 @@ const Title = styled.span`
 const Message = styled.span`
     font-size: 1rem;
     color: #000;
+    text-align: center;
     padding: 0px 0px 20px;
 `;
 
