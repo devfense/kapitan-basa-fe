@@ -43,7 +43,6 @@ const Thumbnail = styled.div<{ bg: string }>`
 	background-image: url(${({ bg }) => bg});
 	background-size: cover;
 	background-repeat: no-repeat;
-	background-position: 0 -230px;
 `;
 
 type Props = ReduxProps;
