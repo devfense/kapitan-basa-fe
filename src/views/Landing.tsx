@@ -28,7 +28,7 @@ const BoxImage = styled.img`
     width: 25%;
     height: 336px;
     object-fit: cover;
-`
+`;
 
 const BannerRow = styled.div`
     display: flex;
@@ -36,37 +36,37 @@ const BannerRow = styled.div`
 
 const Landing: FunctionComponent = () => {
 
-    return(
-        <Container>
-            <HeroBannerContainer>
-                <BannerRow>
-                    <BoxImage src={Boxes.Box1}/>
-                    <BoxImage src={Boxes.Box2}/>
-                    <BoxImage src={Boxes.Box3}/>
-                    <BoxImage src={Boxes.Box4}/>
-                </BannerRow>
-                <BannerRow>
-                    <BoxImage src={Boxes.Box5}/>
-                    <BoxImage src={Boxes.Box6}/>
-                    <BoxImage src={Boxes.Box7}/>
-                    <BoxImage src={Boxes.Box8}/>
-                </BannerRow>
-                <BannerRow>
-                    <BoxImage src={Boxes.Box9}/>
-                    <BoxImage src={Boxes.Box10}/>
-                    <BoxImage src={Boxes.Box11}/>
-                    <BoxImage src={Boxes.Box12}/>
-                </BannerRow>
-                <BannerRow>
-                    <BoxImage src={Boxes.Box13}/>
-                    <BoxImage src={Boxes.Box14}/>
-                    <BoxImage src={Boxes.Box15}/>
-                    <BoxImage src={Boxes.Box16}/>
-                </BannerRow>
-            </HeroBannerContainer>
-            <LoginForm />
-        </Container>
-    )
+	return(
+		<Container>
+			<HeroBannerContainer>
+				<BannerRow>
+					<BoxImage src={Boxes.Box1}/>
+					<BoxImage src={Boxes.Box2}/>
+					<BoxImage src={Boxes.Box3}/>
+					<BoxImage src={Boxes.Box4}/>
+				</BannerRow>
+				<BannerRow>
+					<BoxImage src={Boxes.Box5}/>
+					<BoxImage src={Boxes.Box6}/>
+					<BoxImage src={Boxes.Box7}/>
+					<BoxImage src={Boxes.Box8}/>
+				</BannerRow>
+				<BannerRow>
+					<BoxImage src={Boxes.Box9}/>
+					<BoxImage src={Boxes.Box10}/>
+					<BoxImage src={Boxes.Box11}/>
+					<BoxImage src={Boxes.Box12}/>
+				</BannerRow>
+				<BannerRow>
+					<BoxImage src={Boxes.Box13}/>
+					<BoxImage src={Boxes.Box14}/>
+					<BoxImage src={Boxes.Box15}/>
+					<BoxImage src={Boxes.Box16}/>
+				</BannerRow>
+			</HeroBannerContainer>
+			<LoginForm />
+		</Container>
+	);
 };
 
 export default Landing;

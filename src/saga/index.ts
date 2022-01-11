@@ -8,10 +8,10 @@ import { userWatchers } from './users';
 
 
 export function* rootSaga(): SagaIterator {
-    yield all([
-        fork(studentWatchers),
-        fork(authWatchers),
-        fork(gameLevelWatchers),
-        fork(userWatchers)
-    ]);
+	yield all([
+		fork(studentWatchers),
+		fork(authWatchers),
+		fork(gameLevelWatchers),
+		fork(userWatchers)
+	]);
 }

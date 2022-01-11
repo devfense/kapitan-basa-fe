@@ -1,5 +1,5 @@
-import { Button as MuiButton } from "@material-ui/core";
-import styled from "styled-components";
+import { Button as MuiButton } from '@material-ui/core';
+import styled from 'styled-components';
 
 const Button = styled(MuiButton)`
     &.MuiButton-root {
@@ -15,5 +15,5 @@ const Button = styled(MuiButton)`
             background-color: #54c0a0;
         }
     }
-`
+`;
 export default Button;

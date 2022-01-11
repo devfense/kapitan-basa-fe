@@ -1,6 +1,6 @@
 import React from 'react';
 import { Search as SearchIcon } from '@material-ui/icons';
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const Search = styled.div`
     background-color: #FFF;
@@ -43,15 +43,15 @@ type SearchProps = {
 }
 
 const index = (props: SearchProps) => {
-    const { searchTerm } = props;
-    return (
-        <Search>
-            <SearchIconWrapper>
-                <SearchIcons />
-            </SearchIconWrapper>
-            <SearchBar type="search" placeholder="search.." onChange={searchTerm} />
-        </Search>
-    )
-}
+	const { searchTerm } = props;
+	return (
+		<Search>
+			<SearchIconWrapper>
+				<SearchIcons />
+			</SearchIconWrapper>
+			<SearchBar type="search" placeholder="search.." onChange={searchTerm} />
+		</Search>
+	);
+};
 
 export default index;

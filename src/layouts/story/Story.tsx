@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode } from 'react'
+import React, { FunctionComponent, ReactNode } from 'react';
 import styled from 'styled-components';
 
 interface Props {
@@ -15,14 +15,14 @@ const ContentText = styled.pre`
     white-space: -pre-wrap;      /* Opera 4-6 */
     white-space: -o-pre-wrap;    /* Opera 7 */
     word-wrap: break-word; 
-`
+`;
 
 const Story: FunctionComponent<Props> = ({content}) => {
-    return (
-        <ContentText>
-          {content}
-        </ContentText>
-    )
-} 
+	return (
+		<ContentText>
+			{content}
+		</ContentText>
+	);
+}; 
 
 export default Story;

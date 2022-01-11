@@ -5,10 +5,10 @@ import { users } from './users/reducers';
 
 
 const reducers = {
-    auth,
-    gamelevel,
-    student,
-    users
-}
+	auth,
+	gamelevel,
+	student,
+	users
+};
 
 export default reducers;

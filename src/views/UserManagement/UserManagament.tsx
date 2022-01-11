@@ -1,8 +1,8 @@
-import React, { FunctionComponent, ReactNode, useEffect } from 'react'
-import { Container } from '../../globalStyles'
-import styled from 'styled-components'
+import React, { FunctionComponent, ReactNode, useEffect } from 'react';
+import { Container } from '../../globalStyles';
+import styled from 'styled-components';
 import { useLocaleContext } from '../../providers/localization';
-import DataGrid, { TableData, TableRow } from '../../components/DataGrid/index'
+import DataGrid, { TableData, TableRow } from '../../components/DataGrid/index';
 import { AllUser } from '../../modules/users/types';
 import ActionButton from '../../components/ActionButtons';
 import { useDialog } from '../../providers/dialog';
@@ -50,92 +50,92 @@ type TableAllUsers = AllUser & { approve: ReactNode, actions: ReactNode };
 type Props = ReduxProps;
 
 const UserManagament: FunctionComponent<Props> = ({
-    userList,
-    getUserList,
-    approveUser,
-    rejectUser
+	userList,
+	getUserList,
+	approveUser,
+	rejectUser
 }) => {
-    const strings = useLocaleContext();
-    const [openDialog] = useDialog();
+	const strings = useLocaleContext();
+	const [openDialog] = useDialog();
 
-    useEffect(() => {
-        getUserList();
-    }, []);
+	useEffect(() => {
+		getUserList();
+	}, []);
 
-    const users = userList.list.map((users) => {
-        const handleEdit = () => {
-            openDialog({
-                children: <EditUser />,
-            })
-        }
+	const users = userList.list.map((user) => {
+		const handleEdit = () => {
+			openDialog({
+				children: <EditUser />,
+			});
+		};
 
-        const handleApprove = (id: string) => () => {
-            approveUser(id);
-        }
+		const handleApprove = (id: string) => () => {
+			approveUser(id);
+		};
 
-        const handleReject = (id: string) => () => {
-            rejectUser(id);
-        }
+		const handleReject = (id: string) => () => {
+			rejectUser(id);
+		};
 
-        return {
-            ...users,
-            approve: <><ActionButton types={'approve'} onClick={handleApprove(users.username)}>Approve</ActionButton> <ActionButton types={'reject'} onClick={handleReject(users.username)}>Reject</ActionButton></>,
-            actions: <><ActionButton types={'edit'} onClick={handleEdit}>{strings.edit}</ActionButton> <ActionButton types={'delete'}>{strings.delete}</ActionButton></>
-        }
-    }).map((u) => {
-        delete u.studentID;
-        return {
-            ...u
-        }
-    });
+		return {
+			...user,
+			approve: <><ActionButton types={'approve'} onClick={handleApprove(user.username)}>Approve</ActionButton> <ActionButton types={'reject'} onClick={handleReject(user.username)}>Reject</ActionButton></>,
+			actions: <><ActionButton types={'edit'} onClick={handleEdit}>{strings.edit}</ActionButton> <ActionButton types={'delete'}>{strings.delete}</ActionButton></>
+		};
+	}).map((u) => {
+		delete u.studentID;
+		return {
+			...u
+		};
+	});
     
-    const columns = {
-        lastName: 'Last Name', 
-        firstName: 'First Name', 
-        middlName: 'MiddleName', 
-        section: 'Section', 
-        grade: 'Grade', 
-        emailAddress: 'Email Address', 
-        status: 'Account Status', 
-        approve: 'Approve/Reject', 
-        actions: 'Actions'
-    };
+	const columns = {
+		lastName: 'Last Name', 
+		firstName: 'First Name', 
+		middlName: 'MiddleName', 
+		section: 'Section', 
+		grade: 'Grade', 
+		emailAddress: 'Email Address', 
+		status: 'Account Status', 
+		approve: 'Approve/Reject', 
+		actions: 'Actions'
+	};
 
-    return (
-        <Container>
-            <LabelContainer>
-                <PageLabel>{ strings.userMgmt }</PageLabel>
-            </LabelContainer>
-            <UserListContainer>
-                <LabelContainer>
-                    <PageLabel size='subheader'>{ strings.accUser }</PageLabel>
-                </LabelContainer>
-                <DataGrid<TableAllUsers> columns={Object.keys(columns).map((c) => (columns[c as keyof typeof columns]))}>
-                            {
-                                users.map((user, index) => {
-                                    return (  
-                                    <TableRow key={index}>
-                                        {Object.keys(columns).map((col, i) => {
-                                            return (<TableData key={i}>{ user[col as keyof AllUser] }</TableData>)
-                                        })}
-                                    </TableRow>
-                                    )
-                                })
-                            }
-                        </DataGrid>
-            </UserListContainer>
-        </Container>
-    )
-}
+	return (
+		<Container>
+			<LabelContainer>
+				<PageLabel>{ strings.userMgmt }</PageLabel>
+			</LabelContainer>
+			<UserListContainer>
+				<LabelContainer>
+					<PageLabel size='subheader'>{ strings.accUser }</PageLabel>
+				</LabelContainer>
+				<DataGrid<TableAllUsers> columns={Object.keys(columns).map((c) => (columns[c as keyof typeof columns]))}>
+					{
+						users.map((user, index) => {
+							return (  
+								<TableRow key={index}>
+									{Object.keys(columns).map((col, i) => {
+										return (<TableData key={i}>{ user[col as keyof AllUser] }</TableData>);
+									})}
+								</TableRow>
+							);
+						})
+					}
+				</DataGrid>
+			</UserListContainer>
+		</Container>
+	);
+};
 
 const mapStateToProps = (state: RootState) => ({
-    userList: state.users.users
-})
+	userList: state.users.users
+});
 
 const mapDispatchToProps = {
-    getUserList: userActions.getUserList,
-    approveUser: userActions.approveUser,
-    rejectUser: userActions.rejectUser,
+	getUserList: userActions.getUserList,
+	approveUser: userActions.approveUser,
+	rejectUser: userActions.rejectUser,
 };
 
 

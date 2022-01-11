@@ -45,79 +45,79 @@ const UserListContainer = styled.div`
 `;
 
 const mockUsers: AllUser[] = [
-    { 
-        username: 'Juan', 
-        studentID: '010101',
-        lastName: 'Dela Cruz',
-        firstName: 'Juan', 
-        middleName: 'A.', 
-        section: 'Kamagong', 
-        grade: '10',
-        emailAddress: 'jdc@jdc.com', 
-    },
-    { 
-        username: 'Juan', 
-        studentID: '020202',
-        lastName: 'Cabusao', 
-        firstName: 'Mark', 
-        middleName: 'A.', 
-        section: 'Ipil-Ipil', 
-        grade: '10', 
-        emailAddress: 'cm@cmd.com', 
-    },
-    { 
-        username: 'Juan', 
-        studentID: '030303',
-        lastName: 'Viernes', 
-        firstName: 'Jephunneh', 
-        middleName: 'B.', 
-        section: 'Narra', 
-        grade: '10', 
-        emailAddress: 'jephv4@cmd.com', 
-    },
+	{ 
+		username: 'Juan', 
+		studentID: '010101',
+		lastName: 'Dela Cruz',
+		firstName: 'Juan', 
+		middleName: 'A.', 
+		section: 'Kamagong', 
+		grade: '10',
+		emailAddress: 'jdc@jdc.com', 
+	},
+	{ 
+		username: 'Juan', 
+		studentID: '020202',
+		lastName: 'Cabusao', 
+		firstName: 'Mark', 
+		middleName: 'A.', 
+		section: 'Ipil-Ipil', 
+		grade: '10', 
+		emailAddress: 'cm@cmd.com', 
+	},
+	{ 
+		username: 'Juan', 
+		studentID: '030303',
+		lastName: 'Viernes', 
+		firstName: 'Jephunneh', 
+		middleName: 'B.', 
+		section: 'Narra', 
+		grade: '10', 
+		emailAddress: 'jephv4@cmd.com', 
+	},
 ];
 
 type TableAllUserStudent = AllUser
 
 const TabulationAndResult = () => {
 
-    const strings = useLocaleContext();
+	const strings = useLocaleContext();
 
-    const [openDialog] = useDialog();
+	const [openDialog] = useDialog();
 
-    const users = mockUsers.map((users) => {
-        const handleView = () => {
-            openDialog({
-                children: <TabulationDialog 
-                            title="Tabulation/Result" 
-                            fullname={`${users.firstName} ${users.middleName} ${users.lastName}`} 
-                            studentID={`${users.studentID}`} 
-                            grade={`${users.grade}`} 
-                            section={`${users.section}`}
-                          /> 
-            })
-        }
-        return {
-            ...users,
-            view: <><ActionButton onClick={handleView}>View</ActionButton></>
-        }
-    })
+	const users = mockUsers.map((users) => {
+		const handleView = () => {
+			openDialog({
+				children: <TabulationDialog 
+					title="Tabulation/Result" 
+					fullname={`${users.firstName} ${users.middleName} ${users.lastName}`} 
+					studentID={`${users.studentID}`} 
+					grade={`${users.grade}`} 
+					section={`${users.section}`}
+				/> 
+			});
+		};
+		return {
+			...users,
+			view: <><ActionButton onClick={handleView}>View</ActionButton></>
+		};
+	});
 
-    const columns = ['Student ID', 'Last Name', 'First Name', 'MiddleName', 'Section', 'Grade', 'Email Address', 'Action'];
-    return (
-        <Container>
-            <LabelContainer>
-                <PageLabel>{ strings.tabResults }</PageLabel>
-            </LabelContainer>
-            <SearchBar />
-            <UserListContainer>
-                <LabelContainer>
-                    <PageLabel size='subheader'>{ strings.listStud }</PageLabel>
-                </LabelContainer>
-                <DataGrid<TableAllUserStudent>  data={users} columns={columns} />
-            </UserListContainer>
-        </Container>
-    )
-}
+	const columns = ['Student ID', 'Last Name', 'First Name', 'MiddleName', 'Section', 'Grade', 'Email Address', 'Action'];
+	return (
+		<Container>
+			<LabelContainer>
+				<PageLabel>{ strings.tabResults }</PageLabel>
+			</LabelContainer>
+			<SearchBar />
+			<UserListContainer>
+				<LabelContainer>
+					<PageLabel size='subheader'>{ strings.listStud }</PageLabel>
+				</LabelContainer>
+				<DataGrid<TableAllUserStudent>  data={users} columns={columns} />
+			</UserListContainer>
+		</Container>
+	);
+};
 
-export default TabulationAndResult
+export default TabulationAndResult;

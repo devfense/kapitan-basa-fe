@@ -97,26 +97,26 @@ const GameLevelButton = styled(Button)<{ isCleared?: boolean}>`
 `;
 
 const Card: FunctionComponent<Props> = (props: Props) => {
-    const { level, title, description, thumbnail, isCleared, onStart } = props;
+	const { level, title, description, thumbnail, isCleared, onStart } = props;
 
-    const [openDialog] = useDialog();
+	const [openDialog] = useDialog();
 
-    const handleStart = () => {
-        if(typeof onStart === 'function') onStart();
-        openDialog({
-            children: <StoryDialog level={level} title={title} />
-        })
-    }
+	const handleStart = () => {
+		if(typeof onStart === 'function') onStart();
+		openDialog({
+			children: <StoryDialog level={level} title={title} />
+		});
+	};
 
-    return (
-        <Container>
-            {thumbnail ? thumbnail : <ThumbnailPlaceholder />}
-            <p className={'level'}>Level <span>{level}</span></p>
-            <p className={'title'}>{title}</p>
-            <p className={'desc'}>{description}</p>
-            <GameLevelButton isCleared={isCleared} disabled={isCleared} onClick={handleStart}>{isCleared ? 'Cleared' : 'Start'}</GameLevelButton>
-        </Container>
-    )
-}
+	return (
+		<Container>
+			{thumbnail ? thumbnail : <ThumbnailPlaceholder />}
+			<p className={'level'}>Level <span>{level}</span></p>
+			<p className={'title'}>{title}</p>
+			<p className={'desc'}>{description}</p>
+			<GameLevelButton isCleared={isCleared} disabled={isCleared} onClick={handleStart}>{isCleared ? 'Cleared' : 'Start'}</GameLevelButton>
+		</Container>
+	);
+};
 
 export default Card;

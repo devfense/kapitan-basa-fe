@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode } from 'react'
+import React, { FunctionComponent, ReactNode } from 'react';
 import styled from 'styled-components';
 import { DialogContainer } from '../../components/Dialog';
 
@@ -43,7 +43,7 @@ const InformationContainer = styled.div`
     display: flex;
     align-items: end;
     padding: 0px 30px;
-`
+`;
 
 const StudentInfoContainer = styled.div`
     display: flex;
@@ -69,18 +69,18 @@ const InfoBox = styled.div`
         font-weight: 600;
         color: #6E81AE;
     }
-`
+`;
 
 interface TitleProps {
     title: string;
 }
 
 const TitleHeader: FunctionComponent<TitleProps> = ({ title }) => {
-    return (
-        <TitleContainer>
-            <h2>{title}</h2>
-        </TitleContainer>
-    )
+	return (
+		<TitleContainer>
+			<h2>{title}</h2>
+		</TitleContainer>
+	);
 };
 
 interface StudentInfoProps {
@@ -88,12 +88,12 @@ interface StudentInfoProps {
 }
 
 const StudentInformation: FunctionComponent<StudentInfoProps> = ({ children }) => {
-    return (
-        <InformationContainer>
-            {children}
-        </InformationContainer>
-    )
-}
+	return (
+		<InformationContainer>
+			{children}
+		</InformationContainer>
+	);
+};
 
 interface Props {
     title: string;
@@ -105,27 +105,27 @@ interface Props {
 
 const TabulationDialog: FunctionComponent<Props> = ({ title, fullname, studentID, grade, section }) => {
   
-    return (
-        <StyledDialogContentContainer title={<TitleHeader title={title} />}>
-            <StudentInformation>
-                <StudentInfoContainer>
-                    <Information>
-                        <InfoBox>Fullname: <label>{fullname}</label></InfoBox>
+	return (
+		<StyledDialogContentContainer title={<TitleHeader title={title} />}>
+			<StudentInformation>
+				<StudentInfoContainer>
+					<Information>
+						<InfoBox>Fullname: <label>{fullname}</label></InfoBox>
                        
-                    </Information>
-                    <Information>
-                        <InfoBox>Student ID: <label>{studentID}</label></InfoBox>
-                    </Information>
-                    <Information>
-                        <InfoBox>Grade: <label>{grade}</label></InfoBox>
-                    </Information>
-                    <Information>
-                        <InfoBox>Section: <label>{section}</label></InfoBox>
-                    </Information>
-                </StudentInfoContainer>
-            </StudentInformation>
-        </StyledDialogContentContainer>
-    )
-}
+					</Information>
+					<Information>
+						<InfoBox>Student ID: <label>{studentID}</label></InfoBox>
+					</Information>
+					<Information>
+						<InfoBox>Grade: <label>{grade}</label></InfoBox>
+					</Information>
+					<Information>
+						<InfoBox>Section: <label>{section}</label></InfoBox>
+					</Information>
+				</StudentInfoContainer>
+			</StudentInformation>
+		</StyledDialogContentContainer>
+	);
+};
 
 export default TabulationDialog;

@@ -1,10 +1,10 @@
-import { Action } from "../../types/Redux";
+import { Action } from '../../types/Redux';
 
 export enum Actions {
     GET_GAME_LEVELS_START = '@game-levels/GET_GAME_LEVELS_START',
     GET_GAME_LEVELS_FULFILLED = '@game-levels/GET_GAME_LEVELS_FULFILLED',
     GET_GAME_LEVELS_REJECTED = '@game-levels/GET_GAME_LEVELS_REJECTED',
-};
+}
 
 export type Choices = 'A' | 'B' | 'C' | 'D';
 

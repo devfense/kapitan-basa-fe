@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
 import Button from '../../components/Button';
 import { DialogContainer } from '../../components/Dialog';
@@ -50,20 +50,20 @@ interface TitleProps {
 }
 
 const TitleHeader: FunctionComponent<TitleProps> = ({ level, title }) => {
-    return (
-        <TitleContainer>
-            <span>Level {level}</span>
-            <h2>{title}</h2>
-        </TitleContainer>
-    )
+	return (
+		<TitleContainer>
+			<span>Level {level}</span>
+			<h2>{title}</h2>
+		</TitleContainer>
+	);
 };
 
 const QuizDialog: FunctionComponent<Props> = ({ storyId, level, title }) => {
-    return (
-        <StyledDialogContentContainer title={<TitleHeader level={level} title={title} />}>
-            <QuizForm />
-        </StyledDialogContentContainer>
-    )
-}
+	return (
+		<StyledDialogContentContainer title={<TitleHeader level={level} title={title} />}>
+			<QuizForm />
+		</StyledDialogContentContainer>
+	);
+};
 
 export default QuizDialog;

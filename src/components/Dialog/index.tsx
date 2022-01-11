@@ -1,14 +1,14 @@
-  import {
-    DialogContent as MuiDialogContent,
-    DialogTitle as MuiDialogTitle,
-    IconButton,
-    Typography,
-  } from '@material-ui/core';
-  import { Close as CloseIcon } from '@material-ui/icons';
-  import React, { FunctionComponent, ReactNode } from 'react';
-  import styled from 'styled-components';
+import {
+	DialogContent as MuiDialogContent,
+	DialogTitle as MuiDialogTitle,
+	IconButton,
+	Typography,
+} from '@material-ui/core';
+import { Close as CloseIcon } from '@material-ui/icons';
+import React, { FunctionComponent, ReactNode } from 'react';
+import styled from 'styled-components';
   
-  const StyledMuiDialogTitle = styled(MuiDialogTitle)`
+const StyledMuiDialogTitle = styled(MuiDialogTitle)`
     margin: 0;
     max-height: 117px;
     overflow-y: hidden;
@@ -29,7 +29,7 @@
     }
   `;
   
-  const Container = styled.div`
+const Container = styled.div`
     width: 100%;
     background-color: ${({ theme }) => theme.dialog.body.normal.BG_COLOR};
     .MuiDialogContent-root {
@@ -47,34 +47,34 @@
     }
   `;
   
-  const StyledIconButton = styled(IconButton)`
+const StyledIconButton = styled(IconButton)`
     position: absolute !important;
     right: 8px;
     top: 8px;
     color: ${({ theme }) => theme.dialog.body.normal.TEXT_COLOR} !important;
   `;
   
-  export interface DialogTitleProps {
+export interface DialogTitleProps {
     children: ReactNode;
     title: ReactNode;
     onClose?: () => void;
   }
   
-  const DialogTitle = (props: DialogTitleProps) => {
-    const { children, title, onClose, ...other } = props;
-    return (
-      <StyledMuiDialogTitle disableTypography {...other}>
-        <Typography variant="h6" title={typeof title === 'string' ? title : undefined}>
-          {children}
-        </Typography>
-        {onClose ? (
-          <StyledIconButton aria-label="close" onClick={onClose}>
-            <CloseIcon />
-          </StyledIconButton>
-        ) : null}
-      </StyledMuiDialogTitle>
-    );
-  };
+const DialogTitle = (props: DialogTitleProps) => {
+	const { children, title, onClose, ...other } = props;
+	return (
+		<StyledMuiDialogTitle disableTypography {...other}>
+			<Typography variant="h6" title={typeof title === 'string' ? title : undefined}>
+				{children}
+			</Typography>
+			{onClose ? (
+				<StyledIconButton aria-label="close" onClick={onClose}>
+					<CloseIcon />
+				</StyledIconButton>
+			) : null}
+		</StyledMuiDialogTitle>
+	);
+};
   
   interface DialogContainerProps {
     title: ReactNode;
@@ -82,13 +82,13 @@
     onClose?: () => void;
   }
   
-  export const DialogContainer: FunctionComponent<DialogContainerProps> = ({ title, children, onClose, ...others }) => {
-    return (
-      <Container {...others}>
-        <DialogTitle onClose={onClose} title={title}>
-          {title}
-        </DialogTitle>
-        <MuiDialogContent>{children}</MuiDialogContent>
-      </Container>
-    );
-  };
+export const DialogContainer: FunctionComponent<DialogContainerProps> = ({ title, children, onClose, ...others }) => {
+	return (
+		<Container {...others}>
+			<DialogTitle onClose={onClose} title={title}>
+				{title}
+			</DialogTitle>
+			<MuiDialogContent>{children}</MuiDialogContent>
+		</Container>
+	);
+};

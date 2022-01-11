@@ -1,7 +1,7 @@
-import React from 'react'
-import { Avatar as MuiAvatar } from '@material-ui/core'
-import Profile from '../../assets/media/profile/Profile'
-import styled from 'styled-components'
+import React from 'react';
+import { Avatar as MuiAvatar } from '@material-ui/core';
+import Profile from '../../assets/media/profile/Profile';
+import styled from 'styled-components';
 
 const Avatar = styled(MuiAvatar)`
     width: 20px;
@@ -20,11 +20,11 @@ type ProfileProps = {
 }
 
 const index = (props: ProfileProps) => {
-    return (
-        <div>
-            <Avatar alt="Dylan Lee" src={Profile.Dylan}  onClick={props.handleProfileClick}/>
-        </div>
-    )
-}
+	return (
+		<div>
+			<Avatar alt="Dylan Lee" src={Profile.Dylan}  onClick={props.handleProfileClick}/>
+		</div>
+	);
+};
 
 export default index;

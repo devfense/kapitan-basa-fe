@@ -1,6 +1,6 @@
-import React from 'react'
-import styled from 'styled-components'
-import BoyReading from '../../assets/media/reading/Reading'
+import React from 'react';
+import styled from 'styled-components';
+import BoyReading from '../../assets/media/reading/Reading';
 
 const AvatarBox = styled.div`
     display: flex;
@@ -24,15 +24,15 @@ const AvatarImg = styled.img`
 `;
 
 const index = () => {
-    return (
-        <div>
-            <AvatarBox>
-                <Avatar>
-                    <AvatarImg src={BoyReading.Reading}/>
-                </Avatar>
-            </AvatarBox>
-        </div>
-    )
-}
+	return (
+		<div>
+			<AvatarBox>
+				<Avatar>
+					<AvatarImg src={BoyReading.Reading}/>
+				</Avatar>
+			</AvatarBox>
+		</div>
+	);
+};
 
-export default index
+export default index;

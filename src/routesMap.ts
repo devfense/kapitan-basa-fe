@@ -1,7 +1,7 @@
 const routesMap = {
-    '@route/HOME': {
-        path: '/'
-    }
+	'@route/HOME': {
+		path: '/'
+	}
 };
 
 export default routesMap;

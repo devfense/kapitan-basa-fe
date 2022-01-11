@@ -5,14 +5,14 @@ import RegistrationForm from '../../layouts/forms/users/RegistrationForm';
 
 const StyledDialogContainer = styled(DialogContainer)`
     width: 517px;
-`
+`;
 
 const RegisterStudent = () => {
-    return (
-        <StyledDialogContainer title={'Register as Student'}>
-            <RegistrationForm submitText={'Register'} />
-        </StyledDialogContainer>
-    )
-}
+	return (
+		<StyledDialogContainer title={'Register as Student'}>
+			<RegistrationForm submitText={'Register'} />
+		</StyledDialogContainer>
+	);
+};
 
 export default RegisterStudent;

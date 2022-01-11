@@ -1,5 +1,5 @@
 import { TextField as MuiTextField } from '@material-ui/core';
-import { FunctionComponent } from 'react';
+import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
 
 const TextField = styled(MuiTextField)`
@@ -92,12 +92,12 @@ const HelperText = styled.p`
 `;
 
 export const HelperContainer: FunctionComponent<HelperProps> = ({ errorText, children }) => {
-    return (
-        <HContainer>
-            {children}
-            {errorText && <HelperText>{errorText}</HelperText>}
-        </HContainer>
-    )
-}
+	return (
+		<HContainer>
+			{children}
+			{errorText && <HelperText>{errorText}</HelperText>}
+		</HContainer>
+	);
+};
 
 export default TextField;

@@ -1,5 +1,5 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from 'react';
+import styled from 'styled-components';
 import AvatarLogo from '../../components/AvatarLogo/index';
 import BrandName from '../../components/Brand';
 
@@ -45,19 +45,19 @@ type BrandedCard = {
 }
 
 const index = (props: BrandedCard) => {
-    return (
-        <BrandCard>
-            <AvatarContainer>
-                <AvatarLogo />
-            </AvatarContainer>
-            <BrandName />
-            <DetailContainer>
-                <Typography>
-                    { props.strings }
-                </Typography>
-            </DetailContainer>
-        </BrandCard>
-    )
-}
+	return (
+		<BrandCard>
+			<AvatarContainer>
+				<AvatarLogo />
+			</AvatarContainer>
+			<BrandName />
+			<DetailContainer>
+				<Typography>
+					{ props.strings }
+				</Typography>
+			</DetailContainer>
+		</BrandCard>
+	);
+};
 
-export default index
+export default index;

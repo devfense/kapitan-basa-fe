@@ -5,7 +5,7 @@ import { TableHead as MuiTableHead } from '@material-ui/core';
 import { TableRow as MuiTableRow } from '@material-ui/core';
 import { TableCell as MuiTableCell } from '@material-ui/core';
 import { TableBody as MuiTableBody } from '@material-ui/core';
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 interface Props<T> {
     data?: T[];
@@ -91,41 +91,41 @@ export const TableData = styled(MuiTableCell)`
 `;
 
 function Table<T> (props: Props<T>): JSX.Element {
-    const { data, columns, header, children } = props;
-    const displayKeys = data && data.length > 0 ? Object.keys(data[0]) as Array<keyof T> : [];
-    console.log(header);
-    return (
-        <ContentTable>
-            <MainTable>
-                <TableHeader>
-                    <TableRow>
-                        {   columns !== undefined ? 
-                            columns.map((column, index) => {
-                                return(
-                                    <TableHead key={index}>{ column }</TableHead>
-                                )
-                            }) : header
-                        }
-                    </TableRow>
-                </TableHeader>
-                <TableBody>
-                        {   data ?              
-                            data.map((item, index) => {
-                                return (
-                                    <TableRow>
-                                        {displayKeys.map((key, indx) => {
-                                            return(
-                                                <TableData key={`${index}${indx}`}>{ item[key] }</TableData>
-                                            )
-                                        })}
-                                    </TableRow>
-                                )
-                            }) : children
-                        }
-                </TableBody>
-            </MainTable>
-        </ContentTable>
-    )
-};
+	const { data, columns, header, children } = props;
+	const displayKeys = data && data.length > 0 ? Object.keys(data[0]) as Array<keyof T> : [];
+	console.log(header);
+	return (
+		<ContentTable>
+			<MainTable>
+				<TableHeader>
+					<TableRow>
+						{   columns !== undefined ? 
+							columns.map((column, index) => {
+								return(
+									<TableHead key={index}>{ column }</TableHead>
+								);
+							}) : header
+						}
+					</TableRow>
+				</TableHeader>
+				<TableBody>
+					{   data ?              
+						data.map((item, index) => {
+							return (
+								<TableRow>
+									{displayKeys.map((key, indx) => {
+										return(
+											<TableData key={`${index}${indx}`}>{ item[key] }</TableData>
+										);
+									})}
+								</TableRow>
+							);
+						}) : children
+					}
+				</TableBody>
+			</MainTable>
+		</ContentTable>
+	);
+}
 export default Table;
 

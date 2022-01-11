@@ -1,12 +1,12 @@
 import { 
-    DialogContent as MuiDialogContent, 
-    DialogTitle as MuiDialogTitle,
-    IconButton, 
-} from '@material-ui/core'
+	DialogContent as MuiDialogContent, 
+	DialogTitle as MuiDialogTitle,
+	IconButton, 
+} from '@material-ui/core';
 import { Close as CloseIcon } from '@material-ui/icons';
 import { DialogActions as MuiDialogActions } from '@material-ui/core';
-import Button from '../../components/Button/index'
-import React, { FunctionComponent, ReactNode } from 'react'
+import Button from '../../components/Button/index';
+import React, { FunctionComponent, ReactNode } from 'react';
 import styled from 'styled-components';
 
   
@@ -100,37 +100,37 @@ export interface DialogLevelProps {
     level: ReactNode;
     title: ReactNode;
     onClose?: () => void;
-};
+}
 
 const DialogHeaders = (props: DialogLevelProps) => {
-    const { children, title, level, onClose, ...other } = props;
-    return (
-      <StyledMuiDialogTitle disableTypography {...other}>
-          <DialogTitle title={typeof level === 'string' ? level : undefined}>
-                {children}
-          </DialogTitle>
-        {onClose ? (
-          <StyledIconButton aria-label="close" onClick={onClose}>
-            <CloseIcon />
-          </StyledIconButton>
-        ) : null}
-      </StyledMuiDialogTitle>
-    );
+	const { children, title, level, onClose, ...other } = props;
+	return (
+		<StyledMuiDialogTitle disableTypography {...other}>
+			<DialogTitle title={typeof level === 'string' ? level : undefined}>
+				{children}
+			</DialogTitle>
+			{onClose ? (
+				<StyledIconButton aria-label="close" onClick={onClose}>
+					<CloseIcon />
+				</StyledIconButton>
+			) : null}
+		</StyledMuiDialogTitle>
+	);
 };
 
 export interface DialogActionProps {
   children: ReactNode;
-};
+}
 
 const DialogActionButton = (props: DialogActionProps) => {
-  const { children, ...other } = props;
-  return (
-    <StyledDialogContentActions {...other}>
-      <Button shade='filled'>
-        { children }
-      </Button>
-    </StyledDialogContentActions>
-  )
+	const { children, ...other } = props;
+	return (
+		<StyledDialogContentActions {...other}>
+			<Button shade='filled'>
+				{ children }
+			</Button>
+		</StyledDialogContentActions>
+	);
 };
 
 interface DialogContainerProps {
@@ -139,16 +139,16 @@ interface DialogContainerProps {
     submitText?: ReactNode;
     children: ReactNode;
     onClose?: () => void;
-};
+}
 
 export const DialogContentContainer: FunctionComponent<DialogContainerProps> = ({ level, title, submitText, children, onClose, ...others }) => {
-    return (
-        <Container {...others}>
-            <DialogHeaders onClose={onClose} level={level} title={title}>
-                <Badge><span>{level}</span></Badge> {title}
-            </DialogHeaders>
-            <MuiDialogContent>{children}</MuiDialogContent>
-            <DialogActionButton>{submitText}</DialogActionButton>
-        </Container>
-    )
+	return (
+		<Container {...others}>
+			<DialogHeaders onClose={onClose} level={level} title={title}>
+				<Badge><span>{level}</span></Badge> {title}
+			</DialogHeaders>
+			<MuiDialogContent>{children}</MuiDialogContent>
+			<DialogActionButton>{submitText}</DialogActionButton>
+		</Container>
+	);
 };

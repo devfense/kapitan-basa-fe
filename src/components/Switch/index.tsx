@@ -41,21 +41,21 @@ const Label = styled.span`
 `;
 
 export const LabeledSwitch: FunctionComponent<Props> = (props: Props) => {
-    const { value, checkedLabel, uncheckedLabel, onChange } = props;
-    const [checked, setCheck] = useState(value);
+	const { value, checkedLabel, uncheckedLabel, onChange } = props;
+	const [checked, setCheck] = useState(value);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const isChecked = e.target.checked;
-        setCheck(isChecked);
-        if (typeof onChange === 'function') onChange(isChecked);
-    }
+	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const isChecked = e.target.checked;
+		setCheck(isChecked);
+		if (typeof onChange === 'function') onChange(isChecked);
+	};
 
-    return (
-        <SwitchContainer>
-            <Switch value={checked} onChange={handleChange}/> 
-            <Label>{checked ? checkedLabel : uncheckedLabel}</Label>
-        </SwitchContainer>
-    )
-}
+	return (
+		<SwitchContainer>
+			<Switch value={checked} onChange={handleChange}/> 
+			<Label>{checked ? checkedLabel : uncheckedLabel}</Label>
+		</SwitchContainer>
+	);
+};
 
 export default Switch;

@@ -1,5 +1,5 @@
-import { Student } from "../student/types";
-import { Action } from "../../types/Redux";
+import { Student } from '../student/types';
+import { Action } from '../../types/Redux';
 
 
 export enum Actions {
@@ -23,7 +23,7 @@ export enum AccountStatus {
 
 export interface UserState {
     userInfo: AllUser
-};
+}
 
 export type TAccountType = 'STUDENT' | 'TEACHER' | 'ADMIN';
 
@@ -37,7 +37,7 @@ export interface User {
     status?: AccountStatus;
     isAuthenticated?: boolean;
     accountType?: TAccountType;
-};
+}
 
 type WithLoadingList<T> = {
     isLoading: boolean;
@@ -48,7 +48,7 @@ export interface UserState {
     users: WithLoadingList<AllUser[]>;
 }
 
-export interface AllUser extends User, Student {};
+export interface AllUser extends User, Student {}
 
 export type UserStoreInfo = Action<typeof Actions.USER_STORE_INFO, AllUser>;
 

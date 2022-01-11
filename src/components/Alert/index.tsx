@@ -1,6 +1,6 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent } from 'react';
 import AlertType from '../../assets/media/Alert/Alert';
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 interface AlertInfoProps {
     type: string;
@@ -66,14 +66,14 @@ const Message = styled.span`
 type Props = AlertInfoProps;
 
 const index: FunctionComponent<Props> = (props: Props) => {
-    const { type, title, message } = props
-    return (
-        <ModalContainer>
-            <BoxImage src={type === 'Error' ? AlertType.Error : AlertType.Success} />
-            <Title>{ title }</Title>
-            <Message>{ message }</Message>
-        </ModalContainer>
-    )
-}
+	const { type, title, message } = props;
+	return (
+		<ModalContainer>
+			<BoxImage src={type === 'Error' ? AlertType.Error : AlertType.Success} />
+			<Title>{ title }</Title>
+			<Message>{ message }</Message>
+		</ModalContainer>
+	);
+};
 
-export default index
+export default index;

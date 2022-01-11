@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import styled from 'styled-components';
 import { DialogContentContainer } from '../../components/Dialog/dialog';
 
@@ -8,11 +8,11 @@ const StyledDialogContentContainer = styled(DialogContentContainer)`
 `;
 
 const Content = () => {
-    return (
-        <StyledDialogContentContainer level={'Level 1'} title={'The Passion of Christ'} submitText={'Done Reading'}>
+	return (
+		<StyledDialogContentContainer level={'Level 1'} title={'The Passion of Christ'} submitText={'Done Reading'}>
   
-        </StyledDialogContentContainer>
-    )
-}
+		</StyledDialogContentContainer>
+	);
+};
 
 export default Content;

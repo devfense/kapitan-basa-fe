@@ -1,7 +1,7 @@
-import React, { FunctionComponent, useEffect } from 'react'
-import styled from 'styled-components'
+import React, { FunctionComponent, useEffect } from 'react';
+import styled from 'styled-components';
 import Card from '../../components/Game/Card';
-import { Container } from '../../globalStyles'
+import { Container } from '../../globalStyles';
 import { useLocaleContext } from '../../providers/localization';
 import SearchBar from '../../components/SearchBar';
 import { connect, ConnectedProps } from 'react-redux';
@@ -49,50 +49,50 @@ const Thumbnail = styled.div<{ bg: string }>`
 type Props = ReduxProps;
 
 const Game: FunctionComponent<Props> = ({
-    levels,
-    getGameLevels
+	levels,
+	getGameLevels
 }) => {
 
-    const strings = useLocaleContext();
+	const strings = useLocaleContext();
 
-    useEffect(() => {
-        getGameLevels({ limit: 10 })
-    }, []);
+	useEffect(() => {
+		getGameLevels({ limit: 10 });
+	}, []);
 
-    // search title upon typing
-    const [searchGame, setSearchGame] = React.useState("");
+	// search title upon typing
+	const [searchGame, setSearchGame] = React.useState('');
 
-    // function search
-    const onSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchGame(e.target.value);
-    }
+	// function search
+	const onSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setSearchGame(e.target.value);
+	};
 
-    return (
-        <Container>
-            <LabelContainer>
-                <PageLabel>{ strings.gameLevel }</PageLabel>
-            </LabelContainer>
-            <SearchBar searchTerm={onSearchChange} />
-            <LevelsContainer>
-                {
-                    levels.list.length > 0 &&
-                        levels.list.filter((g: GameLevel) => g.levelTitle.toLowerCase().includes(searchGame.toLowerCase())).map((g: GameLevel) => {
-                            return (    
-                                <Card level={parseInt(g.levelName, 10)} description={g.levelDescription} title={g.levelTitle} thumbnail={<Thumbnail bg={g.levelBgImgUrl} />} isCleared={false}/>
-                            )
-                        })
-                }
-            </LevelsContainer>
-        </Container>
-    )
-}
+	return (
+		<Container>
+			<LabelContainer>
+				<PageLabel>{ strings.gameLevel }</PageLabel>
+			</LabelContainer>
+			<SearchBar searchTerm={onSearchChange} />
+			<LevelsContainer>
+				{
+					levels.list.length > 0 &&
+						levels.list.filter((g: GameLevel) => g.levelTitle.toLowerCase().includes(searchGame.toLowerCase())).map((g: GameLevel, i) => {
+							return (
+								<Card level={parseInt(g.levelName, 10)} description={g.levelDescription} title={g.levelTitle} thumbnail={<Thumbnail bg={g.levelBgImgUrl} />} isCleared={false} key={i}/>
+							);
+						})
+				}
+			</LevelsContainer>
+		</Container>
+	);
+};
 
 const mapStateToProps = (state: RootState) => ({
-    levels: state.gamelevel.levels,
-})
+	levels: state.gamelevel.levels,
+});
 
 const mapDispatchToProps = {
-    getGameLevels: gameLevelActions.getGameLevels
+	getGameLevels: gameLevelActions.getGameLevels
 };
 
 

@@ -3,10 +3,10 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { STUDENT_ACL, ADMIN_ACL } from '../../constants/MenuItem/MenuItem';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store'
-import { AccountTypes } from '../../constants/types'
+import { RootState } from '../../store';
+import { AccountTypes } from '../../constants/types';
 import BrandName from '../../components/Brand';
-import BrandCard from '../../components/BrandCard/index'
+import BrandCard from '../../components/BrandCard/index';
 import { useLocaleContext } from '../../providers/localization';
 import { LocaleStrings } from '../../providers/localization/types';
 import { IoChevronBack } from 'react-icons/io5';
@@ -133,37 +133,37 @@ type ButtonClick = {
 
 const Sidebar = (props: ButtonClick) => {
 
-    const { userInfo } = useSelector((state: RootState) => state.users)
+	const { userInfo } = useSelector((state: RootState) => state.users);
 
-    const strings = useLocaleContext();
-    return (
-        <React.Fragment>
-                <Container toggle={props.toggle}>
-                    <TitleBox>
-                        <BrandName />
-                        <MobileIcon>
-                            <IoChevronBack onClick={props.handleClick} />
-                        </MobileIcon>
-                    </TitleBox>
-                    <NavContainer>
-                        {
-                            userInfo.accountType === AccountTypes.STUDENT ?
-                            STUDENT_ACL.map((menu, indx) => {
-                                return (
-                                    <MenuBox to={menu.route} key={indx}>{strings[menu.key as keyof LocaleStrings]}</MenuBox>
-                                )
-                            }) :
-                            ADMIN_ACL.map((menu, indx) => {
-                                return (
-                                    <MenuBox to={menu.route} key={indx}>{strings[menu.key as keyof LocaleStrings]}</MenuBox>
-                                )
-                            })
-                        }
-                    </NavContainer>
-                    <BrandCard strings={strings.appDesc}/>
-                </Container> 
-        </React.Fragment>
-    )
+	const strings = useLocaleContext();
+	return (
+		<React.Fragment>
+			<Container toggle={props.toggle}>
+				<TitleBox>
+					<BrandName />
+					<MobileIcon>
+						<IoChevronBack onClick={props.handleClick} />
+					</MobileIcon>
+				</TitleBox>
+				<NavContainer>
+					{
+						userInfo.accountType === AccountTypes.STUDENT ?
+							STUDENT_ACL.map((menu, indx) => {
+								return (
+									<MenuBox to={menu.route} key={indx}>{strings[menu.key as keyof LocaleStrings]}</MenuBox>
+								);
+							}) :
+							ADMIN_ACL.map((menu, indx) => {
+								return (
+									<MenuBox to={menu.route} key={indx}>{strings[menu.key as keyof LocaleStrings]}</MenuBox>
+								);
+							})
+					}
+				</NavContainer>
+				<BrandCard strings={strings.appDesc}/>
+			</Container> 
+		</React.Fragment>
+	);
 };
 
 export default Sidebar;

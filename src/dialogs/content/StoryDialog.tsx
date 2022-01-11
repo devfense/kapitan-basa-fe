@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
 import Button from '../../components/Button';
 import { DialogContainer } from '../../components/Dialog';
@@ -52,12 +52,12 @@ interface TitleProps {
 }
 
 const TitleHeader: FunctionComponent<TitleProps> = ({ level, title }) => {
-    return (
-        <TitleContainer>
-            <span>Level {level}</span>
-            <h2>{title}</h2>
-        </TitleContainer>
-    )
+	return (
+		<TitleContainer>
+			<span>Level {level}</span>
+			<h2>{title}</h2>
+		</TitleContainer>
+	);
 };
 
 const sampleContent = `
@@ -238,19 +238,19 @@ Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
 Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`;
 
 const StoryDialog: FunctionComponent<Props> = ({ storyId, level, title, content }) => {
-    const [openDialog, closeDialog] = useDialog();
-    const handleDoneRead = () => {
-        openDialog({
-            children: <QuizDialog level={level} title={title} />
-        })
-    }
+	const [openDialog, closeDialog] = useDialog();
+	const handleDoneRead = () => {
+		openDialog({
+			children: <QuizDialog level={level} title={title} />
+		});
+	};
 
-    return (
-        <StyledDialogContentContainer title={<TitleHeader level={level} title={title} />}>
-            <Story content={content || sampleContent} />
-            <Button onClick={handleDoneRead}>Done Reading</Button>
-        </StyledDialogContentContainer>
-    )
-}
+	return (
+		<StyledDialogContentContainer title={<TitleHeader level={level} title={title} />}>
+			<Story content={content || sampleContent} />
+			<Button onClick={handleDoneRead}>Done Reading</Button>
+		</StyledDialogContentContainer>
+	);
+};
 
 export default StoryDialog;

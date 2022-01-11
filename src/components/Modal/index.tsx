@@ -1,5 +1,5 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from 'react';
+import styled from 'styled-components';
 
 const ModalMask = styled.div`
     position: absolute;
@@ -112,20 +112,20 @@ type ModalProps = {
 }
 
 const index = (props: ModalProps) => {
-    return (
-        <ModalMask>
-            <ModalPositioner>
-                <Container>
-                    <TextBox>
-                        <Label>{ props.modalTitle }</Label>
-                    </TextBox>
-                    <TextFieldContainer>
-                        { props.children }
-                    </TextFieldContainer>
-                </Container>
-            </ModalPositioner>
-        </ModalMask>
-    )
-}
+	return (
+		<ModalMask>
+			<ModalPositioner>
+				<Container>
+					<TextBox>
+						<Label>{ props.modalTitle }</Label>
+					</TextBox>
+					<TextFieldContainer>
+						{ props.children }
+					</TextFieldContainer>
+				</Container>
+			</ModalPositioner>
+		</ModalMask>
+	);
+};
 
-export default index
+export default index;

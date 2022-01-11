@@ -7,7 +7,7 @@ interface Properties {
     SECONDARY_TEXT_COLOR?: string;
     BORDER_COLOR?: string;
     SHADOW_COLOR?: string;
-};
+}
 
 type States = {
     normal: Properties;
@@ -36,7 +36,7 @@ interface Theme {
     menuItem: MenuItemColors;
     card: CardColors;
     icon: IconColors;
-};
+}
 
 export type AppTheme = Record<'default', Theme>;
 

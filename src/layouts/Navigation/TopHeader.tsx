@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { IoMenuSharp } from 'react-icons/io5'
-import { useNavigate } from 'react-router'
-import Cookies from 'js-cookie'
-import { COOKIE } from '../../constants/variables'
+import { IoMenuSharp } from 'react-icons/io5';
+import { useNavigate } from 'react-router';
+import Cookies from 'js-cookie';
+import { COOKIE } from '../../constants/variables';
 import styled from 'styled-components';
 import UserProfile from '../../components/AvatarProfile/index';
 import { useLocaleContext } from '../../providers/localization';
@@ -142,57 +142,56 @@ type ButtonProps = {
 
 const TopHeader = (props: ButtonProps) => {
 
-    const redirect = useNavigate()
+	const redirect = useNavigate();
 
-    const strings = useLocaleContext();
+	const strings = useLocaleContext();
 
-    const [popover, setPopOver] = useState(false);
+	const [popover, setPopOver] = useState(false);
 
-    const handleProfileClick = () => setPopOver(!popover);
+	const handleProfileClick = () => setPopOver(!popover);
 
     
-    const handleLogout = () => {
-        Cookies.remove(COOKIE.SETTINGS.NAME, { path: '/', domain: COOKIE.SETTINGS.DOMAIN })
-        window.open('/', '_self')
-    }
+	const handleLogout = () => {
+		Cookies.remove(COOKIE.SETTINGS.NAME, { path: '/', domain: COOKIE.SETTINGS.DOMAIN });
+		window.open('/', '_self');
+	};
 
-    return (
-        <React.Fragment>
-                <Container>
-                    <SubContainer>
-                        <MobileIcon>
-                            <IoMenuSharp onClick={props.handleClick} />
-                        </MobileIcon>
-                        <ProfileBtn>
-                            <UserProfile handleProfileClick={handleProfileClick} />
-                        </ProfileBtn>
-                    </SubContainer>
-                        { 
-                            popover &&  
-                                <ProfileContainer>
-                                    <TextBox> 
-                                        <Placeholder>{ strings.userName }</Placeholder>
-                                        <TextLabel>Juan Dela Cruz</TextLabel>
-                                    </TextBox>
-                                    <TextBox> 
-                                        <Placeholder>{ strings.studID }</Placeholder>
-                                        <TextLabel>87-240398</TextLabel>
-                                    </TextBox>
-                                    <TextBox> 
-                                        <Placeholder>{ strings.gradeSection }</Placeholder>
-                                        <TextLabel>10 / Our Lady of Peace</TextLabel>
-                                    </TextBox>
-                                    <TextBox> 
-                                        <Placeholder>{ strings.emailAddress }</Placeholder>
-                                        <TextLabel>juandelacruz@gmail.com</TextLabel>
-                                    </TextBox>
-                                    <LogoutButton onClick={handleLogout} shade="outlined">Logout</LogoutButton>
-                                </ProfileContainer> 
-                        }
-
-                </Container>
-        </React.Fragment>
-    )
-}
+	return (
+		<React.Fragment>
+			<Container>
+				<SubContainer>
+					<MobileIcon>
+						<IoMenuSharp onClick={props.handleClick} />
+					</MobileIcon>
+					<ProfileBtn>
+						<UserProfile handleProfileClick={handleProfileClick} />
+					</ProfileBtn>
+				</SubContainer>
+				{ 
+					popover &&  
+                    <ProfileContainer>
+                    	<TextBox>
+                    		<Placeholder>{ strings.userName }</Placeholder>
+                    		<TextLabel>Juan Dela Cruz</TextLabel>
+                    	</TextBox>
+                    	<TextBox> 
+                    		<Placeholder>{ strings.studID }</Placeholder>
+                    		<TextLabel>87-240398</TextLabel>
+                    	</TextBox>
+                    	<TextBox> 
+                    		<Placeholder>{ strings.gradeSection }</Placeholder>
+                    		<TextLabel>10 / Our Lady of Peace</TextLabel>
+                    	</TextBox>
+                    	<TextBox> 
+                    		<Placeholder>{ strings.emailAddress }</Placeholder>
+                    		<TextLabel>juandelacruz@gmail.com</TextLabel>
+                    	</TextBox>
+                    	<LogoutButton onClick={handleLogout} shade="outlined">Logout</LogoutButton>
+                    </ProfileContainer> 
+				}
+			</Container>
+		</React.Fragment>
+	);
+};
 
 export default TopHeader;

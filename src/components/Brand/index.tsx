@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const Brand = styled.label<{ medium?: 'medium' | 'large' }>`
     color: ${({ theme }) => theme.app.brand.normal.BG_COLOR};
@@ -22,7 +22,7 @@ const Brand = styled.label<{ medium?: 'medium' | 'large' }>`
 `;
 
 const BrandName = () => {
-    return <Brand medium='large'>Kapitan <span>Basa</span></Brand>
+	return <Brand medium='large'>Kapitan <span>Basa</span></Brand>;
 };
 
 export default BrandName;

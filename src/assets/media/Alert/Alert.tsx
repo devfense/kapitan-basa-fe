@@ -2,8 +2,8 @@ import Success from './checked.png';
 import Error from './warning.png';
 
 const AlertType = {
-    Success,
-    Error
-}
+	Success,
+	Error
+};
 
 export default AlertType;
