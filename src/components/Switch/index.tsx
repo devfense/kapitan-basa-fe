@@ -3,41 +3,41 @@ import React, { FunctionComponent, useState } from 'react';
 import styled from 'styled-components';
 
 const Switch = styled(MuiSwitch)`
-&.MuiSwitch-root {
-    > span > span > .MuiSwitch-thumb {
-        background: #25396F;
-    }
-    > .MuiSwitch-track {    
-        background: #E7F0FF;
-    }
-    > .Mui-checked {
-        + .MuiSwitch-track {    
-            background: #25396F;
-        }
-        &:hover {
-            background: #25396F0A;
-        }
-    }
-}
+	&.MuiSwitch-root {
+		> span > span > .MuiSwitch-thumb {
+			background: #25396f;
+		}
+		> .MuiSwitch-track {
+			background: #e7f0ff;
+		}
+		> .Mui-checked {
+			+ .MuiSwitch-track {
+				background: #25396f;
+			}
+			&:hover {
+				background: #25396f0a;
+			}
+		}
+	}
 `;
 
 interface Props {
-    checkedLabel: string;
-    uncheckedLabel: string;
-    value?: boolean;
-    defaultChecked?: boolean;
-    onChange?: (v: boolean) => void;
+	checkedLabel: string;
+	uncheckedLabel: string;
+	value?: boolean;
+	defaultChecked?: boolean;
+	onChange?: (v: boolean) => void;
 }
 
 const SwitchContainer = styled.div`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
 `;
 
 const Label = styled.span`
-    font-size: 12px;
-    font-family: OpenSans-SemiBold;
+	font-size: 12px;
+	font-family: OpenSans-SemiBold;
 `;
 
 export const LabeledSwitch: FunctionComponent<Props> = (props: Props) => {
@@ -52,7 +52,7 @@ export const LabeledSwitch: FunctionComponent<Props> = (props: Props) => {
 
 	return (
 		<SwitchContainer>
-			<Switch value={checked} onChange={handleChange}/> 
+			<Switch value={checked} onChange={handleChange} />
 			<Label>{checked ? checkedLabel : uncheckedLabel}</Label>
 		</SwitchContainer>
 	);

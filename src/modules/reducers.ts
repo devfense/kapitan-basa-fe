@@ -3,12 +3,11 @@ import { gamelevel } from './game-levels/reducers';
 import { student } from './student/reducers';
 import { users } from './users/reducers';
 
-
 const reducers = {
 	auth,
 	gamelevel,
 	student,
-	users
+	users,
 };
 
 export default reducers;

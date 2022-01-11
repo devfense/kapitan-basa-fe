@@ -31,7 +31,7 @@ const Boxes = {
 	Box13,
 	Box14,
 	Box15,
-	Box16
+	Box16,
 };
 
 export default Boxes;

@@ -9,15 +9,15 @@ const DialogContext = React.createContext<ProviderContext>([EMPTY_FUNC, EMPTY_FU
 export const useDialog = (): ProviderContext => React.useContext(DialogContext);
 
 type DialogParams = {
-  children: React.ReactNode;
-  open: boolean;
-  onClose?: () => void;
-  onExited?: () => void;
+	children: React.ReactNode;
+	open: boolean;
+	onClose?: () => void;
+	onExited?: () => void;
 };
 type DialogOption = Omit<DialogParams, 'open'>;
 type DialogContainerProps = DialogParams & {
-  onClose: () => void;
-  onKill: () => void;
+	onClose: () => void;
+	onKill: () => void;
 };
 
 function DialogContainer(props: DialogContainerProps) {
@@ -31,17 +31,17 @@ function DialogContainer(props: DialogContainerProps) {
 }
 
 type DialogProps = {
-  children: React.ReactNode;
+	children: React.ReactNode;
 };
 
 const StyledDialogContainer = styled(DialogContainer)`
-  .MuiPaper-root {
-    min-width: 300px;
-    max-width: 90vw;
-    width: 100;
-    overflow: hidden;
-    border-radius: 26px;
-  }
+	.MuiPaper-root {
+		min-width: 300px;
+		max-width: 90vw;
+		width: 100;
+		overflow: hidden;
+		border-radius: 26px;
+	}
 `;
 
 export const DialogProvider: FunctionComponent<DialogProps> = (props: DialogProps) => {
@@ -71,7 +71,14 @@ export const DialogProvider: FunctionComponent<DialogProps> = (props: DialogProp
 					setDialogs((ds) => ds.slice(0, ds.length - 1));
 				};
 
-				return <StyledDialogContainer key={i} onClose={closeDialog} onKill={handleKill} {...dialogParams} />;
+				return (
+					<StyledDialogContainer
+						key={i}
+						onClose={closeDialog}
+						onKill={handleKill}
+						{...dialogParams}
+					/>
+				);
 			})}
 		</DialogContext.Provider>
 	);

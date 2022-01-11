@@ -18,5 +18,5 @@ export default {
 	profile,
 	menuItem,
 	card,
-	icon
+	icon,
 } as Theme;

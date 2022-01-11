@@ -29,7 +29,6 @@ const Root: FunctionComponent = () => {
 				</Router>
 			</ThemeProvider>
 		</Provider>
-    
 	);
 };
 

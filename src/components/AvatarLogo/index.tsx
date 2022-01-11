@@ -3,24 +3,24 @@ import styled from 'styled-components';
 import BoyReading from '../../assets/media/reading/Reading';
 
 const AvatarBox = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 0.5rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 0.5rem;
 `;
 
 const Avatar = styled.div`
-    height: 100px;
-    width: 100px;   
-    border-radius: 100%;
-    background-color: ${({ theme }) => theme.card.secondary.normal.SECONDARY_BG_COLOR};
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	height: 100px;
+	width: 100px;
+	border-radius: 100%;
+	background-color: ${({ theme }) => theme.card.secondary.normal.SECONDARY_BG_COLOR};
+	display: flex;
+	justify-content: center;
+	align-items: center;
 `;
 
 const AvatarImg = styled.img`
-    width: 100%;
+	width: 100%;
 `;
 
 const AvatarLogo: FunctionComponent = () => {
@@ -28,7 +28,7 @@ const AvatarLogo: FunctionComponent = () => {
 		<div>
 			<AvatarBox>
 				<Avatar>
-					<AvatarImg src={BoyReading.Reading}/>
+					<AvatarImg src={BoyReading.Reading} />
 				</Avatar>
 			</AvatarBox>
 		</div>

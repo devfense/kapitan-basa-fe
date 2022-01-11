@@ -7,13 +7,12 @@ export function* getUsers(): SagaIterator {
 	try {
 		const { data }: Response<{ content: User[] }> = yield call(api, {
 			url: '/users/get-all',
-			method: 'get'
+			method: 'get',
 		});
-    
+
 		yield put({ type: Actions.GET_USERS_FULFILLED, payload: data.content });
 	} catch (error) {
 		yield put({ type: Actions.GET_USERS_REJECTED, payload: undefined });
-        
 	}
 }
 
@@ -24,14 +23,13 @@ export function* approveUser(action: ApproveUserRequest): SagaIterator {
 			method: 'put',
 			data: {
 				action: 'APPROVED',
-				username: action.payload
-			}
+				username: action.payload,
+			},
 		});
-    
+
 		yield put({ type: Actions.APPROVE_USER_FULFILLED, payload: action.payload });
 	} catch (error) {
 		yield put({ type: Actions.APPROVE_USER_REJECTED, payload: undefined });
-        
 	}
 }
 
@@ -42,14 +40,13 @@ export function* rejectUser(action: ApproveUserRequest): SagaIterator {
 			method: 'put',
 			data: {
 				action: 'REJECTED',
-				username: action.payload
-			}
+				username: action.payload,
+			},
 		});
-    
+
 		yield put({ type: Actions.REJECT_USER_FULFILLED, payload: action.payload });
 	} catch (error) {
 		yield put({ type: Actions.REJECT_USER_REJECTED, payload: undefined });
-        
 	}
 }
 

@@ -2,22 +2,29 @@ import { AccountStatus } from '../users/types';
 import { Actions, StudentTypes, StudentState } from './types';
 // import { ApiResponseDetails } from '../../helpers/api';
 
-
-const mockUser = { studentID: '00221', lastName: '', username: 'hey', firstName: '', middleName: '', section: 'Kamagong', grade: '7', emailAddress: '', accountStatus: AccountStatus.ACTIVE};
+const mockUser = {
+	studentID: '00221',
+	lastName: '',
+	username: 'hey',
+	firstName: '',
+	middleName: '',
+	section: 'Kamagong',
+	grade: '7',
+	emailAddress: '',
+	accountStatus: AccountStatus.ACTIVE,
+};
 const mockResponse = {
 	message: '',
 	success: false,
-	statusCode: 0
+	statusCode: 0,
 };
 const initialState: StudentState = {
-	studentList: [
-		mockUser
-	],
-	apiResponse: mockResponse
+	studentList: [mockUser],
+	apiResponse: mockResponse,
 };
 
 export const student = (state = initialState, action: StudentTypes): StudentState => {
-	switch(action.type) {
+	switch (action.type) {
 	case Actions.GET_STUDENT_LIST_START: {
 		return {
 			...state,
@@ -26,19 +33,19 @@ export const student = (state = initialState, action: StudentTypes): StudentStat
 	case Actions.GET_STUDENT_LIST_FULFILLED: {
 		return {
 			...state,
-			studentList: action.payload
+			studentList: action.payload,
 		};
 	}
 	case Actions.REGISTER_STUDENT_FULFILLED: {
 		return {
 			...state,
-			apiResponse: action.payload
+			apiResponse: action.payload,
 		};
 	}
 	case Actions.REGISTER_STUDENT_REJECTED: {
 		return {
 			...state,
-			apiResponse: action.payload
+			apiResponse: action.payload,
 		};
 	}
 	default: {

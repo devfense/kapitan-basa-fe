@@ -4,33 +4,29 @@ export const STUDENT_ACL: Routes[] = [
 	{
 		title: 'Dashboard',
 		route: '/dashboard',
-		key: 'dashboard'
+		key: 'dashboard',
 	},
 	{
 		title: 'Game Level',
 		route: '/game',
-		key: 'gameLevel'
+		key: 'gameLevel',
 	},
-
 ];
-
 
 export const ADMIN_ACL: Routes[] = [
 	{
 		title: 'Dashboard',
 		route: '/dashboard',
-		key: 'dashboard'
+		key: 'dashboard',
 	},
 	{
 		title: 'Tabulation/Results',
 		route: '/results',
-		key: 'tabResults'
+		key: 'tabResults',
 	},
 	{
 		title: 'User Management',
 		route: '/user-management',
-		key: 'userMgmt'
+		key: 'userMgmt',
 	},
-
 ];
-

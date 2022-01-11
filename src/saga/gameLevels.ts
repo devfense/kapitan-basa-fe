@@ -8,7 +8,7 @@ export function* getGameLevels(action: GetGameLevelsRequest): SagaIterator {
 	try {
 		const { data }: Response<{ content: GameLevel[] }> = yield call(api, {
 			url: `/game-levels/get-all?limit=${limit}`,
-			method: 'get'
+			method: 'get',
 		});
 		console.log(data);
 		yield put({ type: Actions.GET_GAME_LEVELS_FULFILLED, payload: data.content });
@@ -19,7 +19,5 @@ export function* getGameLevels(action: GetGameLevelsRequest): SagaIterator {
 }
 
 export function* gameLevelWatchers(): SagaIterator {
-	yield all([
-		takeLatest(Actions.GET_GAME_LEVELS_START, getGameLevels),
-	]);
+	yield all([takeLatest(Actions.GET_GAME_LEVELS_START, getGameLevels)]);
 }

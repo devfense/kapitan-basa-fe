@@ -5,22 +5,19 @@ import { Actions, AuthLoginStart } from '../modules/auth/types';
 
 export function* authLogin(action: AuthLoginStart): SagaIterator {
 	try {
-		const { data }: Response<{ data: ApiResponseDetails}> = yield call(api, {
+		const { data }: Response<{ data: ApiResponseDetails }> = yield call(api, {
 			url: '/users/auth',
 			data: action.payload,
-			method: 'post'
+			method: 'post',
 		});
-    
+
 		yield put({ type: Actions.AUTH_LOGIN_FULLFILLED, payload: data });
 		/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
 	} catch (error: any) {
 		yield put({ type: Actions.AUTH_LOGIN_ERROR, payload: error.response.data });
-        
 	}
 }
 
 export function* authWatchers(): SagaIterator {
-	yield all([
-		takeLatest(Actions.AUTH_LOGIN_START, authLogin),
-	]);
+	yield all([takeLatest(Actions.AUTH_LOGIN_START, authLogin)]);
 }

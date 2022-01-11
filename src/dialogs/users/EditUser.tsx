@@ -4,13 +4,13 @@ import { DialogContainer } from '../../components/Dialog';
 import UserForm from '../../layouts/forms/users/UserForm';
 
 const StyledDialogContainer = styled(DialogContainer)`
-    width: 517px;
+	width: 517px;
 `;
 
 const EditUser: FunctionComponent = () => {
 	return (
-		<StyledDialogContainer title={'Edit User'}> 
-			<UserForm submitText={'Update'}/>
+		<StyledDialogContainer title={'Edit User'}>
+			<UserForm submitText={'Update'} />
 		</StyledDialogContainer>
 	);
 };

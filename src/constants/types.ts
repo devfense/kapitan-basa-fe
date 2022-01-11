@@ -1,12 +1,10 @@
-
 export interface Routes {
-    title: string;
-    route: string;
-    key: string;
+	title: string;
+	route: string;
+	key: string;
 }
 
 export enum AccountTypes {
-    STUDENT = 'STUDENT',
-    ADMIN = 'ADMIN'
+	STUDENT = 'STUDENT',
+	ADMIN = 'ADMIN',
 }
-

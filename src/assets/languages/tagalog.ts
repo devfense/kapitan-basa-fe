@@ -19,7 +19,7 @@ const strings: LocaleStrings = {
 	studID: 'ID ng Studyante:',
 	gradeSection: 'Grado at Seksyon:',
 	emailAddress: 'Email Address:',
-	listStud: 'Listahan ng Studyante'
+	listStud: 'Listahan ng Studyante',
 };
 
 export default strings;

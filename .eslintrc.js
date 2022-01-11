@@ -1,6 +1,9 @@
 module.exports = {
 	'env': {
-		'es2021': true
+		'es2021': true,
+		'browser': true,
+		'amd': true,
+		'node': true
 	},
 	'extends': [
 		'eslint:recommended',
@@ -18,7 +21,8 @@ module.exports = {
 	},
 	'plugins': [
 		'react',
-		'@typescript-eslint'
+		'@typescript-eslint',
+		'prettier'
 	],
 	'rules': {
 		'indent': [
@@ -37,6 +41,7 @@ module.exports = {
 			'error',
 			'always'
 		],
-		"no-mixed-spaces-and-tabs": 0, // disable rule
+		'prettier/prettier': [0, { 'useTabs': true, 'endOfLine':'auto' }],
+		'no-mixed-spaces-and-tabs': 0, // disable rule
 	}
 };

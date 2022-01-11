@@ -1,7 +1,7 @@
 import Dylan from '../profile/dylan.jpg';
 
 const Profile = {
-	Dylan
+	Dylan,
 };
 
 export default Profile;

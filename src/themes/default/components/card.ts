@@ -5,16 +5,16 @@ const colors: CardColors = {
 		normal: {
 			BG_COLOR: '#FFFFFF',
 			TEXT_COLOR: '#25396F',
-		}
+		},
 	},
 
 	secondary: {
 		normal: {
-			BG_COLOR:'#F2F7FF',
+			BG_COLOR: '#F2F7FF',
 			SECONDARY_BG_COLOR: '#EBF3FF',
 			TEXT_COLOR: '#3E5490',
-		}
-	}
+		},
+	},
 };
 
 export default colors;

@@ -9,8 +9,8 @@ const colors: MenuItemColors = {
 		active: {
 			BG_COLOR: '#435EBE',
 			TEXT_COLOR: '#FFFFFF',
-		}
-	}
+		},
+	},
 };
 
 export default colors;

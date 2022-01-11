@@ -3,7 +3,7 @@ import Error from './warning.png';
 
 const AlertType = {
 	Success,
-	Error
+	Error,
 };
 
 export default AlertType;
