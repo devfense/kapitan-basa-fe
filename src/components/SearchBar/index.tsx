@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { Search as SearchIcon } from '@material-ui/icons';
 import styled from 'styled-components';
 
-const Search = styled.div`
+const Container = styled.div`
     background-color: #FFF;
     width: 200px;
     border-radius: 8px;
@@ -25,7 +25,7 @@ const SearchIcons = styled(SearchIcon)`
     color: #7C8DB5;
 `;
 
-const SearchBar = styled.input`
+const SearchField = styled.input`
     height: 45px;
     width: 100%;
     color: #7C8DB5;
@@ -39,19 +39,18 @@ const SearchBar = styled.input`
 
 type SearchProps = {
     searchTerm?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-
 }
 
-const index = (props: SearchProps) => {
+const SearchBar: FunctionComponent<SearchProps> = (props: SearchProps) => {
 	const { searchTerm } = props;
 	return (
-		<Search>
+		<Container>
 			<SearchIconWrapper>
 				<SearchIcons />
 			</SearchIconWrapper>
-			<SearchBar type="search" placeholder="search.." onChange={searchTerm} />
-		</Search>
+			<SearchField type="search" placeholder="search.." onChange={searchTerm} />
+		</Container>
 	);
 };
 
-export default index;
+export default SearchBar;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
 import Button from '../../../components/Button';
 
@@ -70,7 +70,7 @@ const quizzes = [
 
 const choiceLetter = ['a', 'b', 'c', 'd'];
 
-const QuizForm = () => {
+const QuizForm: FunctionComponent = () => {
 	return (
 		<Container>
 			<form>

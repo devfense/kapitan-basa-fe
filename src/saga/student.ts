@@ -32,8 +32,8 @@ export function* registerStudent(action: RegisterStudentRequest): SagaIterator {
 		});
     
 		yield put({ type: Actions.REGISTER_STUDENT_FULFILLED, payload: data });
+		/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
 	} catch (error: any) {
-
 		yield put({ type: Actions.REGISTER_STUDENT_REJECTED, payload: error.response.data });
         
 	}

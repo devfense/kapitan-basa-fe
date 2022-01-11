@@ -95,18 +95,17 @@ const Badge = styled.div`
 
 `;
 
-export interface DialogLevelProps {
+export interface DialogHeadreProps {
     children: ReactNode;
-    level: ReactNode;
     title: ReactNode;
     onClose?: () => void;
 }
 
-const DialogHeaders = (props: DialogLevelProps) => {
-	const { children, title, level, onClose, ...other } = props;
+const DialogHeaders = (props: DialogHeadreProps) => {
+	const { children, title, onClose, ...other } = props;
 	return (
 		<StyledMuiDialogTitle disableTypography {...other}>
-			<DialogTitle title={typeof level === 'string' ? level : undefined}>
+			<DialogTitle title={typeof title === 'string' ? title : undefined}>
 				{children}
 			</DialogTitle>
 			{onClose ? (
@@ -134,18 +133,17 @@ const DialogActionButton = (props: DialogActionProps) => {
 };
 
 interface DialogContainerProps {
-    level?: ReactNode;
     title?: ReactNode;
     submitText?: ReactNode;
     children: ReactNode;
     onClose?: () => void;
 }
 
-export const DialogContentContainer: FunctionComponent<DialogContainerProps> = ({ level, title, submitText, children, onClose, ...others }) => {
+export const DialogContentContainer: FunctionComponent<DialogContainerProps> = ({ title, submitText, children, onClose, ...others }) => {
 	return (
 		<Container {...others}>
-			<DialogHeaders onClose={onClose} level={level} title={title}>
-				<Badge><span>{level}</span></Badge> {title}
+			<DialogHeaders onClose={onClose} title={title}>
+				{title}
 			</DialogHeaders>
 			<MuiDialogContent>{children}</MuiDialogContent>
 			<DialogActionButton>{submitText}</DialogActionButton>

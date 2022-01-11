@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 
 const Brand = styled.label<{ medium?: 'medium' | 'large' }>`
@@ -21,7 +22,7 @@ const Brand = styled.label<{ medium?: 'medium' | 'large' }>`
     }
 `;
 
-const BrandName = () => {
+const BrandName = (): JSX.Element => {
 	return <Brand medium='large'>Kapitan <span>Basa</span></Brand>;
 };
 

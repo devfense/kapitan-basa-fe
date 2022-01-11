@@ -1,5 +1,5 @@
 import update from 'immutability-helper';
-import { Actions, UserTypes, UserState, AllUser, AccountStatus } from './types';
+import { Actions, UserTypes, UserState, AccountStatus } from './types';
 // import { ApiResponseDetails } from '../../helpers/api';
 
 

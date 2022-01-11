@@ -1,6 +1,4 @@
-import { AccountStatus } from '../users/types';
 import { Actions, AuthTypes, AuthState } from './types';
-import { ApiResponseDetails } from '../../helpers/api';
 
 
 const mockResponse = { message: '', success: false, statusCode: 0 };

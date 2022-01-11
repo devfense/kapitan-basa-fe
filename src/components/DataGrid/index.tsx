@@ -93,7 +93,7 @@ export const TableData = styled(MuiTableCell)`
 function Table<T> (props: Props<T>): JSX.Element {
 	const { data, columns, header, children } = props;
 	const displayKeys = data && data.length > 0 ? Object.keys(data[0]) as Array<keyof T> : [];
-	console.log(header);
+    
 	return (
 		<ContentTable>
 			<MainTable>
@@ -112,7 +112,7 @@ function Table<T> (props: Props<T>): JSX.Element {
 					{   data ?              
 						data.map((item, index) => {
 							return (
-								<TableRow>
+								<TableRow key={index}>
 									{displayKeys.map((key, indx) => {
 										return(
 											<TableData key={`${index}${indx}`}>{ item[key] }</TableData>

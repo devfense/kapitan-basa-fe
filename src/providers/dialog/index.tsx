@@ -3,7 +3,7 @@ import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
 
 type ProviderContext = readonly [(option: DialogOption) => void, () => void];
-
+/* eslint-disable-next-line @typescript-eslint/no-empty-function */
 const EMPTY_FUNC = () => {};
 const DialogContext = React.createContext<ProviderContext>([EMPTY_FUNC, EMPTY_FUNC]);
 export const useDialog = (): ProviderContext => React.useContext(DialogContext);
@@ -65,7 +65,7 @@ export const DialogProvider: FunctionComponent<DialogProps> = (props: DialogProp
 		<DialogContext.Provider value={contextValue.current}>
 			{children}
 			{dialogs.map((dialog, i) => {
-				const { onClose, ...dialogParams } = dialog;
+				const { ...dialogParams } = dialog;
 				const handleKill = () => {
 					if (dialog.onExited) dialog.onExited();
 					setDialogs((ds) => ds.slice(0, ds.length - 1));

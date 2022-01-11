@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import { IoMenuSharp } from 'react-icons/io5';
-import { useNavigate } from 'react-router';
 import Cookies from 'js-cookie';
 import { COOKIE } from '../../constants/variables';
 import styled from 'styled-components';
@@ -136,14 +135,11 @@ const LogoutButton = styled(Button)`
     }
 `;
 
-type ButtonProps = {
+type TopHeaderProps = {
     handleClick: () => void
 }
 
-const TopHeader = (props: ButtonProps) => {
-
-	const redirect = useNavigate();
-
+const TopHeader: FunctionComponent<TopHeaderProps> = (props: TopHeaderProps) => {
 	const strings = useLocaleContext();
 
 	const [popover, setPopOver] = useState(false);

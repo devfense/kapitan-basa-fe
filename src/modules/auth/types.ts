@@ -1,5 +1,4 @@
 import { Action } from '../../types/Redux';
-import { User } from '../users/types';
 import { ApiResponseDetails } from '../../helpers/api';
 
 export enum Actions {

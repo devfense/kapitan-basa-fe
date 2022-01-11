@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { Avatar as MuiAvatar } from '@material-ui/core';
 import Profile from '../../assets/media/profile/Profile';
 import styled from 'styled-components';
@@ -19,7 +19,7 @@ type ProfileProps = {
     handleProfileClick: () => void;
 }
 
-const index = (props: ProfileProps) => {
+const AvatarProfile: FunctionComponent<ProfileProps> = (props: ProfileProps) => {
 	return (
 		<div>
 			<Avatar alt="Dylan Lee" src={Profile.Dylan}  onClick={props.handleProfileClick}/>
@@ -27,4 +27,4 @@ const index = (props: ProfileProps) => {
 	);
 };
 
-export default index;
+export default AvatarProfile;

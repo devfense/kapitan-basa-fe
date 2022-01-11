@@ -237,11 +237,12 @@ Cras justo odio, dapibus ac facilisis in, egestas eget quam.
 Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
 Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`;
 
-const StoryDialog: FunctionComponent<Props> = ({ storyId, level, title, content }) => {
+const StoryDialog: FunctionComponent<Props> = ({ level, title, content }) => {
 	const [openDialog, closeDialog] = useDialog();
 	const handleDoneRead = () => {
 		openDialog({
-			children: <QuizDialog level={level} title={title} />
+			children: <QuizDialog level={level} title={title} />,
+			onClose: closeDialog
 		});
 	};
 

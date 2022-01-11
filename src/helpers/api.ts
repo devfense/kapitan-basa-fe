@@ -1,5 +1,4 @@
-import axios, { AxiosRequestConfig, AxiosRequestHeaders } from 'axios';
-import { AllUser } from '../modules/users/types';
+import axios, { AxiosRequestConfig, AxiosRequestHeaders, AxiosResponse } from 'axios';
 import { HttpStatus } from '../constants/httpStatus'; 
 
 const SERVER_BASE_URL = process.env.REACT_APP_SERVER_BASE_URL;
@@ -18,7 +17,7 @@ export const arrayBufferToBase64 = (buffer: Array<number>):string => {
 	return window.btoa(binary);
 };
 
-export const api = (options: AxiosRequestConfig = {}) => axios.request({...config, ...options});
+export const api = (options: AxiosRequestConfig = {}): Promise<AxiosResponse> => axios.request({...config, ...options});
 
 export interface ResponseDetails<S extends HttpStatus> {
     message: string | string[];
@@ -31,6 +30,7 @@ export interface ApiResponseDetails {
     error?: string;
     message: string;
     statusCode?: number;
+	/*eslint-disable-next-line */
     content?: any;
 }
 export const NOCACHE: AxiosRequestHeaders = {
@@ -38,4 +38,5 @@ export const NOCACHE: AxiosRequestHeaders = {
 	'Expires':  '0'
 };
 
+/*eslint-disable-next-line */
 export type Response<T extends object = {}, S extends HttpStatus = 200> = { data: ResponseDetails<S> & T };

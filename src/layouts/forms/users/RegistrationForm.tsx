@@ -1,6 +1,5 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import _ from 'lodash';
-import { useNavigate } from 'react-router-dom';
 import { RootState } from '../../../store';
 import { connect, ConnectedProps, useSelector } from 'react-redux';
 import { sanitizeServerMessage } from '../../../helpers/globalHelpers';

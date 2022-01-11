@@ -6,7 +6,6 @@ import { RootState } from '../../../store';
 import * as authActions from '../../../modules/auth/actions';
 import * as userActions from '../../../modules/users/actions';
 import { mockUser } from '../../../modules/users/reducers';
-import { AllUser } from '../../../modules/users/types';
 import styled from 'styled-components';
 import BrandName from '../../../components/Brand';
 import AvatarLogo from '../../../components/AvatarLogo';
@@ -15,7 +14,7 @@ import { useLocaleContext } from '../../../providers/localization';
 import Button from '../../../components/Button';
 import { useDialog } from '../../../providers/dialog';
 import Alert from '../../../components/Alert/index';
-import { ALERT_TIMEOUT, ALERT, COOKIE } from '../../../constants/variables';
+import { ALERT, COOKIE } from '../../../constants/variables';
 import { sanitizeServerMessage } from '../../../helpers/globalHelpers';
 
 import RegisterStudent from '../../../dialogs/users/RegisterStudent';
@@ -115,7 +114,6 @@ const LoginForm: FunctionComponent<Props> = (props: Props) => {
 
 	const { authLogin, storeUserInfo, authResetResponse } = props;
 	const { apiResponse } = useSelector((state: RootState) => state.auth);
-	const { userInfo } = useSelector((state: RootState) => state.users);
 
 
 	const strings = useLocaleContext();

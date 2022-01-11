@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
 import { Container } from '../../globalStyles';
 import { useLocaleContext } from '../../providers/localization';
@@ -79,7 +79,7 @@ const mockUsers: AllUser[] = [
 
 type TableAllUserStudent = AllUser
 
-const TabulationAndResult = () => {
+const TabulationAndResult: FunctionComponent = () => {
 
 	const strings = useLocaleContext();
 

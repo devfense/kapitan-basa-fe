@@ -12,6 +12,7 @@ export function* authLogin(action: AuthLoginStart): SagaIterator {
 		});
     
 		yield put({ type: Actions.AUTH_LOGIN_FULLFILLED, payload: data });
+		/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
 	} catch (error: any) {
 		yield put({ type: Actions.AUTH_LOGIN_ERROR, payload: error.response.data });
         

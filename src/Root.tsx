@@ -1,5 +1,5 @@
 import './styles/index.css';
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -10,7 +10,7 @@ import LocaleContext, { useLocaleContext } from './providers/localization';
 import store from './store';
 import DialogProvider from './providers/dialog';
 
-const Root = () => {
+const Root: FunctionComponent = () => {
 	const contextStrings = useLocaleContext();
 	contextStrings.setLanguage('en');
 

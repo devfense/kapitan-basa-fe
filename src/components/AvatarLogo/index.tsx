@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
 import BoyReading from '../../assets/media/reading/Reading';
 
@@ -23,7 +23,7 @@ const AvatarImg = styled.img`
     width: 100%;
 `;
 
-const index = () => {
+const AvatarLogo: FunctionComponent = () => {
 	return (
 		<div>
 			<AvatarBox>
@@ -35,4 +35,4 @@ const index = () => {
 	);
 };
 
-export default index;
+export default AvatarLogo;

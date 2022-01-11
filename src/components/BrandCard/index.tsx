@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
 import AvatarLogo from '../../components/AvatarLogo/index';
 import BrandName from '../../components/Brand';
 
-const BrandCard = styled.div`
+const Container = styled.div`
     width: 67%;
     background-color: ${({ theme }) => theme.card.secondary.normal.BG_COLOR};
     margin: 0px auto;
@@ -44,9 +44,9 @@ type BrandedCard = {
     strings: string;
 }
 
-const index = (props: BrandedCard) => {
+const BrandCard: FunctionComponent<BrandedCard> = (props: BrandedCard) => {
 	return (
-		<BrandCard>
+		<Container>
 			<AvatarContainer>
 				<AvatarLogo />
 			</AvatarContainer>
@@ -56,8 +56,8 @@ const index = (props: BrandedCard) => {
 					{ props.strings }
 				</Typography>
 			</DetailContainer>
-		</BrandCard>
+		</Container>
 	);
 };
 
-export default index;
+export default BrandCard;

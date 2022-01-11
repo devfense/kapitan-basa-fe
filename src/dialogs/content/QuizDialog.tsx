@@ -1,9 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
-import Button from '../../components/Button';
 import { DialogContainer } from '../../components/Dialog';
 import QuizForm from '../../layouts/forms/story/QuizForm';
-import Story from '../../layouts/story/Story';
 
 interface Props {
     storyId?: string;
@@ -58,7 +56,7 @@ const TitleHeader: FunctionComponent<TitleProps> = ({ level, title }) => {
 	);
 };
 
-const QuizDialog: FunctionComponent<Props> = ({ storyId, level, title }) => {
+const QuizDialog: FunctionComponent<Props> = ({ level, title }) => {
 	return (
 		<StyledDialogContentContainer title={<TitleHeader level={level} title={title} />}>
 			<QuizForm />

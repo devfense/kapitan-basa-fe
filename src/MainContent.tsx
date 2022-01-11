@@ -6,7 +6,7 @@ import * as userActions from './modules/users/actions';
 import { useSelector, connect, ConnectedProps } from 'react-redux';
 import { RootState } from './store';
 import { useNavigate } from 'react-router';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Sidebar from './layouts/Navigation/Sidebar';
 import TopHeader from './layouts/Navigation/TopHeader';
 import Dashboard from './views/Dashboard/Dashboard';

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { STUDENT_ACL, ADMIN_ACL } from '../../constants/MenuItem/MenuItem';
@@ -10,7 +10,6 @@ import BrandCard from '../../components/BrandCard/index';
 import { useLocaleContext } from '../../providers/localization';
 import { LocaleStrings } from '../../providers/localization/types';
 import { IoChevronBack } from 'react-icons/io5';
-import { userInfo } from 'os';
 
 
 const Container = styled.div<{ toggle?: false | true}>`
@@ -126,12 +125,12 @@ const MobileIcon = styled.div`
     }
 `;
 
-type ButtonClick = {
+type SideBarProps = {
     toggle: boolean;
     handleClick: () => void
 }
 
-const Sidebar = (props: ButtonClick) => {
+const Sidebar: FunctionComponent<SideBarProps> = (props: SideBarProps) => {
 
 	const { userInfo } = useSelector((state: RootState) => state.users);
 

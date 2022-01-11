@@ -12,6 +12,7 @@ export function* getGameLevels(action: GetGameLevelsRequest): SagaIterator {
 		});
 		console.log(data);
 		yield put({ type: Actions.GET_GAME_LEVELS_FULFILLED, payload: data.content });
+		/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
 	} catch (error: any) {
 		yield put({ type: Actions.GET_GAME_LEVELS_REJECTED, payload: error.response.data });
 	}
