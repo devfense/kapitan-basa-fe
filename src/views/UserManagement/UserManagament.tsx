@@ -1,12 +1,15 @@
-import React, { ReactNode } from 'react'
+import React, { FunctionComponent, ReactNode, useEffect } from 'react'
 import { Container } from '../../globalStyles'
 import styled from 'styled-components'
 import { useLocaleContext } from '../../providers/localization';
-import DataGrid from '../../components/DataGrid/index'
-import { AccountStatus, AllUser } from '../../modules/users/types';
+import DataGrid, { TableData, TableRow } from '../../components/DataGrid/index'
+import { AllUser } from '../../modules/users/types';
 import ActionButton from '../../components/ActionButtons';
 import { useDialog } from '../../providers/dialog';
 import EditUser from '../../dialogs/users/EditUser';
+import { RootState } from '../../store';
+import * as userActions from '../../modules/users/actions';
+import { connect, ConnectedProps } from 'react-redux';
 
 const LabelContainer = styled.div`
     height: 40px;
@@ -42,54 +45,41 @@ const UserListContainer = styled.div`
     }
 `;
 
-const mockUsers: AllUser[] = [
-    { 
-        studentID: '010101',
-        lastName: 'Dela Cruz',
-        firstName: 'Juan', 
-        middleName: 'A.', 
-        section: 'Kamagong', 
-        grade: '10',
-        emailAddress: 'jdc@jdc.com', 
-        status: AccountStatus.ACTIVE
-    },
-    { 
-        studentID: '020202',
-        lastName: 'Cabusao', 
-        firstName: 'Mark', 
-        middleName: 'A.', 
-        section: 'Ipil-Ipil', 
-        grade: '10', 
-        emailAddress: 'cm@cmd.com', 
-        status: AccountStatus.ACTIVE
-    },
-    { 
-        lastName: 'Viernes', 
-        firstName: 'Jephunneh', 
-        middleName: 'B.', 
-        section: 'Narra', 
-        grade: '10', 
-        emailAddress: 'jephv4@cmd.com', 
-        status: AccountStatus.ACTIVE
-    },
-];
-/*TODO: Integrate Userlist API */
-
 type TableAllUsers = AllUser & { approve: ReactNode, actions: ReactNode };
 
-const UserManagament = () => {
+type Props = ReduxProps;
+
+const UserManagament: FunctionComponent<Props> = ({
+    userList,
+    getUserList,
+    approveUser,
+    rejectUser
+}) => {
     const strings = useLocaleContext();
     const [openDialog] = useDialog();
-    const users = mockUsers.map((users) => {
+
+    useEffect(() => {
+        getUserList();
+    }, []);
+
+    const users = userList.list.map((users) => {
         const handleEdit = () => {
             openDialog({
                 children: <EditUser />,
             })
         }
 
+        const handleApprove = (id: string) => () => {
+            approveUser(id);
+        }
+
+        const handleReject = (id: string) => () => {
+            rejectUser(id);
+        }
+
         return {
             ...users,
-            approve: <><ActionButton types={'approve'}>Approve</ActionButton> <ActionButton types={'reject'}>Reject</ActionButton></>,
+            approve: <><ActionButton types={'approve'} onClick={handleApprove(users.username)}>Approve</ActionButton> <ActionButton types={'reject'} onClick={handleReject(users.username)}>Reject</ActionButton></>,
             actions: <><ActionButton types={'edit'} onClick={handleEdit}>{strings.edit}</ActionButton> <ActionButton types={'delete'}>{strings.delete}</ActionButton></>
         }
     }).map((u) => {
@@ -99,7 +89,18 @@ const UserManagament = () => {
         }
     });
     
-    const columns = ['Last Name', 'First Name', 'MiddleName', 'Section', 'Grade', 'Email Address', 'Account Status', 'Approve/Reject', 'Actions'];
+    const columns = {
+        lastName: 'Last Name', 
+        firstName: 'First Name', 
+        middlName: 'MiddleName', 
+        section: 'Section', 
+        grade: 'Grade', 
+        emailAddress: 'Email Address', 
+        status: 'Account Status', 
+        approve: 'Approve/Reject', 
+        actions: 'Actions'
+    };
+
     return (
         <Container>
             <LabelContainer>
@@ -109,10 +110,37 @@ const UserManagament = () => {
                 <LabelContainer>
                     <PageLabel size='subheader'>{ strings.accUser }</PageLabel>
                 </LabelContainer>
-                <DataGrid<TableAllUsers> data={users} columns={columns}/>
+                <DataGrid<TableAllUsers> columns={Object.keys(columns).map((c) => (columns[c as keyof typeof columns]))}>
+                            {
+                                users.map((user, index) => {
+                                    return (  
+                                    <TableRow key={index}>
+                                        {Object.keys(columns).map((col, i) => {
+                                            return (<TableData key={i}>{ user[col as keyof AllUser] }</TableData>)
+                                        })}
+                                    </TableRow>
+                                    )
+                                })
+                            }
+                        </DataGrid>
             </UserListContainer>
         </Container>
     )
 }
 
-export default UserManagament;
+const mapStateToProps = (state: RootState) => ({
+    userList: state.users.users
+})
+
+const mapDispatchToProps = {
+    getUserList: userActions.getUserList,
+    approveUser: userActions.approveUser,
+    rejectUser: userActions.rejectUser,
+};
+
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
+
+type ReduxProps = ConnectedProps<typeof connector>;
+
+export default connector(UserManagament);

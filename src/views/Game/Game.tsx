@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { FunctionComponent, useEffect } from 'react'
 import styled from 'styled-components'
 import Card from '../../components/Game/Card';
 import { Container } from '../../globalStyles'
 import { useLocaleContext } from '../../providers/localization';
-import SearchBar from '../../components/SearchBar/index';
+import SearchBar from '../../components/SearchBar';
+import { connect, ConnectedProps } from 'react-redux';
+import * as gameLevelActions from '../../modules/game-levels/actions';
+import { RootState } from '../../store';
+import { GameLevel } from '../../modules/game-levels/types';
 
 const LabelContainer = styled.div`
     height: 40px;
@@ -32,45 +36,28 @@ const LevelsContainer = styled.div`
     padding: 15px 0px;
 `;
 
-const gamelevels = [
-    {
-        level: 1,
-        isCleared: true,
-        title: 'ABNKKBSANPLKO',
-        description: 'Aba nakakabasa na pala ako Lorem Ipsum Dolor sit amet consectetitur omet si kamalisodum. Sem nalsi oranda chomp, goda mil te hasemsn dusakla karaibus mendaiksu oreberum ambis nena',
-    },
-    {
-        level: 2,
-        isCleared: true,
-        title: 'ABNKKBSANPLKO',
-        description: 'Aba nakakabasa na pala ako',
-    },
-    {
-        level: 3,
-        isCleared: false,
-        title: 'ABNKKBSANPLKO',
-        description: 'Aba nakakabasa na pala ako',
-    },
-    {
-        level: 4,
-        isCleared: false,
-        title: 'DYLAN GAMING',
-        description: 'Aba nakakabasa na pala ako',
-    },
-    {
-        level: 5,
-        isCleared: false,
-        title: 'TEST',
-        description: 'Aba nakakabasa na pala ako',
-    }
-]
+const Thumbnail = styled.div<{ bg: string }>`
+    height: 104px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background-image: url(${({bg}) => bg});
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 0 -230px;
+`;
 
-const Game = () => {
+type Props = ReduxProps;
+
+const Game: FunctionComponent<Props> = ({
+    levels,
+    getGameLevels
+}) => {
 
     const strings = useLocaleContext();
-    
-    // bind to constant data "gamelevels"
-    const [gameList] = React.useState(gamelevels);
+
+    useEffect(() => {
+        getGameLevels({ limit: 10 })
+    }, []);
 
     // search title upon typing
     const [searchGame, setSearchGame] = React.useState("");
@@ -88,10 +75,10 @@ const Game = () => {
             <SearchBar searchTerm={onSearchChange} />
             <LevelsContainer>
                 {
-                    gameList.length > 0 &&
-                        gameList.filter((g) => g.title.toLowerCase().includes(searchGame.toLowerCase())).map((g) => {
+                    levels.list.length > 0 &&
+                        levels.list.filter((g: GameLevel) => g.levelTitle.toLowerCase().includes(searchGame.toLowerCase())).map((g: GameLevel) => {
                             return (    
-                                <Card level={g.level} description={g.description} title={g.title} isCleared={g.isCleared}/>
+                                <Card level={parseInt(g.levelName, 10)} description={g.levelDescription} title={g.levelTitle} thumbnail={<Thumbnail bg={g.levelBgImgUrl} />} isCleared={false}/>
                             )
                         })
                 }
@@ -100,4 +87,17 @@ const Game = () => {
     )
 }
 
-export default Game;
+const mapStateToProps = (state: RootState) => ({
+    levels: state.gamelevel.levels,
+})
+
+const mapDispatchToProps = {
+    getGameLevels: gameLevelActions.getGameLevels
+};
+
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
+
+type ReduxProps = ConnectedProps<typeof connector>;
+
+export default connector(Game);
