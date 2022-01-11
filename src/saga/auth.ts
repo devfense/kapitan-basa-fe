@@ -3,8 +3,6 @@ import { all, call, put, takeLatest } from 'redux-saga/effects'
 import { api, Response, ApiResponseDetails } from '../helpers/api';
 import { Actions, AuthLoginStart } from '../modules/auth/types';
 
-
-
 export function* authLogin(action: AuthLoginStart): SagaIterator {
     try {
         const { data }: Response<{ data: ApiResponseDetails}> = yield call(api, {
