@@ -1,16 +1,15 @@
-
 // Color Scheme
 interface Properties {
-    BG_COLOR: string;
-    SECONDARY_BG_COLOR?: string;
-    TEXT_COLOR: string;
-    SECONDARY_TEXT_COLOR?: string;
-    BORDER_COLOR?: string;
-    SHADOW_COLOR?: string;
-};
+	BG_COLOR: string;
+	SECONDARY_BG_COLOR?: string;
+	TEXT_COLOR: string;
+	SECONDARY_TEXT_COLOR?: string;
+	BORDER_COLOR?: string;
+	SHADOW_COLOR?: string;
+}
 
 type States = {
-    normal: Properties;
+	normal: Properties;
 } & Partial<Record<'active' | 'hover' | 'checked' | 'unchecked' | 'error', Properties>>;
 
 export type ActionTypes = 'edit' | 'delete' | 'approve' | 'reject';
@@ -27,16 +26,16 @@ export type CardColors = Record<'primary' | 'secondary', States>;
 export type IconColors = Record<'primary' | 'secondary', States>;
 
 interface Theme {
-    app: AppColors;
-    actionButton: ActionButtonColors;
-    button: ButtonColors;
-    dialog: DialogColors;
-    textField: TextFieldColors;
-    profile: ProfileColors;
-    menuItem: MenuItemColors;
-    card: CardColors;
-    icon: IconColors;
-};
+	app: AppColors;
+	actionButton: ActionButtonColors;
+	button: ButtonColors;
+	dialog: DialogColors;
+	textField: TextFieldColors;
+	profile: ProfileColors;
+	menuItem: MenuItemColors;
+	card: CardColors;
+	icon: IconColors;
+}
 
 export type AppTheme = Record<'default', Theme>;
 

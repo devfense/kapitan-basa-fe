@@ -10,13 +10,13 @@ import card from './components/card';
 import icon from './components/icon';
 
 export default {
-    app,
-    actionButton,
-    button,
-    dialog,
-    textField,
-    profile,
-    menuItem,
-    card,
-    icon
-} as Theme
+	app,
+	actionButton,
+	button,
+	dialog,
+	textField,
+	profile,
+	menuItem,
+	card,
+	icon,
+} as Theme;

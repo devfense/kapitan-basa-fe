@@ -5,8 +5,8 @@ import en from './en';
 import tagalog from './tagalog';
 
 const strings = new LocalizedStrings<LocaleStrings>({
-    en,
-    tagalog
+	en,
+	tagalog,
 });
 
 export default strings;

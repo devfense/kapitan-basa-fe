@@ -1,53 +1,53 @@
-import { Action } from "../../types/Redux";
+import { Action } from '../../types/Redux';
 
 export enum Actions {
-    GET_GAME_LEVELS_START = '@game-levels/GET_GAME_LEVELS_START',
-    GET_GAME_LEVELS_FULFILLED = '@game-levels/GET_GAME_LEVELS_FULFILLED',
-    GET_GAME_LEVELS_REJECTED = '@game-levels/GET_GAME_LEVELS_REJECTED',
-};
+	GET_GAME_LEVELS_START = '@game-levels/GET_GAME_LEVELS_START',
+	GET_GAME_LEVELS_FULFILLED = '@game-levels/GET_GAME_LEVELS_FULFILLED',
+	GET_GAME_LEVELS_REJECTED = '@game-levels/GET_GAME_LEVELS_REJECTED',
+}
 
 export type Choices = 'A' | 'B' | 'C' | 'D';
 
 export type Choice = {
-    id: number;
-    choiceLetter: Choices;
-    choiceDescription: string;
-}
+	id: number;
+	choiceLetter: Choices;
+	choiceDescription: string;
+};
 
 export type Quiz = {
-    id: number;
-    questionContent: string;
-    questionCorrectAnswer: Choices;
-    choices: Choice[];
-}
+	id: number;
+	questionContent: string;
+	questionCorrectAnswer: Choices;
+	choices: Choice[];
+};
 
 export type Story = {
-    id: number;
-    storyContent: string;
-    quiz: Quiz[];
-}
+	id: number;
+	storyContent: string;
+	quiz: Quiz[];
+};
 
 export type GameLevel = {
-    id: number;
-    levelName: string;
-    levelTitle: string;
-    levelDescription: string;
-    levelBgImgUrl: string;
-    story: Story;
-}
+	id: number;
+	levelName: string;
+	levelTitle: string;
+	levelDescription: string;
+	levelBgImgUrl: string;
+	story: Story;
+};
 
 export type WithLoadingList<T> = {
-    isLoading: boolean;
-    list: T;
-}
+	isLoading: boolean;
+	list: T;
+};
 
 export type TGetGameLevelsData = {
-    limit: number;
-    page?: number;
-}
+	limit: number;
+	page?: number;
+};
 
 export interface GameLavelState {
-    levels: WithLoadingList<GameLevel[]>;
+	levels: WithLoadingList<GameLevel[]>;
 }
 
 export type GetGameLevelsRequest = Action<typeof Actions.GET_GAME_LEVELS_START, TGetGameLevelsData>;

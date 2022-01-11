@@ -1,12 +1,8 @@
-import React from 'react'
-import { Container } from '../../globalStyles'
+import React, { FunctionComponent } from 'react';
+import { Container } from '../../globalStyles';
 
-const Dashboard = () => {
-    return (
-        <Container>
-            This is Dashboard
-        </Container>
-    )
-}
+const Dashboard: FunctionComponent = () => {
+	return <Container>This is Dashboard</Container>;
+};
 
 export default Dashboard;

@@ -1,7 +1,7 @@
-import Reading from '../reading/reading.png'
+import Reading from '../reading/reading.png';
 
 const BoyReading = {
-    Reading
-}
+	Reading,
+};
 
-export default BoyReading
+export default BoyReading;
