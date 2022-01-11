@@ -61,6 +61,7 @@ const Message = styled.span`
 	font-size: 1rem;
 	color: #000;
 	padding: 0px 0px 20px;
+	text-align: center;
 `;
 
 type Props = AlertInfoProps;
