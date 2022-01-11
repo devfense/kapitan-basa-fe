@@ -1,3 +1,4 @@
 {
-    "colorize.languages": ["typescript", "javascript", "css", "scss"]
+	"colorize.languages": ["typescript", "javascript", "css", "scss"],
+	"files.eol": "\n"
 }
