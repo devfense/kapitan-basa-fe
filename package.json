@@ -44,9 +44,17 @@
     "lint-fix": "eslint src --ext js,ts,tsx --fix",
     "dev": "yarn install && react-scripts start"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "lint-staged": {
-    "src/**/*.{ts,tsx,js,jsx}": [
-      "eslint --fix"
+    "*.{js,ts,tsx}": [
+      "eslint src --ext js,ts,tsx --fix"
+    ],
+    "*.{json,md,html}": [
+      "prettier --write"
     ]
   },
   "eslintConfig": {
@@ -73,7 +81,11 @@
     "@types/redux": "^3.6.0",
     "@types/redux-first-router": "^2.1.7",
     "@types/styled-components": "^5.1.15",
-    "prettier": "^2.5.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.1.7",
+    "prettier": "2.5.1",
     "pretty-quick": "^3.1.3"
   }
 }
