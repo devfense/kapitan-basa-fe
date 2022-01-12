@@ -4,10 +4,10 @@ import { api, Response } from '../helpers/api';
 import { Actions, GameLevel, GetGameLevelsRequest } from '../modules/game-levels/types';
 
 export function* getGameLevels(action: GetGameLevelsRequest): SagaIterator {
-	const { limit, page } = action.payload;
+	const { studentID, limit, page } = action.payload;
 	try {
 		const { data }: Response<{ totalRecords: number, content: GameLevel[] }> = yield call(api, {
-			url: `/game-levels/student-levels/123123123123?limit=${limit}?page=${page}`,
+			url: `/game-levels/student-levels/${studentID}?limit=${limit}?page=${page}`,
 			method: 'get',
 		});
 		
