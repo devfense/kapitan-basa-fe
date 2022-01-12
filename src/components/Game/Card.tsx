@@ -11,6 +11,7 @@ interface Props {
 	description: string;
 	thumbnail?: ReactNode;
 	isCleared?: boolean;
+	isLocked?: boolean;
 	onStart?: () => void;
 }
 
@@ -18,6 +19,7 @@ const Container = styled.div`
 	display: flex;
 	flex-direction: column;
 	width: 21.7%;
+	max-height: 300px;
 	margin-right: 20px;
 	margin-bottom: 20px;
 	background-color: ${({ theme }) => theme.card.primary.normal.BG_COLOR};
@@ -66,6 +68,7 @@ const Container = styled.div`
 	@media screen and (max-width: 630px) {
 		width: 100%;
 		margin-right: 0;
+		max-height: unset;
 	}
 `;
 
@@ -77,30 +80,39 @@ const ThumbnailPlaceholder = styled.div`
 	border-radius: 10px;
 `;
 
-const GameLevelButton = styled(Button)<{ isCleared?: boolean }>`
+const GameLevelButton = styled(Button)<{ $isCleared?: boolean, $isLocked?: boolean }>`
 	&.MuiButton-root {
 		margin-top: 10px;
 		border-radius: 24px;
-		${({ isCleared, theme }) =>
-		isCleared
-			? `
-            background-color: ${theme.actionButton.cleared.normal.BG_COLOR};
-            border-color: ${theme.actionButton.cleared.normal.BORDER_COLOR};
-        `
-			: `
-            background-color: ${theme.actionButton.start.normal.BG_COLOR};
-            border-color: ${theme.actionButton.start.normal.BORDER_COLOR};
-            &:hover {
-                background-color: ${theme.actionButton.start.hover?.BG_COLOR};
-                border-color: ${theme.actionButton.start.hover?.BORDER_COLOR};
-            }
-        `}
+		${({ $isCleared, $isLocked, theme }) => {
+			return $isCleared
+				? `
+					background-color: ${theme.actionButton.cleared.normal.BG_COLOR};
+					border-color: ${theme.actionButton.cleared.normal.BORDER_COLOR};
+				`
+				: 
+				$isLocked
+				? `
+					background-color: ${theme.actionButton.locked.normal.BG_COLOR};
+					border: none;
+				` 
+				: 
+				`
+					background-color: ${theme.actionButton.start.normal.BG_COLOR};
+					border-color: ${theme.actionButton.start.normal.BORDER_COLOR};
+					&:hover {
+						background-color: ${theme.actionButton.start.hover?.BG_COLOR};
+						border-color: ${theme.actionButton.start.hover?.BORDER_COLOR};
+					}
+				`;
+		}
+	}
 		color: #FFFFFF !important;
 	}
 `;
 
 const Card: FunctionComponent<Props> = (props: Props) => {
-	const { level, title, description, thumbnail, isCleared, onStart } = props;
+	const { level, title, description, thumbnail, isCleared, isLocked, onStart } = props;
 
 	const [openDialog] = useDialog();
 
@@ -119,8 +131,8 @@ const Card: FunctionComponent<Props> = (props: Props) => {
 			</p>
 			<p className={'title'}>{title}</p>
 			<p className={'desc'}>{description}</p>
-			<GameLevelButton isCleared={isCleared} disabled={isCleared} onClick={handleStart}>
-				{isCleared ? 'Cleared' : 'Start'}
+			<GameLevelButton $isCleared={isCleared} $isLocked={isLocked} disabled={isCleared || isLocked} onClick={handleStart}>
+				{isCleared ? 'Cleared' : isLocked ? 'Locked' : 'Start'}
 			</GameLevelButton>
 		</Container>
 	);

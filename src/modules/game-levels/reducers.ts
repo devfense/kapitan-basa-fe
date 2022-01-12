@@ -25,8 +25,11 @@ export const gamelevel = (state = initialState, action: GameLevelTypes): GameLav
 				isLoading: {
 					$set: false,
 				},
+				count: {
+					$set: action.payload.count
+				},
 				list: {
-					$set: [...action.payload],
+					$set: [...action.payload.list],
 				},
 			},
 		});
