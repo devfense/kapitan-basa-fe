@@ -5,7 +5,7 @@ import { CircularProgress } from '@material-ui/core';
 const Container = styled.div`
     position: absolute;
     width: 100%;
-    height: 100%;
+    height: 95%;
     display: flex;
     justify-content: center;
     align-items: center;
