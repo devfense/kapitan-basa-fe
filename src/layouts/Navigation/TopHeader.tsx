@@ -4,8 +4,8 @@ import Cookies from 'js-cookie';
 import { COOKIE } from '../../constants/variables';
 import styled from 'styled-components';
 import UserProfile from '../../components/AvatarProfile/index';
-import { useLocaleContext } from '../../providers/localization';
 import Button from '../../components/Button/index';
+import UserInfo from '../../components/UserInfo/index';
 
 const Container = styled.div`
 	height: 55px;
@@ -95,32 +95,6 @@ const ProfileContainer = styled.div`
 	}
 `;
 
-const TextBox = styled.div`
-	display: flex;
-	flex-direction: column;
-	line-height: 1.4rem;
-	margin-bottom: 0.4rem;
-	cursor: pointer;
-`;
-const Placeholder = styled.span`
-	font-size: 0.8rem;
-	color: ${({ theme }) => theme.profile.placeholder.normal.TEXT_COLOR};
-
-	@media screen and (max-width: 420px) {
-		font-size: 0.8rem;
-	}
-`;
-
-const TextLabel = styled.span`
-	font-size: 0.9rem;
-	font-weight: 600;
-	color: ${({ theme }) => theme.profile.label.normal.TEXT_COLOR};
-
-	@media screen and (max-width: 420px) {
-		font-size: 0.9rem;
-	}
-`;
-
 const LogoutButton = styled(Button)`
 	&.MuiButton-root {
 		height: 37px;
@@ -140,7 +114,6 @@ type TopHeaderProps = {
 };
 
 const TopHeader: FunctionComponent<TopHeaderProps> = (props: TopHeaderProps) => {
-	const strings = useLocaleContext();
 
 	const [popover, setPopOver] = useState(false);
 
@@ -164,22 +137,7 @@ const TopHeader: FunctionComponent<TopHeaderProps> = (props: TopHeaderProps) => 
 				</SubContainer>
 				{popover && (
 					<ProfileContainer>
-						<TextBox>
-							<Placeholder>{strings.userName}</Placeholder>
-							<TextLabel>Juan Dela Cruz</TextLabel>
-						</TextBox>
-						<TextBox>
-							<Placeholder>{strings.studID}</Placeholder>
-							<TextLabel>87-240398</TextLabel>
-						</TextBox>
-						<TextBox>
-							<Placeholder>{strings.gradeSection}</Placeholder>
-							<TextLabel>10 / Our Lady of Peace</TextLabel>
-						</TextBox>
-						<TextBox>
-							<Placeholder>{strings.emailAddress}</Placeholder>
-							<TextLabel>juandelacruz@gmail.com</TextLabel>
-						</TextBox>
+						<UserInfo />
 						<LogoutButton onClick={handleLogout} shade="outlined">
 							Logout
 						</LogoutButton>
