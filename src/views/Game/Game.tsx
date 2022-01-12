@@ -39,6 +39,9 @@ const LevelsContainer = styled.div`
 	padding: 15px 0px;
 	min-height: 70vh;
 	max-height: 700px;
+	@media screen and (max-width: 1880px) {
+		max-height: unset;
+	}
 	box-sizing: border-box;
 `;
 
