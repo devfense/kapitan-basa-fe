@@ -27,21 +27,32 @@ export type Story = {
 	quiz: Quiz[];
 };
 
-export type GameLevel = {
+export type GameLevelView = {
 	id: number;
 	levelName: string;
 	levelTitle: string;
 	levelDescription: string;
 	levelBgImgUrl: string;
-	story: Story;
+};
+
+export type GameLevel = {
+	gameLevelId: number;
+	levelScore: number | null;
+	levelScoreSummary: number | null;
+	levelRemarks: string | null;
+	levelCleared: boolean;
+	locked: boolean;
+	gameLevelData: GameLevelView;
 };
 
 export type WithLoadingList<T> = {
 	isLoading: boolean;
+	count?: number;
 	list: T;
 };
 
 export type TGetGameLevelsData = {
+	studentID: string;
 	limit: number;
 	page?: number;
 };
@@ -51,7 +62,7 @@ export interface GameLavelState {
 }
 
 export type GetGameLevelsRequest = Action<typeof Actions.GET_GAME_LEVELS_START, TGetGameLevelsData>;
-type GetGameLevelsAction = Action<typeof Actions.GET_GAME_LEVELS_FULFILLED, GameLevel[]>;
+type GetGameLevelsAction = Action<typeof Actions.GET_GAME_LEVELS_FULFILLED, { count?: number; list: GameLevel[] }>;
 type GetGameLevelsError = Action<typeof Actions.GET_GAME_LEVELS_REJECTED>;
 
 export type GameLevelTypes = GetGameLevelsRequest | GetGameLevelsAction | GetGameLevelsError;
