@@ -33,7 +33,7 @@ const PageLabel = styled.span<{ size?: 'subheader' | 'header' }>`
 
 const UserListContainer = styled.div`
 	height: auto;
-	max-height: 85%;
+	max-height: 80vh;
 	background-color: ${({ theme }) => theme.app.content.normal.SECONDARY_BG_COLOR};
 	border-radius: 13px;
 	padding: 10px 25px;

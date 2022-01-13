@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { Avatar as MuiAvatar } from '@material-ui/core';
-import Profile from '../../assets/media/profile/Profile';
+
 import styled from 'styled-components';
 
 const Avatar = styled(MuiAvatar)`
@@ -22,7 +22,7 @@ type ProfileProps = {
 const AvatarProfile: FunctionComponent<ProfileProps> = (props: ProfileProps) => {
 	return (
 		<div>
-			<Avatar alt="Dylan Lee" src={Profile.Dylan} onClick={props.handleProfileClick} />
+			<Avatar alt="Dylan Lee"  onClick={props.handleProfileClick} />
 		</div>
 	);
 };
