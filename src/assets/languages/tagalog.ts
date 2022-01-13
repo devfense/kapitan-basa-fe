@@ -9,7 +9,7 @@ const strings: LocaleStrings = {
 	edit: 'I-Edit',
 	gameLevel: 'Mga Level ng Laro',
 	login: 'Login',
-	logingIn: 'Loging in',
+	logingIn: 'Logging In',
 	name: 'Pangalan',
 	tabResults: 'Tabyulasyon at Mga Resulta',
 	userMgmt: 'Pag-manage ng Users',

@@ -9,7 +9,7 @@ const strings: LocaleStrings = {
 	edit: 'Edit',
 	gameLevel: 'Game Levels',
 	login: 'Login',
-	logingIn: 'Loging in',
+	logingIn: 'Logging In',
 	name: 'Name',
 	tabResults: 'Tabulation/Results',
 	userMgmt: 'User Management',

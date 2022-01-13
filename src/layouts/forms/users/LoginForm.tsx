@@ -203,7 +203,7 @@ const LoginForm: FunctionComponent<Props> = (props: Props) => {
 				/>
 			</TextBox>
 			<StyledButton disabled={isLoggingIn} shade="filled" onClick={handleLogin}>
-				{isLoggingIn ? strings.logingIn + '....' : strings.login}
+				{isLoggingIn ? strings.logingIn + '...' : strings.login}
 			</StyledButton>
 			<LineBox>
 				<Line />
