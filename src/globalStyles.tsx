@@ -3,7 +3,8 @@ import styled from 'styled-components';
 export const Container = styled.div`
 	width: 100%;
 	overflow: auto;
-	padding: 35px 35px;
+	padding: 30px 35px;
+	box-sizing: border-box;
 
 	@media screen and (max-width: 1024px) {
 		height: auto;

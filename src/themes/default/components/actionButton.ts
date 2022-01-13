@@ -64,6 +64,13 @@ const colors: ActionButtonColors = {
 			TEXT_COLOR: '#FFFFFF',
 		},
 	},
+	locked: {
+		normal: {
+			BG_COLOR: 'rgba(55, 135, 255, 0.5)',
+			TEXT_COLOR: '#FFFFFF',
+			BORDER_COLOR: 'rgba(55, 135, 255, 0.5)'
+		},
+	},
 };
 
 export default colors;

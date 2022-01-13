@@ -10,12 +10,12 @@ interface Properties {
 
 type States = {
 	normal: Properties;
-} & Partial<Record<'active' | 'hover' | 'checked' | 'unchecked' | 'error', Properties>>;
+} & Partial<Record<'active' | 'hover' | 'checked' | 'unchecked' | 'error' | 'disabled', Properties>>;
 
 export type ActionTypes = 'edit' | 'delete' | 'approve' | 'reject';
 
 export type AppColors = Record<'nav' | 'header' | 'sidebar' | 'brand' | 'content', States>;
-export type GameButtonColors = Record<'start' | 'cleared', States>;
+export type GameButtonColors = Record<'start' | 'cleared' | 'locked', States>;
 export type ActionButtonColors = Record<ActionTypes, States> & GameButtonColors;
 export type ButtonColors = Record<'filled' | 'outlined', States>;
 export type DialogColors = Record<'header' | 'body', States>;
@@ -24,17 +24,19 @@ export type ProfileColors = Record<'placeholder' | 'label' | 'background', State
 export type MenuItemColors = Record<'text', States>;
 export type CardColors = Record<'primary' | 'secondary', States>;
 export type IconColors = Record<'primary' | 'secondary', States>;
+export type NavigatorColors = Record<'page' | 'nav', States>;
 
 interface Theme {
 	app: AppColors;
 	actionButton: ActionButtonColors;
 	button: ButtonColors;
-	dialog: DialogColors;
-	textField: TextFieldColors;
-	profile: ProfileColors;
-	menuItem: MenuItemColors;
 	card: CardColors;
+	dialog: DialogColors;
 	icon: IconColors;
+	menuItem: MenuItemColors;
+	navigator: NavigatorColors;
+	profile: ProfileColors;
+	textField: TextFieldColors;
 }
 
 export type AppTheme = Record<'default', Theme>;
