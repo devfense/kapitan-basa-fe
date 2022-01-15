@@ -44,12 +44,6 @@ type ProfileProps = {
 
 const AvatarProfile: FunctionComponent<ProfileProps> = (props: ProfileProps) => {
 
-	// const color = ['69dbf8', 'f8b569', 'f86969'];
-
-	// const random = Math.floor(Math.random() * color.length);
-
-	// const selectedColor = color[random];
-
 	function stringToColor(string: string) {
 		let hash = 0;
 		let i;
