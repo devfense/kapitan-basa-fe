@@ -1,13 +1,14 @@
 import React, { FunctionComponent } from 'react';
+import { Avatar } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import styled from 'styled-components';
 
-const ColorRandom = styled.div`
+const AvatarUser = styled(Avatar)`
 	width: 40px;
 	height: 40px;
 	border-radius: 100%;
-	background-color: #f86969;
+	/* background-color: #f86969; */
 	border: 3px solid ${({ theme }) => theme.app.header.normal.SECONDARY_BG_COLOR};
 	display: flex;
 	justify-content: center;
@@ -43,19 +44,49 @@ type ProfileProps = {
 
 const AvatarProfile: FunctionComponent<ProfileProps> = (props: ProfileProps) => {
 
-	const color = ['69dbf8', 'f8b569', 'f86969'];
+	// const color = ['69dbf8', 'f8b569', 'f86969'];
 
-	const random = Math.floor(Math.random() * color.length);
+	// const random = Math.floor(Math.random() * color.length);
 
-	const selectedColor = color[random];
+	// const selectedColor = color[random];
+
+	function stringToColor(string: string) {
+		let hash = 0;
+		let i;
+	  
+		/* eslint-disable no-bitwise */
+		for (i = 0; i < string.length; i++) {
+		  hash = string.charCodeAt(i) + ((hash << 5) - hash);
+		}
+	  
+		let color = '#';
+	  
+		for (i = 0; i < 3; i++) {
+		  const value = (hash >> (i * 8)) & 0xff;
+		  color += `00${value.toString(16)}`.substr(-2);
+		}
+		/* eslint-enable no-bitwise */
+	  
+		return color;
+	}
+
+	function stringAvatar(name: string) {
+		console.log(name);
+		return {
+		  style: {
+			backgroundColor: stringToColor(name),
+		  },
+		  children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
+		};
+	}
 
 	const { userInfo } =  useSelector((state: RootState) => state.users);
 
 	return (
 		<>
-			<ColorRandom style={{backgroundColor: `#${selectedColor}`}} onClick={props.handleProfileClick}>
+			<AvatarUser {...stringAvatar(`${userInfo.firstName} ${userInfo.lastName}`)} onClick={props.handleProfileClick}>
 				<Initial>{userInfo.firstName[0]}{userInfo.lastName[0]}</Initial>
-			</ColorRandom>
+			</AvatarUser>
 		</>
 	);
 };
