@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode, useEffect, useState } from 'react';
+import React, { FunctionComponent, ReactNode, useEffect } from 'react';
 import { Container } from '../../globalStyles';
 import styled from 'styled-components';
 import { useLocaleContext } from '../../providers/localization';
@@ -58,7 +58,6 @@ const UserManagament: FunctionComponent<Props> = ({
 }) => {
 	const strings = useLocaleContext();
 	const [openDialog] = useDialog();
-	const [ test, setTest ] = useState(false);
 
 	useEffect(() => {
 		getUserList();
