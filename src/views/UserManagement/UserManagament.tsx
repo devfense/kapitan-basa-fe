@@ -58,6 +58,7 @@ const UserManagament: FunctionComponent<Props> = ({
 }) => {
 	const strings = useLocaleContext();
 	const [openDialog] = useDialog();
+	const [ test, setTest ] = useState(false);
 
 	useEffect(() => {
 		getUserList();
