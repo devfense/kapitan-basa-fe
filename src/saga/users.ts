@@ -1,7 +1,7 @@
 import type { SagaIterator } from 'redux-saga';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 import { api, Response } from '../helpers/api';
-import { Actions, ApproveUserRequest, User } from '../modules/users/types';
+import { Actions, ApproveUserRequest, DeleteUserRequest, User } from '../modules/users/types';
 
 export function* getUsers(): SagaIterator {
 	try {
@@ -13,6 +13,21 @@ export function* getUsers(): SagaIterator {
 		yield put({ type: Actions.GET_USERS_FULFILLED, payload: data.content });
 	} catch (error) {
 		yield put({ type: Actions.GET_USERS_REJECTED, payload: undefined });
+	}
+}
+
+export function* deleteUser(action: DeleteUserRequest): SagaIterator {
+	const id = action.payload;
+	try {
+		yield call(api, {
+			url: `/student/delete-record/${id}`,
+			method: 'delete',
+		});
+
+		// yield put({ type: Actions.GET_USERS_START });
+		yield put({ type: Actions.DELETE_USER_FULFILLED });
+	} catch (error) {
+		yield put({type: Actions.DELETE_USER_REJECTED, payload: undefined });
 	}
 }
 
@@ -53,7 +68,9 @@ export function* rejectUser(action: ApproveUserRequest): SagaIterator {
 export function* userWatchers(): SagaIterator {
 	yield all([
 		takeLatest(Actions.GET_USERS_START, getUsers),
+		takeLatest(Actions.DELETE_USER_START, deleteUser),
 		takeLatest(Actions.APPROVE_USER_START, approveUser),
 		takeLatest(Actions.REJECT_USER_START, rejectUser),
+		takeLatest(Actions.DELETE_USER_FULFILLED, getUsers),
 	]);
 }

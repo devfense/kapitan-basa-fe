@@ -10,7 +10,7 @@ const colors: ButtonColors = {
 		},
 		hover: {
 			BG_COLOR: '#5d9dff',
-			SECONDARY_BG_COLOR: '#66C8E3',
+			SECONDARY_BG_COLOR: '#FF9391', //#66C8E3 previous
 			TEXT_COLOR: '#FFFFFF',
 		},
 		error: {

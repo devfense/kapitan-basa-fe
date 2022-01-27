@@ -6,6 +6,9 @@ export enum Actions {
 	GET_USERS_START = '@user/GET_USERS_START',
 	GET_USERS_FULFILLED = '@user/GET_USERS_FULFILLED',
 	GET_USERS_REJECTED = '@user/GET_USERS_REJECTED',
+	DELETE_USER_START = '@user/DELETE_USER_START',
+	DELETE_USER_FULFILLED = '@user/DELETE_USER_FULFILLED',
+	DELETE_USER_REJECTED = '@user/DELETE_USER_REJECTED',
 	APPROVE_USER_START = '@user/APPROVE_USER_START',
 	APPROVE_USER_FULFILLED = '@user/APPROVE_USER_FULFILLED',
 	APPROVE_USER_REJECTED = '@user/APPROVE_USER_REJECTED',
@@ -27,6 +30,7 @@ export interface UserState {
 export type TAccountType = 'STUDENT' | 'TEACHER' | 'ADMIN';
 
 export interface User {
+	id: number;
 	firstName: string;
 	middleName?: string;
 	lastName: string;
@@ -55,6 +59,10 @@ export type GetUsersRequest = Action<typeof Actions.GET_USERS_START>;
 export type GetUsersAction = Action<typeof Actions.GET_USERS_FULFILLED, AllUser[]>;
 export type GetUsersError = Action<typeof Actions.GET_USERS_REJECTED>;
 
+export type DeleteUserRequest = Action<typeof Actions.DELETE_USER_START, number>;
+export type DeleteUserAction = Action<typeof Actions.DELETE_USER_FULFILLED>;
+export type DeleteUserError = Action<typeof Actions.DELETE_USER_REJECTED>;
+
 export type ApproveUserRequest = Action<typeof Actions.APPROVE_USER_START, string>;
 export type ApproveUserAction = Action<typeof Actions.APPROVE_USER_FULFILLED, string>;
 export type ApproveUserError = Action<typeof Actions.APPROVE_USER_REJECTED>;
@@ -68,6 +76,9 @@ export type UserTypes =
 	| GetUsersRequest
 	| GetUsersAction
 	| GetUsersError
+	| DeleteUserRequest
+	| DeleteUserAction
+	| DeleteUserError
 	| ApproveUserRequest
 	| ApproveUserAction
 	| ApproveUserError

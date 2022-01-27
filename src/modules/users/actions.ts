@@ -10,6 +10,11 @@ export const getUserList = (): UserTypes => ({
 	type: Actions.GET_USERS_START,
 });
 
+export const deleteStudentUser = (id: number): UserTypes => ({
+	payload: id,
+	type: Actions.DELETE_USER_START,
+});
+
 export const approveUser = (id: string): UserTypes => ({
 	payload: id,
 	type: Actions.APPROVE_USER_START,

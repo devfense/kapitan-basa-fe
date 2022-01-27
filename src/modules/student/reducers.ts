@@ -3,6 +3,7 @@ import { Actions, StudentTypes, StudentState } from './types';
 // import { ApiResponseDetails } from '../../helpers/api';
 
 const mockUser = {
+	id: 0,
 	studentID: '00221',
 	lastName: '',
 	username: 'hey',

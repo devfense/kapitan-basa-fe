@@ -12,7 +12,7 @@ import DialogProvider from './providers/dialog';
 
 const Root: FunctionComponent = () => {
 	const contextStrings = useLocaleContext();
-	contextStrings.setLanguage('en');
+	contextStrings.setLanguage('tagalog');
 
 	return (
 		<Provider store={store}>

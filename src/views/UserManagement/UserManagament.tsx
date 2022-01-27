@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode, useEffect } from 'react';
+import React, { FunctionComponent, ReactNode, useEffect, useState } from 'react';
 import { Container } from '../../globalStyles';
 import styled from 'styled-components';
 import { useLocaleContext } from '../../providers/localization';
@@ -54,6 +54,7 @@ const UserManagament: FunctionComponent<Props> = ({
 	getUserList,
 	approveUser,
 	rejectUser,
+	deleteStudentUser,
 }) => {
 	const strings = useLocaleContext();
 	const [openDialog] = useDialog();
@@ -78,6 +79,10 @@ const UserManagament: FunctionComponent<Props> = ({
 				rejectUser(id);
 			};
 
+			const handleDelete = (id: number) => () => {
+				deleteStudentUser(id);
+			};
+
 			return {
 				...user,
 				approve: (
@@ -95,7 +100,9 @@ const UserManagament: FunctionComponent<Props> = ({
 						<ActionButton types={'edit'} onClick={handleEdit}>
 							{strings.edit}
 						</ActionButton>{' '}
-						<ActionButton types={'delete'}>{strings.delete}</ActionButton>
+						<ActionButton types={'delete'} onClick={handleDelete(user.id)}>
+							{strings.delete}
+						</ActionButton>
 					</>
 				),
 			};
@@ -155,6 +162,7 @@ const mapDispatchToProps = {
 	getUserList: userActions.getUserList,
 	approveUser: userActions.approveUser,
 	rejectUser: userActions.rejectUser,
+	deleteStudentUser: userActions.deleteStudentUser
 };
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
