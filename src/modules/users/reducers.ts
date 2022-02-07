@@ -5,6 +5,7 @@ import { Actions, UserTypes, UserState, AccountStatus } from './types';
 export const mockUser = {
 	id: 0,
 	firstName: '',
+	middleName: '',
 	lastName: '',
 	grade: '',
 	section: '',
@@ -59,13 +60,6 @@ export const users = (state = initialState, action: UserTypes): UserState => {
 		});
 	}
 	case Actions.DELETE_USER_FULFILLED: {
-		// const indx = state.users.list.findIndex((u) => u.username === action.payload);
-		// const list = [...state.users.list];
-		// if (indx !== -1) {
-		// 	list[indx] = {
-		// 		...list[indx],
-		// 	};
-		// }
 		return update(state, {
 			users: {
 				isLoading: { $set: false }
@@ -79,6 +73,13 @@ export const users = (state = initialState, action: UserTypes): UserState => {
 			}
 		});
 	}
+	case Actions.APPROVE_USER_START: {
+		return update(state, {
+			users: {
+				isLoading: { $set: true }
+			}
+		});
+	}
 	case Actions.APPROVE_USER_FULFILLED: {
 		const indx = state.users.list.findIndex((u) => u.username === action.payload);
 		const list = [...state.users.list];
@@ -89,6 +90,7 @@ export const users = (state = initialState, action: UserTypes): UserState => {
 			};
 			return update(state, {
 				users: {
+					isLoading: { $set: false },
 					list: {
 						$set: [...list],
 					},

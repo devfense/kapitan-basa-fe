@@ -15,16 +15,22 @@ interface Props<T> {
 }
 
 export const ContentTable = styled(MuiTableContainer)`
-	border-collapse: collapse;
-	margin: 0 0 20px;
-	font-size: 0.9em;
-	min-width: 100%;
-	border-radius: 5px 5px 0 0;
-	overflow: hidden;
-	/* box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px; */
+	&.MuiTableContainer-root {
+		border-collapse: collapse;
+		margin: 0 0 20px;
+		font-size: 0.9em;
+		min-width: 100%;
+		border-radius: 5px 5px 0 0;
+		overflow: hidden;
+	}
+	
 `;
 
-const MainTable = styled(MuiTable)``;
+const MainTable = styled(MuiTable)`
+	&.MuiTable-root {
+		box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+	}
+`;
 
 export const TableHeader = styled(MuiTableHead)`
 	background-color: ${({ theme }) => theme.app.content.normal.BG_COLOR};
@@ -44,6 +50,10 @@ export const TableRow = styled(MuiTableRow)`
 
 export const TableHead = styled(MuiTableCell)`
 	padding: 12px 15px;
+	&.MuiTableCell-root {
+		color: ${({ theme }) => theme.app.content.normal.TEXT_COLOR};
+		font-weight: 600;
+	}
 	&:nth-child(5) {
 		text-align: center;
 	}

@@ -10,6 +10,9 @@ import EditUser from '../../dialogs/users/EditUser';
 import { RootState } from '../../store';
 import * as userActions from '../../modules/users/actions';
 import { connect, ConnectedProps } from 'react-redux';
+import { CircularProgress } from '@material-ui/core';
+// import BlockUi from 'react-block-ui';
+// import 'react-block-ui/style.css';
 
 const LabelContainer = styled.div`
 	height: 40px;
@@ -58,6 +61,7 @@ const UserManagament: FunctionComponent<Props> = ({
 }) => {
 	const strings = useLocaleContext();
 	const [openDialog] = useDialog();
+	const [selectedUsername, setSelectedUsername] = React.useState('');
 
 	useEffect(() => {
 		getUserList();
@@ -73,6 +77,7 @@ const UserManagament: FunctionComponent<Props> = ({
 
 			const handleApprove = (id: string) => () => {
 				approveUser(id);
+				setSelectedUsername(id);
 			};
 
 			const handleReject = (id: string) => () => {
@@ -88,10 +93,10 @@ const UserManagament: FunctionComponent<Props> = ({
 				approve: (
 					<>
 						<ActionButton types={'approve'} onClick={handleApprove(user.username)}>
-							Approve
-						</ActionButton>{' '}
+							{ userList.isLoading && selectedUsername === user.username ? <CircularProgress size={20} style={{ color: '#FFF' }} /> : 'Approve' }
+						</ActionButton>
 						<ActionButton types={'reject'} onClick={handleReject(user.username)}>
-							Reject
+							Rejected
 						</ActionButton>
 					</>
 				),
@@ -117,7 +122,7 @@ const UserManagament: FunctionComponent<Props> = ({
 	const columns = {
 		lastName: 'Last Name',
 		firstName: 'First Name',
-		middlName: 'MiddleName',
+		middleName: 'MiddleName',
 		section: 'Section',
 		grade: 'Grade',
 		emailAddress: 'Email Address',

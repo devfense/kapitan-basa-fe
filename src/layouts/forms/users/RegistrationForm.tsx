@@ -67,7 +67,7 @@ const RegistrationForm: FunctionComponent<Props> = (props: Props) => {
 
 	const handleRegistration = (data: RegistrationData) => {
 		data.grade = data.grade.toString();
-		const regData = _.omit(data, 'confirmPassword', 'middleName', 'suffix');
+		const regData = _.omit(data, 'confirmPassword', 'suffix');
 		registerStudent(regData);
 		setIsRegistering(true);
 	};

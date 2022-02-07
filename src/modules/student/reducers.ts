@@ -4,13 +4,13 @@ import { Actions, StudentTypes, StudentState } from './types';
 
 const mockUser = {
 	id: 0,
-	studentID: '00221',
+	studentID: '',
 	lastName: '',
-	username: 'hey',
+	username: '',
 	firstName: '',
 	middleName: '',
-	section: 'Kamagong',
-	grade: '7',
+	section: '',
+	grade: '',
 	emailAddress: '',
 	accountStatus: AccountStatus.ACTIVE,
 };

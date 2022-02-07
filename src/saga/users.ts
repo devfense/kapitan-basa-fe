@@ -1,7 +1,7 @@
 import type { SagaIterator } from 'redux-saga';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 import { api, Response } from '../helpers/api';
-import { Actions, ApproveUserRequest, DeleteUserRequest, User } from '../modules/users/types';
+import { Actions, ApproveUserRequest, RejectUserRequest, DeleteUserRequest, User } from '../modules/users/types';
 
 export function* getUsers(): SagaIterator {
 	try {
@@ -48,7 +48,7 @@ export function* approveUser(action: ApproveUserRequest): SagaIterator {
 	}
 }
 
-export function* rejectUser(action: ApproveUserRequest): SagaIterator {
+export function* rejectUser(action: RejectUserRequest): SagaIterator {
 	try {
 		yield call(api, {
 			url: '/users/process-approve-reject',
