@@ -3,13 +3,14 @@ import { Actions, StudentTypes, StudentState } from './types';
 // import { ApiResponseDetails } from '../../helpers/api';
 
 const mockUser = {
-	studentID: '00221',
+	id: 0,
+	studentID: '',
 	lastName: '',
-	username: 'hey',
+	username: '',
 	firstName: '',
 	middleName: '',
-	section: 'Kamagong',
-	grade: '7',
+	section: '',
+	grade: '',
 	emailAddress: '',
 	accountStatus: AccountStatus.ACTIVE,
 };

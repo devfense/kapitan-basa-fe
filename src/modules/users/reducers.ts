@@ -3,7 +3,9 @@ import { Actions, UserTypes, UserState, AccountStatus } from './types';
 // import { ApiResponseDetails } from '../../helpers/api';
 
 export const mockUser = {
+	id: 0,
 	firstName: '',
+	middleName: '',
 	lastName: '',
 	grade: '',
 	section: '',
@@ -50,6 +52,34 @@ export const users = (state = initialState, action: UserTypes): UserState => {
 			},
 		});
 	}
+	case Actions.DELETE_USER_START: {
+		return update(state, {
+			users: {
+				isLoading: { $set: true }
+			}
+		});
+	}
+	case Actions.DELETE_USER_FULFILLED: {
+		return update(state, {
+			users: {
+				isLoading: { $set: false }
+			}
+		});
+	}
+	case Actions.DELETE_USER_REJECTED: {
+		return update(state, {
+			users: {
+				isLoading: { $set: false }
+			}
+		});
+	}
+	case Actions.APPROVE_USER_START: {
+		return update(state, {
+			users: {
+				isLoading: { $set: true }
+			}
+		});
+	}
 	case Actions.APPROVE_USER_FULFILLED: {
 		const indx = state.users.list.findIndex((u) => u.username === action.payload);
 		const list = [...state.users.list];
@@ -60,6 +90,7 @@ export const users = (state = initialState, action: UserTypes): UserState => {
 			};
 			return update(state, {
 				users: {
+					isLoading: { $set: false },
 					list: {
 						$set: [...list],
 					},

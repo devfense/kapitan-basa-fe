@@ -37,7 +37,22 @@ const Button = styled(MuiButton)<{ shade?: 'filled' | 'outlined' }>`
 			font-family: 'QuickSand-Bold', sans-serif;
 			text-transform: none;
 		}
-
+		@media screen and (max-width: 760px) {
+		&.MuiButton-root {
+			&:hover {
+			cursor: pointer;
+			background-color: ${({ theme, shade }) =>
+		shade === 'outlined'
+			? theme.button.outlined.hover?.BG_COLOR
+			: theme.button.filled.hover?.BG_COLOR};
+				color: ${({ theme, shade }) =>
+		shade === 'outlined'
+			? theme.button.outlined.hover?.TEXT_COLOR
+			: theme.button.filled.hover?.TEXT_COLOR};
+				transition: all 0.2s ease-in-out;
+			}
+		}
+		}
 		/* shade === 'outlined' ? theme.button.outlined.normal.BG_COLOR : theme.button.filled.normal.BG_COLOR} */
 	}
 `;

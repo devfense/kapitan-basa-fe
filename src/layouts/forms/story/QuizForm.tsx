@@ -1,6 +1,8 @@
 import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
 import Button from '../../../components/Button';
+import ResultsDialog from '../../../dialogs/content/ResultsDialog';
+import { useDialog } from '../../../providers/dialog';
 
 const Container = styled.div`
 	> form {
@@ -76,6 +78,15 @@ const quizzes = [
 const choiceLetter = ['a', 'b', 'c', 'd'];
 
 const QuizForm: FunctionComponent = () => {
+
+	const [openDialog, closeDialog] = useDialog();
+
+	const handleDoneQuiz = () => {
+		openDialog({
+			children: <ResultsDialog closeDialog={closeDialog} score="0" message="You have failed the exam!" result={false}/>,
+		});
+	};
+
 	return (
 		<Container>
 			<form>
@@ -98,7 +109,7 @@ const QuizForm: FunctionComponent = () => {
 					);
 				})}
 			</form>
-			<Button>Submit</Button>
+			<Button onClick={handleDoneQuiz}>Submit</Button>
 		</Container>
 	);
 };

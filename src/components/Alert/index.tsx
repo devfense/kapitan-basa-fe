@@ -41,6 +41,10 @@ const ModalContainer = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+
+	@media screen and (max-width: 1024px) {
+		padding: 0;
+	}
 `;
 
 const BoxImage = styled.img`
@@ -48,6 +52,15 @@ const BoxImage = styled.img`
 	height: 25%;
 	object-fit: cover;
 	padding: 25px 0px 20px;
+
+	@media screen and (max-width: 375px) {
+		margin-right: 15px;
+		margin-left: 12px;
+	}
+	@media screen and (max-width: 360px) {
+		margin-right: 25px;
+		margin-left: 12px;
+	}
 `;
 
 const Title = styled.span`
@@ -55,12 +68,35 @@ const Title = styled.span`
 	font-weight: 600;
 	color: #000;
 	padding: 0px 0px 10px;
+
+	@media screen and (max-width: 375px) {
+		margin-right: 15px;
+		margin-left: 12px;
+	}
+	@media screen and (max-width: 360px) {
+		margin-right: 25px;
+		margin-left: 12px;
+	}
 `;
 
 const Message = styled.span`
 	font-size: 1rem;
 	color: #000;
 	padding: 0px 0px 20px;
+	text-align: center;
+
+	@media screen and (max-width: 1024px) {
+		width: 60%;
+		font-size: 0.7rem;
+	}
+	@media screen and (max-width: 375px) {
+		margin-right: 15px;
+		margin-left: 12px;
+	}
+	@media screen and (max-width: 360px) {
+		margin-right: 25px;
+		margin-left: 12px;
+	}
 `;
 
 type Props = AlertInfoProps;

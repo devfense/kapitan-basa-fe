@@ -10,6 +10,9 @@ import EditUser from '../../dialogs/users/EditUser';
 import { RootState } from '../../store';
 import * as userActions from '../../modules/users/actions';
 import { connect, ConnectedProps } from 'react-redux';
+import { CircularProgress } from '@material-ui/core';
+// import BlockUi from 'react-block-ui';
+// import 'react-block-ui/style.css';
 
 const LabelContainer = styled.div`
 	height: 40px;
@@ -33,7 +36,7 @@ const PageLabel = styled.span<{ size?: 'subheader' | 'header' }>`
 
 const UserListContainer = styled.div`
 	height: auto;
-	max-height: 85%;
+	max-height: 80vh;
 	background-color: ${({ theme }) => theme.app.content.normal.SECONDARY_BG_COLOR};
 	border-radius: 13px;
 	padding: 10px 25px;
@@ -54,9 +57,11 @@ const UserManagament: FunctionComponent<Props> = ({
 	getUserList,
 	approveUser,
 	rejectUser,
+	deleteStudentUser,
 }) => {
 	const strings = useLocaleContext();
 	const [openDialog] = useDialog();
+	const [selectedUsername, setSelectedUsername] = React.useState('');
 
 	useEffect(() => {
 		getUserList();
@@ -72,10 +77,15 @@ const UserManagament: FunctionComponent<Props> = ({
 
 			const handleApprove = (id: string) => () => {
 				approveUser(id);
+				setSelectedUsername(id);
 			};
 
 			const handleReject = (id: string) => () => {
 				rejectUser(id);
+			};
+
+			const handleDelete = (id: number) => () => {
+				deleteStudentUser(id);
 			};
 
 			return {
@@ -83,10 +93,10 @@ const UserManagament: FunctionComponent<Props> = ({
 				approve: (
 					<>
 						<ActionButton types={'approve'} onClick={handleApprove(user.username)}>
-							Approve
-						</ActionButton>{' '}
+							{ userList.isLoading && selectedUsername === user.username ? <CircularProgress size={20} style={{ color: '#FFF' }} /> : 'Approve' }
+						</ActionButton>
 						<ActionButton types={'reject'} onClick={handleReject(user.username)}>
-							Reject
+							Rejected
 						</ActionButton>
 					</>
 				),
@@ -95,7 +105,9 @@ const UserManagament: FunctionComponent<Props> = ({
 						<ActionButton types={'edit'} onClick={handleEdit}>
 							{strings.edit}
 						</ActionButton>{' '}
-						<ActionButton types={'delete'}>{strings.delete}</ActionButton>
+						<ActionButton types={'delete'} onClick={handleDelete(user.id)}>
+							{strings.delete}
+						</ActionButton>
 					</>
 				),
 			};
@@ -110,7 +122,7 @@ const UserManagament: FunctionComponent<Props> = ({
 	const columns = {
 		lastName: 'Last Name',
 		firstName: 'First Name',
-		middlName: 'MiddleName',
+		middleName: 'MiddleName',
 		section: 'Section',
 		grade: 'Grade',
 		emailAddress: 'Email Address',
@@ -155,6 +167,7 @@ const mapDispatchToProps = {
 	getUserList: userActions.getUserList,
 	approveUser: userActions.approveUser,
 	rejectUser: userActions.rejectUser,
+	deleteStudentUser: userActions.deleteStudentUser
 };
 
 const connector = connect(mapStateToProps, mapDispatchToProps);

@@ -36,6 +36,12 @@ const InlineFields = styled.div`
 	}
 `;
 
+const StyledButton = styled(Button)`
+	&:disabled {
+		color: #FFF !important;
+	}
+`;
+
 type RegistrationData = StudentUser & { confirmPassword: string };
 
 type Props = RegistrationProps & ReduxProps;
@@ -61,7 +67,7 @@ const RegistrationForm: FunctionComponent<Props> = (props: Props) => {
 
 	const handleRegistration = (data: RegistrationData) => {
 		data.grade = data.grade.toString();
-		const regData = _.omit(data, 'confirmPassword', 'middleName', 'suffix');
+		const regData = _.omit(data, 'confirmPassword', 'suffix');
 		registerStudent(regData);
 		setIsRegistering(true);
 	};
@@ -157,9 +163,9 @@ const RegistrationForm: FunctionComponent<Props> = (props: Props) => {
 						{...register('confirmPassword')}
 					/>
 				</HelperContainer>
-				<Button disabled={isRegistering} shade="filled" type="submit">
+				<StyledButton disabled={isRegistering} shade="filled" type="submit">
 					{isRegistering ? 'Submitting...' : submitText ?? 'Submit'}
-				</Button>
+				</StyledButton>
 			</form>
 		</Container>
 	);

@@ -101,6 +101,9 @@ const StyledTextField = styled(TextField)`
 
 const StyledButton = styled(Button)`
 	width: 75%;
+	&:disabled {
+		color: #FFF !important;
+	}
 	&.MuiButtonBase-root {
 		margin-top: 1.2rem;
 	}
@@ -200,7 +203,7 @@ const LoginForm: FunctionComponent<Props> = (props: Props) => {
 				/>
 			</TextBox>
 			<StyledButton disabled={isLoggingIn} shade="filled" onClick={handleLogin}>
-				{isLoggingIn ? strings.logingIn + '....' : strings.login}
+				{isLoggingIn ? strings.logingIn + '...' : strings.login}
 			</StyledButton>
 			<LineBox>
 				<Line />

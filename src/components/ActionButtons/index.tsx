@@ -4,6 +4,7 @@ import styled from 'styled-components';
 const ActionButton = styled(MuiButton)<{ types?: 'edit' | 'delete' | 'approve' | 'reject' }>`
 	&.MuiButton-root {
 		height: 30px;
+		width: 85px;
 		font-size: 0.9rem;
 		font-weight: 500;
 		color: ${({ theme, types }) => {
@@ -35,7 +36,7 @@ const ActionButton = styled(MuiButton)<{ types?: 'edit' | 'delete' | 'approve' |
 		}
 	}};
 		border-radius: 5px;
-		margin: 15px 0px;
+		margin: 15px 3px;
 		&:hover {
 			background-color: ${({ theme, types }) => {
 		switch (types) {
