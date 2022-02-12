@@ -1,7 +1,7 @@
 import type { SagaIterator } from 'redux-saga';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 import { api, Response } from '../helpers/api';
-import { Actions, GameLevel, GetGameLevelsRequest } from '../modules/game-levels/types';
+import { Actions, GameLevel, GetGameLevelsRequest, GetQuizRequest, GetStoryRequest } from '../modules/game-levels/types';
 
 export function* getGameLevels(action: GetGameLevelsRequest): SagaIterator {
 	const { studentID, limit, page } = action.payload;
@@ -12,12 +12,44 @@ export function* getGameLevels(action: GetGameLevelsRequest): SagaIterator {
 		});
 		
 		yield put({ type: Actions.GET_GAME_LEVELS_FULFILLED, payload: { count: data.totalRecords, list: data.content } });
-		/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
 	} catch (error: any) {
 		yield put({ type: Actions.GET_GAME_LEVELS_REJECTED, payload: error.response.data });
 	}
 }
 
+export function* getStory(action: GetStoryRequest): SagaIterator {
+	const { id } = action.payload;
+
+	try {
+		const { data }= yield call(api, {
+			url: `/game-levels/get-story/${id}`,
+			method: 'get',
+		});
+		yield put({ type: Actions.GET_STORY_FULFILLED, payload: { id, storyContent: data.content.stories[0].storyContent } });
+		/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+	} catch (e: any) {
+		yield put({ type: Actions.GET_STORY_START, payload: e.response.data });
+	}
+}
+
+export function* getQuiz(action: GetQuizRequest): SagaIterator {
+	const { id } = action.payload;
+
+	try {
+		const { data } = yield call(api, {
+			url: `/game-levels/get-question/${id}`,
+			method: 'get',
+		});
+		
+		yield put({ type: Actions.GET_QUIZ_FULFILLED, payload: data.content[0].questions });
+		/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+	} catch (e: any) {
+		yield put({ type: Actions.GET_QUIZ_REJECTED, payload: e.response.data });
+	}
+}
+
 export function* gameLevelWatchers(): SagaIterator {
 	yield all([takeLatest(Actions.GET_GAME_LEVELS_START, getGameLevels)]);
+	yield all([takeLatest(Actions.GET_STORY_START, getStory)]);
+	yield all([takeLatest(Actions.GET_QUIZ_START, getQuiz)]);
 }

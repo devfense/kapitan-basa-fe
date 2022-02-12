@@ -114,13 +114,8 @@ const GameLevelButton = styled(Button)<{ $isCleared?: boolean, $isLocked?: boole
 const Card: FunctionComponent<Props> = (props: Props) => {
 	const { level, title, description, thumbnail, isCleared, isLocked, onStart } = props;
 
-	const [openDialog] = useDialog();
-
 	const handleStart = () => {
 		if (typeof onStart === 'function') onStart();
-		openDialog({
-			children: <StoryDialog level={level} title={title} />,
-		});
 	};
 
 	return (

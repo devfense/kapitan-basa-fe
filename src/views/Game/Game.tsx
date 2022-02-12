@@ -10,6 +10,8 @@ import { RootState } from '../../store';
 import { GameLevel } from '../../modules/game-levels/types';
 import Navigator from './Navigator';
 import LoadingOverlay from '../../components/Progress/LoadingOverlay';
+import { useDialog } from '../../providers/dialog';
+import StoryDialog from '../../dialogs/content/StoryDialog';
 
 const LabelContainer = styled.div`
 	height: 40px;
@@ -58,6 +60,7 @@ type Props = ReduxProps;
 
 const Game: FunctionComponent<Props> = ({ levels, studentID, getGameLevels }) => {
 	const strings = useLocaleContext();
+	const [openDialog, closeDialog] = useDialog();
 
 	useEffect(() => {
 		getGameLevels({ studentID: studentID ?? '', limit: 8, page: 1 });
@@ -73,6 +76,12 @@ const Game: FunctionComponent<Props> = ({ levels, studentID, getGameLevels }) =>
 
 	const onNavigate = (p: number) => {
 		getGameLevels({ studentID: studentID ?? '', limit: 8, page: p });
+	};
+
+	const onStart = (gId: number, lvl: number, title: string) => () => {
+		openDialog({
+			children: <StoryDialog storyId={gId} level={lvl} title={title} onClose={closeDialog} />
+		});
 	};
 
 	return (
@@ -97,6 +106,7 @@ const Game: FunctionComponent<Props> = ({ levels, studentID, getGameLevels }) =>
 									thumbnail={<Thumbnail bg={g.gameLevelData.levelBgImgUrl} />}
 									isCleared={g.levelCleared}
 									isLocked={g.locked}
+									onStart={onStart(g.gameLevelId, parseInt(g.gameLevelData.levelName, 10), g.gameLevelData.levelTitle)}
 									key={i}
 								/>
 							);

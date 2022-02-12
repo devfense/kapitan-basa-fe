@@ -6,6 +6,14 @@ const initialState: GameLavelState = {
 		isLoading: false,
 		list: [],
 	},
+	currentStory: {
+		isLoading: false,
+		item: null
+	},
+	currentQuiz: {
+		isLoading: false,
+		list: [],
+	}
 };
 
 export const gamelevel = (state = initialState, action: GameLevelTypes): GameLavelState => {
@@ -41,6 +49,36 @@ export const gamelevel = (state = initialState, action: GameLevelTypes): GameLav
 					$set: false,
 				},
 			},
+		});
+	}
+	case Actions.GET_STORY_START: {
+		return update(state, {
+			currentStory: {
+				isLoading: { $set: true }
+			}
+		});
+	}
+	case Actions.GET_STORY_FULFILLED: {
+		return update(state, {
+			currentStory: {
+				isLoading: { $set: false },
+				item: { $set: { ...action.payload }}
+			}
+		});
+	}
+	case Actions.GET_QUIZ_START: {
+		return update(state, {
+			currentQuiz: {
+				isLoading: { $set: true }
+			}
+		});
+	}
+	case Actions.GET_QUIZ_FULFILLED: {
+		return update(state, {
+			currentQuiz: {
+				isLoading: { $set: false },
+				list: { $set: [ ...action.payload ]}
+			}
 		});
 	}
 	default: {
