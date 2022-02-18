@@ -27,6 +27,9 @@ const Brand = styled.label<{ fontSizing?: string }>`
 	@media screen and (max-height: 720px) {
 		font-size: ${({ fontSizing }) => (fontSizing === 'medium' ? '0.9rem' : '1rem')} !important;
 	}
+	@media screen and (max-height: 667px) {
+		font-size: ${({ fontSizing }) => (fontSizing === 'medium' ? '1rem' : '1.2rem')} !important;
+	}
 `;
 
 type Props = BrandNameProps;

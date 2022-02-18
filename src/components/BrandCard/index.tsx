@@ -51,6 +51,9 @@ const Typography = styled.span`
 	@media screen and (max-height: 720px) {
 		font-size: 9px !important;
 	}
+	@media screen and (max-height: 667px) {
+		font-size: 11px !important;
+	}
 `;
 
 type BrandedCard = {
