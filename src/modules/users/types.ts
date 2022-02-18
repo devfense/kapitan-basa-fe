@@ -44,6 +44,8 @@ export interface User {
 
 type WithLoadingList<T> = {
 	isLoading: boolean;
+	isLoadingApprove: boolean;
+	isLoadingReject: boolean;
 	list: T;
 };
 

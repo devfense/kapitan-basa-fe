@@ -18,6 +18,8 @@ const initialState: UserState = {
 	userInfo: mockUser,
 	users: {
 		isLoading: false,
+		isLoadingApprove: false,
+		isLoadingReject: false,
 		list: [],
 	},
 };
@@ -76,7 +78,7 @@ export const users = (state = initialState, action: UserTypes): UserState => {
 	case Actions.APPROVE_USER_START: {
 		return update(state, {
 			users: {
-				isLoading: { $set: true }
+				isLoadingApprove: { $set: true }
 			}
 		});
 	}
@@ -90,7 +92,7 @@ export const users = (state = initialState, action: UserTypes): UserState => {
 			};
 			return update(state, {
 				users: {
-					isLoading: { $set: false },
+					isLoadingApprove: { $set: false },
 					list: {
 						$set: [...list],
 					},
@@ -104,7 +106,7 @@ export const users = (state = initialState, action: UserTypes): UserState => {
 	case Actions.REJECT_USER_START: {
 		return update(state, {
 			users: {
-				isLoading: { $set: true }
+				isLoadingReject: { $set: true }
 			}
 		});
 	}
@@ -118,7 +120,7 @@ export const users = (state = initialState, action: UserTypes): UserState => {
 			};
 			return update(state, {
 				users: {
-					isLoading: { $set: false },
+					isLoadingReject: { $set: false },
 					list: {
 						$set: [...list],
 					},

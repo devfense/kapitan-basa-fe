@@ -91,11 +91,11 @@ const UserManagament: FunctionComponent<Props> = ({
 				...user,
 				approve: (
 					<>
-						<ActionButton types={'approve'} disabled={userList.isLoading && selectedUsername === user.username} onClick={handleApprove(user.username)}>
-							{ userList.isLoading && selectedUsername === user.username ? <CircularProgress size={20} style={{ color: '#FFF' }} /> : 'Approve' }
+						<ActionButton types={'approve'} disabled={userList.isLoadingApprove && selectedUsername === user.username} onClick={handleApprove(user.username)}>
+							{ userList.isLoadingApprove && selectedUsername === user.username ? <CircularProgress size={20} style={{ color: '#FFF' }} /> : 'Approve' }
 						</ActionButton>
-						<ActionButton types={'reject'} disabled={userList.isLoading && selectedUsername === user.username} onClick={handleReject(user.username)}>
-							{ userList.isLoading && selectedUsername === user.username ? <CircularProgress size={20} style={{ color: '#FFF' }} /> : 'Rejected' }
+						<ActionButton types={'reject'} disabled={userList.isLoadingReject && selectedUsername === user.username} onClick={handleReject(user.username)}>
+							{ userList.isLoadingReject && selectedUsername === user.username ? <CircularProgress size={20} style={{ color: '#FFF' }} /> : 'Rejected' }
 						</ActionButton>
 					</>
 				),
