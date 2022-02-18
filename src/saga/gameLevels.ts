@@ -12,8 +12,8 @@ export function* getGameLevels(action: GetGameLevelsRequest): SagaIterator {
 		});
 		
 		yield put({ type: Actions.GET_GAME_LEVELS_FULFILLED, payload: { count: data.totalRecords, list: data.content } });
-	} catch (error: any) {
-		yield put({ type: Actions.GET_GAME_LEVELS_REJECTED, payload: error.response.data });
+	} catch (error) {
+		yield put({ type: Actions.GET_GAME_LEVELS_REJECTED, payload: undefined });
 	}
 }
 
@@ -25,6 +25,7 @@ export function* getStory(action: GetStoryRequest): SagaIterator {
 			url: `/game-levels/get-story/${id}`,
 			method: 'get',
 		});
+		console.log(data);
 		yield put({ type: Actions.GET_STORY_FULFILLED, payload: { id, storyContent: data.content.stories[0].storyContent } });
 		/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
 	} catch (e: any) {

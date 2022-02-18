@@ -93,6 +93,10 @@ const TitleBox = styled.div`
 	align-items: center !important;
 	padding: 0px 30px;
 	margin-bottom: 11%;
+
+	@media screen and (max-width: 420px) {
+		margin-bottom: 11%;
+	}
 `;
 
 const MobileIcon = styled.div`

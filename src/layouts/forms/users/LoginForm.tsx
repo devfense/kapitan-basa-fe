@@ -182,7 +182,7 @@ const LoginForm: FunctionComponent<Props> = (props: Props) => {
 		<LoginContainer>
 			<AvatarLogo />
 			<TitleBox>
-				<BrandName />
+				<BrandName fontSize='large'/>
 			</TitleBox>
 			<TextBox>
 				<StyledTextField

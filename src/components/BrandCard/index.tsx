@@ -33,10 +33,23 @@ const Typography = styled.span`
 	display: flex;
 	justify-content: center;
 	font-weight: 500;
-	font-size: 0.9rem;
+	font-size: 0.9rem !important;
 	color: ${({ theme }) => theme.card.secondary.normal.TEXT_COLOR};
 	@media screen and (max-width: 960px) {
-		font-size: 11px;
+		font-size: 13px !important;
+	}
+	@media screen and (max-width: 540px) {
+		font-size: 12px !important;
+	}
+	@media screen and (max-width: 414px) {
+		font-size: 12px !important;
+	}
+	@media screen and (min-width: 320px) {
+		font-size: 12px;
+	}
+
+	@media screen and (max-height: 720px) {
+		font-size: 9px !important;
 	}
 `;
 
@@ -50,7 +63,7 @@ const BrandCard: FunctionComponent<BrandedCard> = (props: BrandedCard) => {
 			<AvatarContainer>
 				<AvatarLogo />
 			</AvatarContainer>
-			<BrandName />
+			<BrandName fontSize='medium'/>
 			<DetailContainer>
 				<Typography>{props.strings}</Typography>
 			</DetailContainer>

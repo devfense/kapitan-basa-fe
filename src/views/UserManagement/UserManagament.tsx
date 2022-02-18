@@ -11,8 +11,6 @@ import { RootState } from '../../store';
 import * as userActions from '../../modules/users/actions';
 import { connect, ConnectedProps } from 'react-redux';
 import { CircularProgress } from '@material-ui/core';
-// import BlockUi from 'react-block-ui';
-// import 'react-block-ui/style.css';
 
 const LabelContainer = styled.div`
 	height: 40px;
@@ -82,6 +80,7 @@ const UserManagament: FunctionComponent<Props> = ({
 
 			const handleReject = (id: string) => () => {
 				rejectUser(id);
+				setSelectedUsername(id);
 			};
 
 			const handleDelete = (id: number) => () => {
@@ -92,11 +91,11 @@ const UserManagament: FunctionComponent<Props> = ({
 				...user,
 				approve: (
 					<>
-						<ActionButton types={'approve'} onClick={handleApprove(user.username)}>
+						<ActionButton types={'approve'} disabled={userList.isLoading && selectedUsername === user.username} onClick={handleApprove(user.username)}>
 							{ userList.isLoading && selectedUsername === user.username ? <CircularProgress size={20} style={{ color: '#FFF' }} /> : 'Approve' }
 						</ActionButton>
-						<ActionButton types={'reject'} onClick={handleReject(user.username)}>
-							Rejected
+						<ActionButton types={'reject'} disabled={userList.isLoading && selectedUsername === user.username} onClick={handleReject(user.username)}>
+							{ userList.isLoading && selectedUsername === user.username ? <CircularProgress size={20} style={{ color: '#FFF' }} /> : 'Rejected' }
 						</ActionButton>
 					</>
 				),

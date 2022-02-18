@@ -101,6 +101,13 @@ export const users = (state = initialState, action: UserTypes): UserState => {
 			...state,
 		};
 	}
+	case Actions.REJECT_USER_START: {
+		return update(state, {
+			users: {
+				isLoading: { $set: true }
+			}
+		});
+	}
 	case Actions.REJECT_USER_FULFILLED: {
 		const indx = state.users.list.findIndex((u) => u.username === action.payload);
 		const list = [...state.users.list];
@@ -111,6 +118,7 @@ export const users = (state = initialState, action: UserTypes): UserState => {
 			};
 			return update(state, {
 				users: {
+					isLoading: { $set: false },
 					list: {
 						$set: [...list],
 					},
