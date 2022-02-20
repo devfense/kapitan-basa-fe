@@ -1,10 +1,13 @@
 import React, { FunctionComponent, ReactNode } from 'react';
 import styled from 'styled-components';
 import Button from '../Button';
-import { useDialog } from '../../providers/dialog';
-import StoryDialog from '../../dialogs/content/StoryDialog';
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+// import { useDialog } from '../../providers/dialog';
+// import StoryDialog from '../../dialogs/content/StoryDialog';
 
 interface Props {
+	loading?: boolean;
 	gameId?: string;
 	level: number;
 	title: string;
@@ -111,8 +114,43 @@ const GameLevelButton = styled(Button)<{ $isCleared?: boolean, $isLocked?: boole
 	}
 `;
 
+const ThumbnailBox = styled.div`
+	margin-bottom: 20px;
+	height: 104px;
+`;
+
+const LevelContainer = styled.div`
+	display: flex;
+	justify-content: flex-end;
+	margin: 0;
+	margin-bottom: 5px;
+`;
+
+const TitleContainer = styled.div`
+	margin-bottom: 10px;
+`;
+
+const DescriptionContainer = styled.div`
+	height: 50px;
+	margin-bottom: 15px;
+`;
+
+const ButtonContainer = styled.div`
+	margin-top: 10px;
+`;
+
+const DescriptionSkeleton = () => {
+	return (
+		<DescriptionContainer>
+			<Skeleton borderRadius="10px"/>
+			<Skeleton width={320} borderRadius="10px"/>
+			<Skeleton width={270} borderRadius="10px"/>
+		</DescriptionContainer>
+	);
+};
+
 const Card: FunctionComponent<Props> = (props: Props) => {
-	const { level, title, description, thumbnail, isCleared, isLocked, onStart } = props;
+	const { level, title, description, thumbnail, isCleared, isLocked, onStart, loading } = props;
 
 	const handleStart = () => {
 		if (typeof onStart === 'function') onStart();
@@ -120,15 +158,40 @@ const Card: FunctionComponent<Props> = (props: Props) => {
 
 	return (
 		<Container>
-			{thumbnail ? thumbnail : <ThumbnailPlaceholder />}
-			<p className={'level'}>
-				Level <span>{level}</span>
-			</p>
-			<p className={'title'}>{title}</p>
-			<p className={'desc'}>{description}</p>
-			<GameLevelButton $isCleared={isCleared} $isLocked={isLocked} disabled={isCleared || isLocked} onClick={handleStart}>
-				{isCleared ? 'Cleared' : isLocked ? 'Locked' : 'Start'}
-			</GameLevelButton>
+			{loading ?
+				<ThumbnailBox> 
+					<Skeleton height={100} borderRadius="10px"/>
+				</ThumbnailBox> : 
+				thumbnail ? thumbnail : <ThumbnailPlaceholder />
+			}
+			{loading ? 
+				<LevelContainer>
+					<Skeleton count={1} width={50} borderRadius="10px"/>
+				</LevelContainer> :
+				<p className={'level'}>
+					Level <span>{level}</span>
+				</p>
+			}
+			{loading ? 
+				<TitleContainer>
+				<Skeleton count={1} width={200} borderRadius="10px"/> 
+				</TitleContainer> :
+				<p className={'title'}>
+					{title}
+				</p>
+			}
+			{loading ?
+				<DescriptionSkeleton /> :
+				<p className={'desc'}>{description}</p>
+			}
+			{loading ?
+				<ButtonContainer>
+					<Skeleton height={43} borderRadius={50}/>
+				</ButtonContainer> :
+				<GameLevelButton $isCleared={isCleared} $isLocked={isLocked} disabled={isCleared || isLocked} onClick={handleStart}>
+					{isCleared ? 'Cleared' : isLocked ? 'Locked' : 'Start'}
+				</GameLevelButton>
+			}
 		</Container>
 	);
 };
