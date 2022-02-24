@@ -56,17 +56,17 @@ const Message = styled.span`
     margin: 35px 0px 70px;
 `;
 
-const ButtonClose = styled(Button)<{ BTN?: string }>`
+const ButtonClose = styled(Button)<{ btn?: string }>`
     &.MuiButton-root {
         border-radius: 25px;
         height: 52px;
         min-width: 150px;
         font-size: 1.1rem;
-        background-color: ${({theme, BTN}) => BTN === 'PASSED' ? theme.button.filled.normal.BG_COLOR : theme.button.filled.error?.BG_COLOR};
-        border-color: ${({theme, BTN}) => BTN === 'PASSED' ? theme.button.filled.normal.BG_COLOR : theme.button.filled.error?.BG_COLOR};
+        background-color: ${({theme, btn}) => btn === 'PASSED' ? theme.button.filled.normal.BG_COLOR : theme.button.filled.error?.BG_COLOR};
+        border-color: ${({theme, btn}) => btn === 'PASSED' ? theme.button.filled.normal.BG_COLOR : theme.button.filled.error?.BG_COLOR};
         &:hover {
-            background-color: ${({theme, BTN}) => BTN === 'PASSED' ? theme.button.filled.normal.BG_COLOR : theme.button.filled.hover?.SECONDARY_BG_COLOR};
-            border-color: ${({theme, BTN}) => BTN === 'PASSED' ? theme.button.filled.normal.BG_COLOR : theme.button.filled.hover?.SECONDARY_BG_COLOR};
+            background-color: ${({theme, btn}) => btn === 'PASSED' ? theme.button.filled.normal.BG_COLOR : theme.button.filled.hover?.SECONDARY_BG_COLOR};
+            border-color: ${({theme, btn}) => btn === 'PASSED' ? theme.button.filled.normal.BG_COLOR : theme.button.filled.hover?.SECONDARY_BG_COLOR};
         }
     }
 `;
@@ -82,7 +82,7 @@ const ResultsDialog: FunctionComponent<Props> = (props: Props) => {
             <Score>{score}</Score>
             <BoxImage src={result === 'PASSED' ? AlertType.Success : AlertType.Failed} />
             <Message>{message}</Message>
-            <ButtonClose BTN={result} onClick={closeDialog}>{result === 'PASSED' ? 'Awesome' : 'Try Again'}</ButtonClose>
+            <ButtonClose btn={result} onClick={closeDialog}>{result === 'PASSED' ? 'Awesome' : 'Try Again'}</ButtonClose>
         </ResultContainer>
     );
 };
