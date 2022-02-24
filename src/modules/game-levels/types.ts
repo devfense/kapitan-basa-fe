@@ -9,7 +9,10 @@ export enum Actions {
 	GET_STORY_REJECTED = '@game-levels/GET_STORY_REJECTED',
 	GET_QUIZ_START = '@game-levels/GET_QUIZ_START',
 	GET_QUIZ_FULFILLED = '@game-levels/GET_QUIZ_FULFILLED',
-	GET_QUIZ_REJECTED = '@game-levels/GET_QUIZ_REJECTED'
+	GET_QUIZ_REJECTED = '@game-levels/GET_QUIZ_REJECTED',
+	SUBMIT_QUIZ_START = '@game-levels/SUBMIT_QUIZ_START',
+	SUBMIT_QUIZ_FULFILLED = '@game-levels/SUBMIT_QUIZ_FULFILLED',
+	SUBMIT_QUIZ_REJECTED = '@game-levels/SUBMIT_QUIZ_REJECTED'
 }
 
 export type Choices = 'A' | 'B' | 'C' | 'D';
@@ -24,10 +27,29 @@ export type TGetQuizData = {
 	id: number;
 }
 
+// New Set Data - Dylan
+export type TSubmitQuizAnswer = {
+	studentID: string;
+	gameLevelID: number;
+	answers: TAnswers;
+}
+
+// New Set Data - Dylan
+export type ResultResponse = {
+	id: number;
+	studentID: string;
+	gameLevelId: number;
+	levelScore: number | null;
+	levelScoreSummary: string | null;
+	levelRemarks: string;
+	levelCleared: boolean;
+}
+
 export type Quiz = {
 	id: number;
 	questionContent: string;
 	choices: Choice[];
+	answers: TAnswers;
 };
 
 export type TGetStoryData = {
@@ -71,16 +93,22 @@ export type WithLoadingItem<T> = {
 
 export type TGetGameLevelsData = {
 	studentID: string;
-	limit: number;
+	limit?: number;
 	page?: number;
 };
 
-export type TAnswers = { storyID: number; questionId: number; answerLetter: string }[];
+export type WithLoadingItemResult<T> = {
+	isLoading: boolean;
+	result: T | null;
+}
+
+export type TAnswers = { storyID: number; questionID: number; answerLetter: string }[];
 
 export interface GameLavelState {
 	levels: WithLoadingList<GameLevel>;
 	currentStory: WithLoadingItem<Story>;
 	currentQuiz: WithLoadingList<Quiz>;
+	quizResult: WithLoadingItemResult<ResultResponse>;
 }
 
 export type GetGameLevelsRequest = Action<typeof Actions.GET_GAME_LEVELS_START, TGetGameLevelsData>;
@@ -95,6 +123,10 @@ export type GetQuizRequest = Action<typeof Actions.GET_QUIZ_START, TGetQuizData>
 type GetQuizAction = Action<typeof Actions.GET_QUIZ_FULFILLED, Quiz[]>;
 type GetQuizError = Action<typeof Actions.GET_QUIZ_REJECTED>;
 
+export type SubmitQuizRequest = Action<typeof Actions.SUBMIT_QUIZ_START, TSubmitQuizAnswer>;
+type SubmitQuizAction = Action<typeof Actions.SUBMIT_QUIZ_FULFILLED, ResultResponse>;
+type SubmitQuizError = Action<typeof Actions.GET_GAME_LEVELS_REJECTED>;
+
 export type GameLevelTypes = 
 	| GetGameLevelsRequest 
 	| GetGameLevelsAction 
@@ -104,4 +136,7 @@ export type GameLevelTypes =
 	| GetStoryError 
 	| GetQuizRequest 
 	| GetQuizAction 
-	| GetQuizError;
+	| GetQuizError
+	| SubmitQuizRequest
+	| SubmitQuizAction
+	| SubmitQuizError;

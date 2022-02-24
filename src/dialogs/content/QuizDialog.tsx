@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useEffect } from 'react';
-import { connect, ConnectedProps, useSelector } from 'react-redux';
+import { connect, ConnectedProps } from 'react-redux';
 import styled from 'styled-components';
 import { DialogContainer } from '../../components/Dialog';
 import * as gameLevelActions from '../../modules/game-levels/actions';
@@ -9,7 +9,8 @@ import LoadingOverlay from '../../components/Progress/LoadingOverlay';
 import { TAnswers } from '../../modules/game-levels/types';
 
 interface QuizProps {
-	storyId?: number;
+	gameLevelId: number;
+	studentID?: string;
 	level: number;
 	title: string;
 	onClose?: () => void;
@@ -63,41 +64,46 @@ const TitleHeader: FunctionComponent<TitleProps> = ({ level, title }) => {
 	);
 };
 
+type Props = ReduxProps & QuizProps;
 
-type Props = QuizProps & ReduxProps;
-
-const QuizDialog: FunctionComponent<Props> = ({ storyId, level, title, getQuiz, onClose }) => {
-	const { currentQuiz } = useSelector((state: RootState) => ({
-		currentQuiz: state.gamelevel.currentQuiz
-	}));
+const QuizDialog: FunctionComponent<Props> = ({ gameLevelId, level, title, getQuiz, submitQuiz, onClose, studentID, currentQuiz }) => {
 
 	useEffect(() => {
-		if (storyId) getQuiz({ id: storyId});
+			if (gameLevelId) getQuiz({ id: gameLevelId });
 	}, []);
 
-	const handleSubmit = (answers: TAnswers) => {
+	const handleSubmit = (answer: TAnswers) => {
 		if (typeof onClose === 'function') onClose();
+		console.log({ studentID: studentID ?? '', gamelevelId: gameLevelId, answers: answer });
+		submitQuiz({ studentID: studentID ?? '', gameLevelID: gameLevelId, answers: answer });
 	}
 
 	const quizzes = currentQuiz.list.map((q) => ({
 		id: q.id,
 		question: q.questionContent,
-		choices: q.choices.sort((a, b) => a.choiceLetter < b.choiceLetter ? -1 : a.choiceLetter > b.choiceLetter ? 1 : 0 ).map((c) => (c.choiceDescription))
+		choices: q.choices.sort((a, b) => a.choiceLetter < b.choiceLetter ? -1 : a.choiceLetter > b.choiceLetter ? 1 : 0 ).map((c) => (c.choiceDescription)),
 	}));
 
 	return (
 		<StyledDialogContentContainer title={<TitleHeader level={level} title={title} />}>
 			{currentQuiz.isLoading && <LoadingOverlay />}
-			{!currentQuiz.isLoading && <QuizForm quizzes={quizzes} onSubmit={handleSubmit}/> }
+			{!currentQuiz.isLoading && <QuizForm quizzes={quizzes} handleQuizSubmit={handleSubmit} gameLevelId={gameLevelId} />}
 		</StyledDialogContentContainer>
 	);
 };
 
+const mapStateToProps = (state: RootState) => ({
+	currentQuiz: state.gamelevel.currentQuiz,
+	studentID: state.users.userInfo.studentID,
+	quizResult: state.gamelevel.quizResult
+});
+
 const mapDispatchToProps = {
 	getQuiz: gameLevelActions.getQuiz,
+	submitQuiz: gameLevelActions.submitQuiz
 };
 
-const connector = connect(null, mapDispatchToProps);
+const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type ReduxProps = ConnectedProps<typeof connector>;
 

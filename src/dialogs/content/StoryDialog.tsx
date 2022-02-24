@@ -10,7 +10,8 @@ import * as gameLevelActions from '../../modules/game-levels/actions';
 import QuizDialog from './QuizDialog';
 
 interface StoryProps {
-	storyId?: number;
+	gameLevelId: number;
+	studentID?: string;
 	level: number;
 	title: string;
 	content?: string;
@@ -66,21 +67,21 @@ const TitleHeader: FunctionComponent<TitleProps> = ({ level, title }) => {
 
 type Props = StoryProps & ReduxProps;
 
-const StoryDialog: FunctionComponent<Props> = ({ storyId, level, title, getStory, onClose }) => {
+const StoryDialog: FunctionComponent<Props> = ({ gameLevelId, level, title, getStory, onClose }) => {
 	const [openDialog, closeDialog] = useDialog();
 	const { currentStory } = useSelector((state: RootState) => ({
 		currentStory: state.gamelevel.currentStory
 	}));
 	
 	useEffect(() => {
-		if (storyId) getStory({ id: storyId });
+		if (gameLevelId) getStory({ id: gameLevelId });
 	}, []);
 
 	const handleDoneRead = () => {
 		if (typeof onClose === 'function') onClose();
 		setTimeout(() => 
 			openDialog({
-				children: <QuizDialog storyId={storyId} level={level} title={title} onClose={closeDialog}/>,
+				children: <QuizDialog gameLevelId={gameLevelId} level={level} title={title} onClose={closeDialog}/>,
 			}), 1000);
 	};
 	

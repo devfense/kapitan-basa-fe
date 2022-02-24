@@ -1,7 +1,7 @@
 import type { SagaIterator } from 'redux-saga';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 import { api, Response } from '../helpers/api';
-import { Actions, GameLevel, GetGameLevelsRequest, GetQuizRequest, GetStoryRequest } from '../modules/game-levels/types';
+import { Actions, GameLevel, GetGameLevelsRequest, GetQuizRequest, GetStoryRequest, SubmitQuizRequest, ResultResponse } from '../modules/game-levels/types';
 
 export function* getGameLevels(action: GetGameLevelsRequest): SagaIterator {
 	const { studentID, limit, page } = action.payload;
@@ -48,9 +48,23 @@ export function* getQuiz(action: GetQuizRequest): SagaIterator {
 		yield put({ type: Actions.GET_QUIZ_REJECTED, payload: e.response.data });
 	}
 }
+// New Request to API
+export function* submitQuiz(action: SubmitQuizRequest): SagaIterator {
+	try {
+		const { data }: Response<{ content: ResultResponse }> = yield call(api, {
+			url: '/game-levels/submit-quiz-answer',
+			data: action.payload,
+			method: 'post'
+		});
+		yield put({ type: Actions.SUBMIT_QUIZ_FULFILLED, payload: data.content });
+	} catch (error) {
+		yield put({ type: Actions.SUBMIT_QUIZ_REJECTED, payload: undefined });
+	}
+}
 
 export function* gameLevelWatchers(): SagaIterator {
 	yield all([takeLatest(Actions.GET_GAME_LEVELS_START, getGameLevels)]);
 	yield all([takeLatest(Actions.GET_STORY_START, getStory)]);
 	yield all([takeLatest(Actions.GET_QUIZ_START, getQuiz)]);
+	yield all([takeLatest(Actions.SUBMIT_QUIZ_START, submitQuiz)]);
 }

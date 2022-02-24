@@ -5,10 +5,13 @@ import Button from '../../../components/Button';
 import ResultsDialog from '../../../dialogs/content/ResultsDialog';
 import { TAnswers } from '../../../modules/game-levels/types';
 import { useDialog } from '../../../providers/dialog';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../store';
 
-interface Props {
+interface QuizProps {
 	quizzes: Array<{id: number; question: string; choices: string[]}>;
-	onSubmit?: (answers: TAnswers) => void;
+	handleQuizSubmit?: (answers: TAnswers) => void;
+	gameLevelId: number;
 }
 
 const Container = styled.div`
@@ -51,19 +54,38 @@ const Choice = styled.div`
 
 const choiceLetter = ['a', 'b', 'c', 'd'];
 
-const QuizForm: FunctionComponent<Props> = ({ quizzes, onSubmit }) => {
+type Props = QuizProps;
 
+const QuizForm: FunctionComponent<Props> = (props: Props) => {
+
+	const { quizResult } = useSelector((state: RootState) => ({
+		quizResult: state.gamelevel.quizResult.result
+	}));
+
+	const { quizzes, handleQuizSubmit, gameLevelId } = props;
 	const [openDialog, closeDialog] = useDialog();
 	const {
 		register,
 		handleSubmit,
-	} = useForm<TAnswers>();
+	} = useForm<{
+		answers: TAnswers
+	}>();
 
-	const handleDoneQuiz = (data: TAnswers) => {
+	const handleDoneQuiz = (data: { answers: TAnswers }) => {
 		console.log(data);
+		if (handleQuizSubmit) {
+			handleQuizSubmit(data.answers.map(x => {
+				return {
+					questionID:Number(x.questionID),
+					storyID:Number(x.storyID),
+					answerLetter: x.answerLetter
+				};
+			}));
+		}
+		setTimeout(() =>
 		openDialog({
-			children: <ResultsDialog closeDialog={closeDialog} score="0" message="You have failed the exam!" result={false}/>,
-		});
+			children: <ResultsDialog closeDialog={closeDialog} score={`Your score: ${quizResult?.levelScoreSummary}`} message={`You have ${quizResult?.levelRemarks} the exam.`} result={quizResult?.levelRemarks}/>,
+		}), 1000);
 	};
 
 	return (
@@ -73,12 +95,14 @@ const QuizForm: FunctionComponent<Props> = ({ quizzes, onSubmit }) => {
 					return (
 						<QuestionContainer key={indx}>
 							<p>{`${indx + 1}. ${q.question}`}</p>
+							<input type="hidden" {...register(`answers.${indx}.questionID`)} value={q.id}></input>
+							<input type="hidden" {...register(`answers.${indx}.storyID`)} value={gameLevelId}></input>
 							<ChoicesContainer>
 								{q.choices.map((choice, i) => {
 									const letter = choiceLetter[i];
 									return (
 										<Choice key={i}>
-											<input type="radio" {...register(`${q.id}.answerLetter`)} value={letter.toLocaleUpperCase()}/>
+											<input type="radio" {...register(`answers.${indx}.answerLetter`)} value={letter.toLocaleUpperCase()}/>
 											<label className="label">{`${letter}. ${choice}`}</label>
 										</Choice>
 									);

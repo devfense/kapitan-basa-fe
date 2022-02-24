@@ -90,7 +90,7 @@ const Game: FunctionComponent<Props> = ({ levels, studentID, getGameLevels }) =>
 
 	const onStart = (gId: number, lvl: number, title: string) => () => {
 		openDialog({
-			children: <StoryDialog storyId={gId} level={lvl} title={title} onClose={closeDialog} />
+			children: <StoryDialog gameLevelId={gId} level={lvl} title={title} onClose={closeDialog} />
 		});
 	};
 
