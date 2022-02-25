@@ -173,6 +173,13 @@ const LoginForm: FunctionComponent<Props> = (props: Props) => {
 		}
 	};
 
+	const keyPressHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
+		if (event.key === 'Enter') {
+			setIsLoggingIn(true);
+			authLogin(loginFields);
+		}
+	};
+
 	const handleLogin = () => {
 		setIsLoggingIn(true);
 		authLogin(loginFields);
@@ -182,12 +189,13 @@ const LoginForm: FunctionComponent<Props> = (props: Props) => {
 		<LoginContainer>
 			<AvatarLogo />
 			<TitleBox>
-				<BrandName />
+				<BrandName fontSize='large'/>
 			</TitleBox>
 			<TextBox>
 				<StyledTextField
 					type="username"
 					placeholder="Username"
+					onKeyPress={keyPressHandler}
 					onChange={(event) =>
 						setLoginFields((prev) => ({ ...prev, username: event.target.value }))
 					}
@@ -197,6 +205,7 @@ const LoginForm: FunctionComponent<Props> = (props: Props) => {
 				<StyledTextField
 					type="password"
 					placeholder="Password"
+					onKeyPress={keyPressHandler}
 					onChange={(event) =>
 						setLoginFields((prev) => ({ ...prev, password: event.target.value }))
 					}

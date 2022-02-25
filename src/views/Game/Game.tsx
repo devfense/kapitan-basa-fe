@@ -9,7 +9,11 @@ import * as gameLevelActions from '../../modules/game-levels/actions';
 import { RootState } from '../../store';
 import { GameLevel } from '../../modules/game-levels/types';
 import Navigator from './Navigator';
-import LoadingOverlay from '../../components/Progress/LoadingOverlay';
+// import LoadingOverlay from '../../components/Progress/LoadingOverlay';
+import { useDialog } from '../../providers/dialog';
+import StoryDialog from '../../dialogs/content/StoryDialog';
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const LabelContainer = styled.div`
 	height: 40px;
@@ -54,10 +58,19 @@ const Thumbnail = styled.div<{ bg: string }>`
 	background-repeat: no-repeat;
 `;
 
+const SkeletonContainer = styled.div`
+	margin-bottom: 15px;
+`;
+
+const SkeletonNavigator = styled.div`
+	margin-top: 10px;
+`;
+
 type Props = ReduxProps;
 
 const Game: FunctionComponent<Props> = ({ levels, studentID, getGameLevels }) => {
 	const strings = useLocaleContext();
+	const [openDialog, closeDialog] = useDialog();
 
 	useEffect(() => {
 		getGameLevels({ studentID: studentID ?? '', limit: 8, page: 1 });
@@ -75,14 +88,30 @@ const Game: FunctionComponent<Props> = ({ levels, studentID, getGameLevels }) =>
 		getGameLevels({ studentID: studentID ?? '', limit: 8, page: p });
 	};
 
+	const onStart = (gId: number, lvl: number, title: string) => () => {
+		openDialog({
+			children: <StoryDialog gameLevelId={gId} level={lvl} title={title} onClose={closeDialog} />
+		});
+	};
+
 	return (
 		<Container>
 			<LabelContainer>
-				<PageLabel>{strings.gameLevel}</PageLabel>
+				{
+					levels.isLoading ?
+						<Skeleton height={30} width={220} borderRadius="15px"/> :
+						<PageLabel>{strings.gameLevel}</PageLabel>
+				}
 			</LabelContainer>
-			<SearchBar searchTerm={onSearchChange} />
+			{ 
+				levels.isLoading ? 
+					<SkeletonContainer>
+						<Skeleton height={40} width={200} borderRadius="8px" />
+					</SkeletonContainer> : 
+					<SearchBar searchTerm={onSearchChange} />
+			}
 			<LevelsContainer>
-				{levels.isLoading && <LoadingOverlay /> }
+				{/* {levels.isLoading && <LoadingOverlay /> } */}
 				{levels.list.length > 0 &&
 					levels.list
 						.filter((g: GameLevel) =>
@@ -91,18 +120,25 @@ const Game: FunctionComponent<Props> = ({ levels, studentID, getGameLevels }) =>
 						.map((g: GameLevel, i) => {
 							return (
 								<Card
+									loading={levels.isLoading}
 									level={parseInt(g.gameLevelData.levelName, 10)}
 									description={g.gameLevelData.levelDescription}
 									title={g.gameLevelData.levelTitle}
 									thumbnail={<Thumbnail bg={g.gameLevelData.levelBgImgUrl} />}
 									isCleared={g.levelCleared}
 									isLocked={g.locked}
+									onStart={onStart(g.gameLevelId, parseInt(g.gameLevelData.levelName, 10), g.gameLevelData.levelTitle)}
 									key={i}
 								/>
 							);
 						})}
 			</LevelsContainer>
-			<Navigator limit={8} itemCount={levels.count || 0} onChange={onNavigate}/>
+			{ levels.isLoading ? 
+				<SkeletonNavigator>
+					<Skeleton height={30} width={280} borderRadius="15px" />
+				</SkeletonNavigator> :
+				<Navigator limit={8} itemCount={levels.count || 0} onChange={onNavigate}/>}
+		
 		</Container>
 	);
 };

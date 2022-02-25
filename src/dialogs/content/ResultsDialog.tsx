@@ -2,12 +2,11 @@ import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
 import AlertType from '../../assets/media/Alert/Alert';
 import Button from '../../components/Button/index';
-
 interface ResultProps {
     closeDialog: () => void;
     score: string;
     message: string;
-    result: boolean;
+    result?: string;
 }
 
 const ResultContainer = styled.div`
@@ -57,17 +56,17 @@ const Message = styled.span`
     margin: 35px 0px 70px;
 `;
 
-const ButtonClose = styled(Button)<{ BTN?: true | false }>`
+const ButtonClose = styled(Button)<{ btn?: string }>`
     &.MuiButton-root {
         border-radius: 25px;
         height: 52px;
         min-width: 150px;
         font-size: 1.1rem;
-        background-color: ${({theme, BTN}) => BTN ? theme.button.filled.normal.BG_COLOR : theme.button.filled.error?.BG_COLOR};
-        border-color: ${({theme, BTN}) => BTN ? theme.button.filled.normal.BG_COLOR : theme.button.filled.error?.BG_COLOR};
+        background-color: ${({theme, btn}) => btn === 'PASSED' ? theme.button.filled.normal.BG_COLOR : theme.button.filled.error?.BG_COLOR};
+        border-color: ${({theme, btn}) => btn === 'PASSED' ? theme.button.filled.normal.BG_COLOR : theme.button.filled.error?.BG_COLOR};
         &:hover {
-            background-color: ${({theme, BTN}) => BTN ? theme.button.filled.normal.BG_COLOR : theme.button.filled.hover?.SECONDARY_BG_COLOR};
-            border-color: ${({theme, BTN}) => BTN ? theme.button.filled.normal.BG_COLOR : theme.button.filled.hover?.SECONDARY_BG_COLOR};
+            background-color: ${({theme, btn}) => btn === 'PASSED' ? theme.button.filled.normal.BG_COLOR : theme.button.filled.hover?.SECONDARY_BG_COLOR};
+            border-color: ${({theme, btn}) => btn === 'PASSED' ? theme.button.filled.normal.BG_COLOR : theme.button.filled.hover?.SECONDARY_BG_COLOR};
         }
     }
 `;
@@ -80,10 +79,10 @@ const ResultsDialog: FunctionComponent<Props> = (props: Props) => {
 
     return (
         <ResultContainer>
-            <Score>Score: {score} / 5</Score>
-            <BoxImage src={result === true ? AlertType.Success : AlertType.Failed} />
+            <Score>{score}</Score>
+            <BoxImage src={result === 'PASSED' ? AlertType.Success : AlertType.Failed} />
             <Message>{message}</Message>
-            <ButtonClose BTN={result} onClick={closeDialog}>{result === true ? 'Awesome' : 'Try Again'}</ButtonClose>
+            <ButtonClose btn={result} onClick={closeDialog}>{result === 'PASSED' ? 'Awesome' : 'Try Again'}</ButtonClose>
         </ResultContainer>
     );
 };

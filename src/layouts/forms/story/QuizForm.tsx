@@ -1,8 +1,18 @@
 import React, { FunctionComponent } from 'react';
+import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import Button from '../../../components/Button';
 import ResultsDialog from '../../../dialogs/content/ResultsDialog';
+import { TAnswers } from '../../../modules/game-levels/types';
 import { useDialog } from '../../../providers/dialog';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../store';
+
+interface QuizProps {
+	quizzes: Array<{id: number; question: string; choices: string[]}>;
+	handleQuizSubmit?: (answers: TAnswers) => void;
+	gameLevelId: number;
+}
 
 const Container = styled.div`
 	> form {
@@ -42,64 +52,57 @@ const Choice = styled.div`
 	}
 `;
 
-const quizzes = [
-	{
-		questionId: 'q1',
-		question:
-			'What is the moral lesson of the story neds nem,sdi, umoerie saesdne. Mata ne ototo desu yo animore san sonku kare wa joudan desu. Hajime ta ka ni yo amiyanai desuka?',
-		choices: ['Blengblong', 'LeniLugaw', 'Packyut', 'IskongTrapo'],
-	},
-	{
-		questionId: 'q2',
-		question:
-			'What is the moral lesson of the story neds nem,sdi, umoerie saesdne. Mata ne ototo desu yo animore san sonku kare wa joudan desu. Hajime ta ka ni yo amiyanai desuka?',
-		choices: ['Blengblong', 'LeniLugaw', 'Packyut', 'IskongTrapo'],
-	},
-	{
-		questionId: 'q3',
-		question:
-			'What is the moral lesson of the story neds nem,sdi, umoerie saesdne. Mata ne ototo desu yo animore san sonku kare wa joudan desu. Hajime ta ka ni yo amiyanai desuka?',
-		choices: ['Blengblong', 'LeniLugaw', 'Packyut', 'IskongTrapo'],
-	},
-	{
-		questionId: 'q4',
-		question:
-			'What is the moral lesson of the story neds nem,sdi, umoerie saesdne. Mata ne ototo desu yo animore san sonku kare wa joudan desu. Hajime ta ka ni yo amiyanai desuka?',
-		choices: ['Blengblong', 'LeniLugaw', 'Packyut', 'IskongTrapo'],
-	},
-	{
-		questionId: 'q5',
-		question:
-			'What is the moral lesson of the story neds nem,sdi, umoerie saesdne. Mata ne ototo desu yo animore san sonku kare wa joudan desu. Hajime ta ka ni yo amiyanai desuka?',
-		choices: ['Blengblong', 'LeniLugaw', 'Packyut', 'IskongTrapo'],
-	},
-];
-
 const choiceLetter = ['a', 'b', 'c', 'd'];
 
-const QuizForm: FunctionComponent = () => {
+type Props = QuizProps;
 
+const QuizForm: FunctionComponent<Props> = (props: Props) => {
+
+	const { quizResult } = useSelector((state: RootState) => ({
+		quizResult: state.gamelevel.quizResult.result
+	}));
+
+	const { quizzes, handleQuizSubmit, gameLevelId } = props;
 	const [openDialog, closeDialog] = useDialog();
+	const {
+		register,
+		handleSubmit,
+	} = useForm<{
+		answers: TAnswers
+	}>();
 
-	const handleDoneQuiz = () => {
+	const handleDoneQuiz = (data: { answers: TAnswers }) => {
+		console.log(data);
+		if (handleQuizSubmit) {
+			handleQuizSubmit(data.answers.map(x => {
+				return {
+					questionID:Number(x.questionID),
+					storyID:Number(x.storyID),
+					answerLetter: x.answerLetter
+				};
+			}));
+		}
+		setTimeout(() =>
 		openDialog({
-			children: <ResultsDialog closeDialog={closeDialog} score="0" message="You have failed the exam!" result={false}/>,
-		});
+			children: <ResultsDialog closeDialog={closeDialog} score={`Your score: ${quizResult?.levelScoreSummary}`} message={`You have ${quizResult?.levelRemarks} the exam.`} result={quizResult?.levelRemarks}/>,
+		}), 1000);
 	};
 
 	return (
 		<Container>
-			<form>
+			<form onSubmit={handleSubmit(handleDoneQuiz)}>
 				{quizzes.map((q, indx) => {
 					return (
 						<QuestionContainer key={indx}>
 							<p>{`${indx + 1}. ${q.question}`}</p>
+							<input type="hidden" {...register(`answers.${indx}.questionID`)} value={q.id}></input>
+							<input type="hidden" {...register(`answers.${indx}.storyID`)} value={gameLevelId}></input>
 							<ChoicesContainer>
 								{q.choices.map((choice, i) => {
 									const letter = choiceLetter[i];
 									return (
 										<Choice key={i}>
-											<input type="radio" name={q.questionId} />
+											<input type="radio" {...register(`answers.${indx}.answerLetter`)} value={letter.toLocaleUpperCase()}/>
 											<label className="label">{`${letter}. ${choice}`}</label>
 										</Choice>
 									);
@@ -108,8 +111,8 @@ const QuizForm: FunctionComponent = () => {
 						</QuestionContainer>
 					);
 				})}
+				<Button type={'submit'}>Submit</Button>
 			</form>
-			<Button onClick={handleDoneQuiz}>Submit</Button>
 		</Container>
 	);
 };

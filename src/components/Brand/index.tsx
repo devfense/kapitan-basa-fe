@@ -1,30 +1,43 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
 
-const Brand = styled.label<{ medium?: 'medium' | 'large' }>`
+interface BrandNameProps {
+	fontSize?: string;
+};
+
+const Brand = styled.label<{ fontSizing?: string }>`
 	color: ${({ theme }) => theme.app.brand.normal.BG_COLOR};
-	font-size: ${({ medium }) => (medium === 'medium' ? '25px' : '1.7rem')} !important;
-	font-weight: ${({ medium }) => (medium === 'medium' ? '600' : '700')};
+	font-size: ${({ fontSizing }) => (fontSizing === 'medium' ? '1.2rem' : '1.4rem')} !important;
+	font-weight: ${({ fontSizing }) => (fontSizing === 'medium' ? '600' : '700')};
 	font-family: 'QuickSand-Bold', 'sans-serif';
 	> span {
 		font-family: 'QuickSand-Bold', 'sans-serif';
 		color: ${({ theme }) => theme.app.brand.normal.SECONDARY_BG_COLOR};
 	}
 	@media screen and (max-width: 960px) {
-		margin-top: 25px;
-		font-size: ${({ medium }) => (medium === 'medium' ? '1.2rem' : '1.5rem')};
+		font-size: ${({ fontSizing }) => (fontSizing === 'medium' ? '1.1rem' : '1.5rem')} !important;
 	}
 	@media screen and (max-width: 540px) {
-		font-size: ${({ medium }) => (medium === 'medium' ? '1.1rem' : '1.3rem')};
+		font-size: ${({ fontSizing }) => (fontSizing === 'medium' ? '1rem' : '1.3rem')} !important;
 	}
 	@media screen and (min-width: 320px) {
-		font-size: ${({ medium }) => (medium === 'medium' ? '1.1rem' : '1.2rem')};
+		font-size: ${({ fontSizing }) => (fontSizing === 'medium' ? '1.1rem' : '1.3rem')};
+	}
+
+	@media screen and (max-height: 720px) {
+		font-size: ${({ fontSizing }) => (fontSizing === 'medium' ? '0.9rem' : '1rem')} !important;
+	}
+	@media screen and (max-height: 667px) {
+		font-size: ${({ fontSizing }) => (fontSizing === 'medium' ? '1rem' : '1.2rem')} !important;
 	}
 `;
 
-const BrandName = (): JSX.Element => {
+type Props = BrandNameProps;
+
+const BrandName: FunctionComponent<Props> = (props: Props): JSX.Element => {
+	const { fontSize } = props;
 	return (
-		<Brand medium="large">
+		<Brand fontSizing={fontSize}>
 			Kapitan <span>Basa</span>
 		</Brand>
 	);

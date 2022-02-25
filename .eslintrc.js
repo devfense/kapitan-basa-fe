@@ -38,8 +38,7 @@ module.exports = {
 			'single'
 		],
 		'semi': [
-			'error',
-			'always'
+			'off'
 		],
 		'prettier/prettier': [0, { 'useTabs': true, 'endOfLine':'auto' }],
 		'no-mixed-spaces-and-tabs': 0, // disable rule
