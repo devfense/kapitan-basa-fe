@@ -1,13 +1,16 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 import styled from 'styled-components';
 import { Container } from '../../globalStyles';
 import { useLocaleContext } from '../../providers/localization';
 import SearchBar from '../../components/SearchBar/index';
-import DataGrid from '../../components/DataGrid/index';
+import DataGrid, { TableRow, TableData } from '../../components/DataGrid/index';
 import { AllUser } from '../../modules/users/types';
 import ActionButton from '../../components/ActionButtons';
 import { useDialog } from '../../providers/dialog';
 import TabulationDialog from '../../dialogs/content/TabulationDialog';
+import { RootState } from '../../store';
+import { connect, ConnectedProps } from 'react-redux';
+import * as userActions from '../../modules/users/actions';
 
 const LabelContainer = styled.div`
 	height: 40px;
@@ -44,66 +47,38 @@ const UserListContainer = styled.div`
 	}
 `;
 
-const mockUsers: AllUser[] = [
-	{
-		id: 1,
-		username: 'Juan',
-		studentID: '010101',
-		lastName: 'Dela Cruz',
-		firstName: 'Juan',
-		middleName: 'A.',
-		section: 'Kamagong',
-		grade: '10',
-		emailAddress: 'jdc@jdc.com',
-	},
-	{
-		id: 2,
-		username: 'Juan',
-		studentID: '020202',
-		lastName: 'Cabusao',
-		firstName: 'Mark',
-		middleName: 'A.',
-		section: 'Ipil-Ipil',
-		grade: '10',
-		emailAddress: 'cm@cmd.com',
-	},
-	{
-		id: 3,
-		username: 'Juan',
-		studentID: '030303',
-		lastName: 'Viernes',
-		firstName: 'Jephunneh',
-		middleName: 'B.',
-		section: 'Narra',
-		grade: '10',
-		emailAddress: 'jephv4@cmd.com',
-	},
-];
-
 type TableAllUserStudent = AllUser;
 
-const TabulationAndResult: FunctionComponent = () => {
+type Props = ReduxProps;
+
+const TabulationAndResult: FunctionComponent<Props> = ({ users, getUserList }) => {
 	const strings = useLocaleContext();
 
 	const [openDialog] = useDialog();
 
-	const users = mockUsers.map((users) => {
+	useEffect(() => {
+		getUserList();
+	}, [])
+
+	const userStudent = users.list.map((user) => {
+
 		const handleView = () => {
 			openDialog({
 				children: (
 					<TabulationDialog
 						title="Tabulation/Result"
-						fullname={`${users.firstName} ${users.middleName} ${users.lastName}`}
-						studentID={`${users.studentID}`}
-						grade={`${users.grade}`}
-						section={`${users.section}`}
+						fullname={user.middleName === null ? `${user.firstName} ${user.lastName}` : `${user.firstName} ${user.middleName} ${user.lastName}`}
+						studentID={`${user.studentID}`}
+						grade={`${user.grade}`}
+						section={`${user.section}`}
 					/>
 				),
 			});
 		};
+
 		return {
-			...users,
-			view: (
+			...user,
+			actions: (
 				<>
 					<ActionButton onClick={handleView}>View</ActionButton>
 				</>
@@ -111,16 +86,16 @@ const TabulationAndResult: FunctionComponent = () => {
 		};
 	});
 
-	const columns = [
-		'Student ID',
-		'Last Name',
-		'First Name',
-		'MiddleName',
-		'Section',
-		'Grade',
-		'Email Address',
-		'Action',
-	];
+	const columns = {
+		studentID: 'Student ID',
+		lastName: 'Last Name',
+		firstName: 'First Name',
+		middleName: 'MiddleName',
+		section: 'Section',
+		grade: 'Grade',
+		emailAddress: 'Email Address',
+		actions: 'Action',
+	};
 	return (
 		<Container>
 			<LabelContainer>
@@ -131,10 +106,39 @@ const TabulationAndResult: FunctionComponent = () => {
 				<LabelContainer>
 					<PageLabel size="subheader">{strings.listStud}</PageLabel>
 				</LabelContainer>
-				<DataGrid<TableAllUserStudent> data={users} columns={columns} />
+				<DataGrid<TableAllUserStudent> columns={Object.keys(columns).map((c) => columns[c as keyof typeof columns])}>
+					{userStudent.map((user, index) => {
+						return (
+							<TableRow key={index}>
+								<TableData>{user.studentID}</TableData>
+								<TableData>{user.lastName}</TableData>
+								<TableData>{user.firstName}</TableData>
+								<TableData>{user.middleName}</TableData>
+								<TableData>{user.section}</TableData>
+								<TableData>{user.grade}</TableData>
+								<TableData>{user.emailAddress}</TableData>
+								<TableData>{user.actions}</TableData>
+							</TableRow>
+						)
+					})}
+				</DataGrid>
 			</UserListContainer>
 		</Container>
 	);
 };
 
-export default TabulationAndResult;
+const mapStateToProps = (state: RootState) => ({
+	users: state.users.users,
+});
+
+const mapDispatchToProps = {
+	getUserList: userActions.getUserList,
+};
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
+
+type ReduxProps = ConnectedProps<typeof connector>;
+
+export default connector(TabulationAndResult);
+
+	
