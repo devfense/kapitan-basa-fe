@@ -2,11 +2,7 @@ import React, { FunctionComponent } from 'react';
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import Button from '../../../components/Button';
-import ResultsDialog from '../../../dialogs/content/ResultsDialog';
 import { TAnswers } from '../../../modules/game-levels/types';
-import { useDialog } from '../../../providers/dialog';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../store';
 
 interface QuizProps {
 	quizzes: Array<{id: number; question: string; choices: string[]}>;
@@ -57,13 +53,7 @@ const choiceLetter = ['a', 'b', 'c', 'd'];
 type Props = QuizProps;
 
 const QuizForm: FunctionComponent<Props> = (props: Props) => {
-
-	const { quizResult } = useSelector((state: RootState) => ({
-		quizResult: state.gamelevel.quizResult.result
-	}));
-
 	const { quizzes, handleQuizSubmit, gameLevelId } = props;
-	const [openDialog, closeDialog] = useDialog();
 	const {
 		register,
 		handleSubmit,
@@ -72,7 +62,6 @@ const QuizForm: FunctionComponent<Props> = (props: Props) => {
 	}>();
 
 	const handleDoneQuiz = (data: { answers: TAnswers }) => {
-		console.log(data);
 		if (handleQuizSubmit) {
 			handleQuizSubmit(data.answers.map(x => {
 				return {
@@ -82,10 +71,6 @@ const QuizForm: FunctionComponent<Props> = (props: Props) => {
 				};
 			}));
 		}
-		setTimeout(() =>
-		openDialog({
-			children: <ResultsDialog closeDialog={closeDialog} score={`Your score: ${quizResult?.levelScoreSummary}`} message={`You have ${quizResult?.levelRemarks} the exam.`} result={quizResult?.levelRemarks}/>,
-		}), 1000);
 	};
 
 	return (

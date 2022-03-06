@@ -7,6 +7,8 @@ import QuizForm from '../../layouts/forms/story/QuizForm';
 import { RootState } from '../../store';
 import LoadingOverlay from '../../components/Progress/LoadingOverlay';
 import { TAnswers } from '../../modules/game-levels/types';
+import ResultsDialog from './ResultsDialog';
+import { useDialog } from '../../providers/dialog';
 
 interface QuizProps {
 	gameLevelId: number;
@@ -67,15 +69,16 @@ const TitleHeader: FunctionComponent<TitleProps> = ({ level, title }) => {
 type Props = ReduxProps & QuizProps;
 
 const QuizDialog: FunctionComponent<Props> = ({ gameLevelId, level, title, getQuiz, submitQuiz, onClose, studentID, currentQuiz }) => {
-
+	const [openDialog, closeDialog] = useDialog();
 	useEffect(() => {
 			if (gameLevelId) getQuiz({ id: gameLevelId });
 	}, []);
 
 	const handleSubmit = (answer: TAnswers) => {
 		if (typeof onClose === 'function') onClose();
-		console.log({ studentID: studentID ?? '', gamelevelId: gameLevelId, answers: answer });
-		submitQuiz({ studentID: studentID ?? '', gameLevelID: gameLevelId, answers: answer });
+		submitQuiz({ studentID: studentID ?? '', gameLevelID: gameLevelId, answers: answer, onSuccess: () => openDialog({
+			children: <ResultsDialog onClose={closeDialog} />,
+		}) });
 	}
 
 	const quizzes = currentQuiz.list.map((q) => ({
@@ -94,8 +97,7 @@ const QuizDialog: FunctionComponent<Props> = ({ gameLevelId, level, title, getQu
 
 const mapStateToProps = (state: RootState) => ({
 	currentQuiz: state.gamelevel.currentQuiz,
-	studentID: state.users.userInfo.studentID,
-	quizResult: state.gamelevel.quizResult
+	studentID: state.users.userInfo.studentID
 });
 
 const mapDispatchToProps = {

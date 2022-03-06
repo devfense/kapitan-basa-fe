@@ -1,12 +1,12 @@
 import React, { FunctionComponent } from 'react';
+import { connect, ConnectedProps } from 'react-redux';
 import styled from 'styled-components';
 import AlertType from '../../assets/media/Alert/Alert';
 import Button from '../../components/Button/index';
+import { RootState } from '../../store';
+
 interface ResultProps {
-    closeDialog: () => void;
-    score: string;
-    message: string;
-    result?: string;
+    onClose: () => void;
 }
 
 const ResultContainer = styled.div`
@@ -71,20 +71,28 @@ const ButtonClose = styled(Button)<{ btn?: string }>`
     }
 `;
 
-type Props = ResultProps;
+type Props = ResultProps & ReduxProps;
 
 const ResultsDialog: FunctionComponent<Props> = (props: Props) => {
 
-    const { closeDialog, score, message, result } = props;
+    const { onClose, quizResult } = props;
 
     return (
         <ResultContainer>
-            <Score>{score}</Score>
-            <BoxImage src={result === 'PASSED' ? AlertType.Success : AlertType.Failed} />
-            <Message>{message}</Message>
-            <ButtonClose btn={result} onClick={closeDialog}>{result === 'PASSED' ? 'Awesome' : 'Try Again'}</ButtonClose>
+            <Score>Score: {quizResult.result?.levelScoreSummary}</Score>
+            <BoxImage src={quizResult.result?.levelRemarks === 'PASSED' ? AlertType.Success : AlertType.Failed} />
+            <Message>You have {quizResult.result?.levelRemarks} the exam.</Message>
+            <ButtonClose btn={quizResult.result?.levelRemarks} onClick={onClose}>{quizResult.result?.levelRemarks === 'PASSED' ? 'Awesome' : 'Try Again'}</ButtonClose>
         </ResultContainer>
     );
 };
 
-export default ResultsDialog;
+const mapStateToProps = (state: RootState) => ({
+	quizResult: state.gamelevel.quizResult,
+});
+
+const connector = connect(mapStateToProps, {});
+
+type ReduxProps = ConnectedProps<typeof connector>;
+
+export default connector(ResultsDialog);

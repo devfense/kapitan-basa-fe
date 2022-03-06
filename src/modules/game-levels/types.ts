@@ -32,6 +32,7 @@ export type TSubmitQuizAnswer = {
 	studentID: string;
 	gameLevelID: number;
 	answers: TAnswers;
+	onSuccess?: () => void;
 }
 
 // New Set Data - Dylan
