@@ -111,7 +111,6 @@ const Game: FunctionComponent<Props> = ({ levels, studentID, getGameLevels }) =>
 					<SearchBar searchTerm={onSearchChange} />
 			}
 			<LevelsContainer>
-				{/* {levels.isLoading && <LoadingOverlay /> } */}
 				{levels.list.length > 0 &&
 					levels.list
 						.filter((g: GameLevel) =>

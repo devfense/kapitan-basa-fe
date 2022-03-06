@@ -1,13 +1,17 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 import styled from 'styled-components';
 import { Container } from '../../globalStyles';
 import { useLocaleContext } from '../../providers/localization';
-import SearchBar from '../../components/SearchBar/index';
-import DataGrid from '../../components/DataGrid/index';
+import SearchBar from '../../components/SearchBar';
+import DataGrid from '../../components/DataGrid';
 import { AllUser } from '../../modules/users/types';
 import ActionButton from '../../components/ActionButtons';
 import { useDialog } from '../../providers/dialog';
 import TabulationDialog from '../../dialogs/content/TabulationDialog';
+import * as userActions from '../../modules/users/actions';
+import { connect, ConnectedProps } from 'react-redux';
+import { RootState } from '../../store';
+import LoadingOverlay from '../../components/Progress/LoadingOverlay';
 
 const LabelContainer = styled.div`
 	height: 40px;
@@ -44,50 +48,20 @@ const UserListContainer = styled.div`
 	}
 `;
 
-const mockUsers: AllUser[] = [
-	{
-		id: 1,
-		username: 'Juan',
-		studentID: '010101',
-		lastName: 'Dela Cruz',
-		firstName: 'Juan',
-		middleName: 'A.',
-		section: 'Kamagong',
-		grade: '10',
-		emailAddress: 'jdc@jdc.com',
-	},
-	{
-		id: 2,
-		username: 'Juan',
-		studentID: '020202',
-		lastName: 'Cabusao',
-		firstName: 'Mark',
-		middleName: 'A.',
-		section: 'Ipil-Ipil',
-		grade: '10',
-		emailAddress: 'cm@cmd.com',
-	},
-	{
-		id: 3,
-		username: 'Juan',
-		studentID: '030303',
-		lastName: 'Viernes',
-		firstName: 'Jephunneh',
-		middleName: 'B.',
-		section: 'Narra',
-		grade: '10',
-		emailAddress: 'jephv4@cmd.com',
-	},
-];
-
 type TableAllUserStudent = AllUser;
 
-const TabulationAndResult: FunctionComponent = () => {
+type Props = ReduxProps;
+
+const TabulationAndResult: FunctionComponent<Props> = ({ userList, getUserList }) => {
 	const strings = useLocaleContext();
 
 	const [openDialog] = useDialog();
 
-	const users = mockUsers.map((users) => {
+	useEffect(() => {
+		getUserList();
+	}, [])
+
+	const users = userList.list.map((users) => {
 		const handleView = () => {
 			openDialog({
 				children: (
@@ -102,7 +76,15 @@ const TabulationAndResult: FunctionComponent = () => {
 			});
 		};
 		return {
-			...users,
+			id: users.id,
+			studentID: users.studentID,
+			lastName: users.lastName,
+			firstName: users.firstName,
+			middleName: users.middleName,
+			grade: users.grade,
+			section: users.section,
+			username: users.username,
+			emailAddress: users.emailAddress,
 			view: (
 				<>
 					<ActionButton onClick={handleView}>View</ActionButton>
@@ -112,12 +94,14 @@ const TabulationAndResult: FunctionComponent = () => {
 	});
 
 	const columns = [
+		'#',
 		'Student ID',
 		'Last Name',
 		'First Name',
 		'MiddleName',
-		'Section',
 		'Grade',
+		'Section',
+		'Username',
 		'Email Address',
 		'Action',
 	];
@@ -131,10 +115,23 @@ const TabulationAndResult: FunctionComponent = () => {
 				<LabelContainer>
 					<PageLabel size="subheader">{strings.listStud}</PageLabel>
 				</LabelContainer>
+				{ userList.isLoading && <LoadingOverlay /> }
 				<DataGrid<TableAllUserStudent> data={users} columns={columns} />
 			</UserListContainer>
 		</Container>
 	);
 };
 
-export default TabulationAndResult;
+const mapDispatchStateToProps = ((state: RootState) => ({
+	userList: state.users.users,
+}));
+
+const mapDispatchToProps = {
+	getUserList: userActions.getUserList,
+};
+
+const connector = connect(mapDispatchStateToProps, mapDispatchToProps);
+
+type ReduxProps = ConnectedProps<typeof connector>;
+
+export default connector(TabulationAndResult);

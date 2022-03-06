@@ -50,6 +50,7 @@ export function* getQuiz(action: GetQuizRequest): SagaIterator {
 }
 // New Request to API
 export function* submitQuiz(action: SubmitQuizRequest): SagaIterator {
+	const { onSuccess } = action.payload;
 	try {
 		const { data }: Response<{ content: ResultResponse }> = yield call(api, {
 			url: '/game-levels/submit-quiz-answer',
@@ -57,6 +58,9 @@ export function* submitQuiz(action: SubmitQuizRequest): SagaIterator {
 			method: 'post'
 		});
 		yield put({ type: Actions.SUBMIT_QUIZ_FULFILLED, payload: data.content });
+		if (typeof onSuccess === 'function') {
+			onSuccess();
+		}
 	} catch (error) {
 		yield put({ type: Actions.SUBMIT_QUIZ_REJECTED, payload: undefined });
 	}

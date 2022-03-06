@@ -1,6 +1,11 @@
-import React, { FunctionComponent, ReactNode } from 'react';
+import React, { FunctionComponent, ReactNode, useEffect } from 'react';
+import { connect, ConnectedProps } from 'react-redux';
 import styled from 'styled-components';
+import DataGrid from '../../components/DataGrid';
 import { DialogContainer } from '../../components/Dialog';
+import * as gameLevelActions from '../../modules/game-levels/actions';
+import { GameLevel } from '../../modules/game-levels/types';
+import { RootState } from '../../store';
 
 const StyledDialogContentContainer = styled(DialogContainer)`
 	width: 1093px;
@@ -90,7 +95,7 @@ const StudentInformation: FunctionComponent<StudentInfoProps> = ({ children }) =
 	return <InformationContainer>{children}</InformationContainer>;
 };
 
-interface Props {
+interface InfoProps {
 	title: string;
 	fullname: string;
 	studentID: string;
@@ -98,13 +103,40 @@ interface Props {
 	section: string;
 }
 
+type Props = InfoProps & ReduxProps;
+
 const TabulationDialog: FunctionComponent<Props> = ({
 	title,
 	fullname,
 	studentID,
 	grade,
 	section,
+	levels,
+	getGameLevels,
 }) => {
+
+	useEffect(() => {
+		getGameLevels({ studentID });
+	}, [])
+
+	const columns = [
+		'Level',
+		'Title',
+		'Score',
+		'Summary',
+		'Remarks',
+	];
+
+	const summaryResults = levels.list.map((res) => {
+		return {
+			gameLevelId: res.gameLevelId,
+			title: res.gameLevelData.levelTitle,
+			levelScore: res.levelScore,
+			levelScoreSummary: res.levelScoreSummary,
+			levelRemarks: res.levelRemarks,
+		}	
+	})
+
 	return (
 		<StyledDialogContentContainer title={<TitleHeader title={title} />}>
 			<StudentInformation>
@@ -131,8 +163,23 @@ const TabulationDialog: FunctionComponent<Props> = ({
 					</Information>
 				</StudentInfoContainer>
 			</StudentInformation>
+
+			<DataGrid<Omit<GameLevel, 'gameLevelData' | 'locked' | 'levelCleared'> & { title: string }> data={summaryResults} columns={columns} />
 		</StyledDialogContentContainer>
 	);
 };
 
-export default TabulationDialog;
+
+const mapStateToProps = (state: RootState) => ({
+	levels: state.gamelevel.levels,
+});
+
+const mapDispatchToProps = {
+	getGameLevels: gameLevelActions.getGameLevels,
+};
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
+
+type ReduxProps = ConnectedProps<typeof connector>;
+
+export default connector(TabulationDialog);

@@ -103,14 +103,33 @@ export const gamelevel = (state = initialState, action: GameLevelTypes): GameLav
 			})
 		}
 		case Actions.SUBMIT_QUIZ_FULFILLED: {
-			return update(state, {
-				quizResult: {
-					isLoading: { $set: false },
-					result: {
-						$set: { ...action.payload }
+			if (action.payload.levelRemarks === 'PASSED') {
+				const gameLevelId = action.payload.gameLevelId;
+				const indx = state.levels.list.findIndex(({gameLevelId: gId}) => gId === gameLevelId);
+				return update(state, {
+					quizResult: {
+						isLoading: { $set: false },
+						result: {
+							$set: { ...action.payload }
+						}
+					},
+					levels: {
+						isLoading: { $set: false },
+						list: {
+							[indx]: { $merge: { levelCleared: true } }
+						}
 					}
-				}
-			})
+				})
+			} else {
+				return update(state, {
+					quizResult: {
+						isLoading: { $set: false },
+						result: {
+							$set: { ...action.payload }
+						}
+					}
+				})
+			}
 		}
 		default: {
 			return { ...state };
