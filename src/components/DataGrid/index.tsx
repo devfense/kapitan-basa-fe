@@ -21,7 +21,23 @@ export const ContentTable = styled(MuiTableContainer)`
 		font-size: 0.9em;
 		min-width: 100%;
 		border-radius: 5px 5px 0 0;
-		overflow: hidden;
+		overflow: auto;
+		height: 500px;
+		/* width */
+		::-webkit-scrollbar {
+		  width: 10px;
+		}
+		
+		/* Track */
+		::-webkit-scrollbar-track {
+		  background: #f1f1f1;
+		}
+		
+		/* Handle */
+		::-webkit-scrollbar-thumb {
+		  background: #e0e0e0;
+		  border-radius: 50px;
+		}
 	}
 	
 `;
@@ -34,14 +50,17 @@ const MainTable = styled(MuiTable)`
 
 export const TableHeader = styled(MuiTableHead)`
 	background-color: ${({ theme }) => theme.app.content.normal.BG_COLOR};
+	position: sticky;
+	top: 0;
+	/* z-index: 30; */
 `;
 
 export const TableRow = styled(MuiTableRow)`
 	color: ${({ theme }) => theme.app.content.normal.SECONDARY_TEXT_COLOR};
 	text-align: left;
-	/* &:nth-of-type(even) {
+	&:nth-of-type(even) {
         background-color: ${({ theme }) => theme.app.content.normal.BG_COLOR};
-    }; */
+    };
 	&:last-of-type {
 		border-bottom: 2px solid ${({ theme }) => theme.app.content.normal.BG_COLOR};
 	}
