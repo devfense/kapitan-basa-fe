@@ -37,6 +37,7 @@ const TitleContainer = styled.div`
 		margin-bottom: 0;
 		font-size: 22px;
 		font-weight: 700;
+		color: #25396F;
 	}
 `;
 
@@ -48,6 +49,7 @@ const InformationContainer = styled.div`
 	display: flex;
 	align-items: end;
 	padding: 0px 30px;
+	margin-bottom: 30px;
 `;
 
 const StudentInfoContainer = styled.div`
@@ -65,13 +67,13 @@ const Information = styled.div`
 
 const InfoBox = styled.div`
 	width: 70%;
-	color: #7c8db5;
+	color: #25396F;
 	font-size: 1rem;
 	font-weight: 500;
 	> label {
 		margin-left: 8px;
 		font-weight: 600;
-		color: #6e81ae;
+		color: #25396F;
 	}
 `;
 
