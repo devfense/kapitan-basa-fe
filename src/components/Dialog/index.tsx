@@ -31,6 +31,7 @@ const StyledMuiDialogTitle = styled(MuiDialogTitle)`
 
 const Container = styled.div`
 	width: 100%;
+	overflow: auto;
 	background-color: ${({ theme }) => theme.dialog.body.normal.BG_COLOR};
 	.MuiDialogContent-root {
 		padding: 0px 20px 20px;
@@ -64,7 +65,7 @@ const DialogTitle = (props: DialogTitleProps) => {
 	const { children, title, onClose, ...other } = props;
 	return (
 		<StyledMuiDialogTitle disableTypography {...other}>
-			<Typography variant="h6" title={typeof title === 'string' ? title : undefined}>
+			<Typography variant="h6" style={{ fontSize: '1.2rem' }} title={typeof title === 'string' ? title : undefined}>
 				{children}
 			</Typography>
 			{onClose ? (
