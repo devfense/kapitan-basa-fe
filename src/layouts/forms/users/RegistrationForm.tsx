@@ -37,6 +37,13 @@ const InlineFields = styled.div`
 `;
 
 const StyledButton = styled(Button)`
+	&.MuiButton-root {
+		height: 40px;
+
+		@media screen and (max-width:  420px) {
+			font-size: 0.8rem;
+		}
+	}
 	&:disabled {
 		color: #FFF !important;
 	}

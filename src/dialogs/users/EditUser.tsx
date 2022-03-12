@@ -5,6 +5,10 @@ import UserForm from '../../layouts/forms/users/UserForm';
 
 const StyledDialogContainer = styled(DialogContainer)`
 	width: 517px;
+
+	@media screen and (max-width: 420px) {
+		width: 100%;
+	}
 `;
 
 const EditUser: FunctionComponent = () => {

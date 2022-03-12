@@ -5,6 +5,10 @@ import RegistrationForm from '../../layouts/forms/users/RegistrationForm';
 
 const StyledDialogContainer = styled(DialogContainer)`
 	width: 517px;
+
+	@media screen and (max-width: 420px) {
+		width: 100%;
+	}
 `;
 
 const RegisterStudent: FunctionComponent = () => {

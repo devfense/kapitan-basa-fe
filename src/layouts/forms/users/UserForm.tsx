@@ -30,6 +30,16 @@ const InlineFields = styled.div`
 	}
 `;
 
+const StyledButton = styled(Button)`
+	&.MuiButton-root {
+		height: 40px;
+
+		@media screen and (max-width:  420px) {
+			font-size: 0.8rem;
+		}
+	}
+`;
+
 type UserData = Student;
 
 const UserForm: FunctionComponent<Props> = (props: Props) => {
@@ -99,9 +109,9 @@ const UserForm: FunctionComponent<Props> = (props: Props) => {
 					onChange={handleSwitchChange}
 					defaultChecked
 				/>
-				<Button shade="filled" type="submit">
+				<StyledButton shade="filled" type="submit">
 					{submitText ?? 'Submit'}
-				</Button>
+				</StyledButton>
 			</form>
 		</Container>
 	);

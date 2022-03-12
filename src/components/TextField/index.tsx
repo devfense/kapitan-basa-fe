@@ -69,6 +69,10 @@ export const LabeledTextField = styled(MuiTextField)`
 			> .MuiInputLabel-asterisk {
 				color: red;
 			}
+
+			@media screen and (max-width: 420px) {
+				font-size: 0.8rem;
+			}
 		}
 	}
 `;
