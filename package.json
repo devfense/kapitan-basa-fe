@@ -2,6 +2,9 @@
 	"name": "kapitan-basa-web",
 	"version": "0.1.0",
 	"private": true,
+	"engines": {
+		"node": "v16.13.0"
+	},
 	"dependencies": {
 		"@hookform/resolvers": "^2.8.4",
 		"@material-ui/core": "^4.12.3",
